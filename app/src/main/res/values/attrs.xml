@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BubbleLayout">
+        <attr name="lookAt">
+            <enum name="left"   value="1"/>
+            <enum name="top"    value="2"/>
+            <enum name="right"  value="3"/>
+            <enum name="bottom" value="4"/>
+        </attr>
+
+        <attr name="lookPosition" format="dimension"/>
+        <attr name="lookWidth"    format="dimension"/>
+        <attr name="lookLength"   format="dimension"/>
+        <attr name="bubbleColor"  format="color"/>
+        <attr name="bubbleRadius" format="dimension"/>
+        <attr name="bubbleMargin" format="dimension"/>
+        <attr name="shadowRadius" format="dimension"/>
+        <attr name="shadowX"      format="dimension"/>
+        <attr name="shadowY"      format="dimension"/>
+        <attr name="shadowColor"  format="color"/>
+    </declare-styleable>
+</resources>

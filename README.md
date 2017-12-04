@@ -6,6 +6,12 @@
 
 ![GIF](display/gif1.gif)
 
+#进度
+2017-12-4：实现dialog按钮处顶部弹出
+|||
+|-|-|
+|![](display/img2.png) |![](display/img3.png)|
+
 #demo下载
 
 
@@ -335,7 +341,7 @@ public class BubbleLayout extends FrameLayout {
 
 > activity_mian使用部分
 ```xml
-    <com.xujiaji.bubblelayout.BubbleLayout
+    <com.xujiaji.bubble.BubbleLayout
         android:id="@+id/bubbleLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"

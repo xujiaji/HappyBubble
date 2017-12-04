@@ -6,7 +6,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <com.xujiaji.bubblelayout.BubbleLayout
+    <com.xujiaji.bubble.BubbleLayout
         android:id="@+id/bubbleLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -225,22 +225,6 @@
                     android:max="100" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="气泡外距：" />
-
-                <SeekBar
-                    android:id="@+id/sbBubbleMargi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:max="100"/>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -343,6 +327,12 @@
                     android:layout_height="wrap_content"
                     android:max="100"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnDialogTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="弹出Dialog"/>
 
             <TextView
                 android:layout_width="match_parent"

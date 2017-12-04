@@ -2,21 +2,30 @@ package com.xujiaji.bubblelayout;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.SeekBar;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+import com.xujiaji.bubble.BubbleDialog;
+import com.xujiaji.bubble.BubbleLayout;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener
+{
 
     private BubbleLayout mBubbleLayout;
+    private View mBtnDialogTop;
+    private View csPurple;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
     }
 
-    private void initView() {
+    private void initView()
+    {
         mBubbleLayout = findViewById(R.id.bubbleLayout);
         findViewById(R.id.rbLeft).setOnClickListener(this);
         findViewById(R.id.rbTop).setOnClickListener(this);
@@ -37,28 +46,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.csOrange).setOnClickListener(this);
         findViewById(R.id.csBlue).setOnClickListener(this);
         findViewById(R.id.csGreen).setOnClickListener(this);
-        findViewById(R.id.csPurple).setOnClickListener(this);
+        csPurple = findViewById(R.id.csPurple);
+        csPurple.setOnClickListener(this);
+        mBtnDialogTop = findViewById(R.id.btnDialogTop);
+        mBtnDialogTop.setOnClickListener(this);
 
-        ((SeekBar)findViewById(R.id.sbBubbleRadius)).setOnSeekBarChangeListener(this);
-        ((SeekBar)findViewById(R.id.sbBubbleMargi)).setOnSeekBarChangeListener(this);
-        ((SeekBar)findViewById(R.id.sbLookPosition)).setOnSeekBarChangeListener(this);
-        ((SeekBar)findViewById(R.id.sbLookWidth)).setOnSeekBarChangeListener(this);
-        ((SeekBar)findViewById(R.id.sbLookLength)).setOnSeekBarChangeListener(this);
-        ((SeekBar)findViewById(R.id.sbShadowRadius)).setOnSeekBarChangeListener(this);
-        ((SeekBar)findViewById(R.id.sbShadowX)).setOnSeekBarChangeListener(this);
-        ((SeekBar)findViewById(R.id.sbShadowY)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbBubbleRadius)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbLookPosition)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbLookWidth)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbLookLength)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbShadowRadius)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbShadowX)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbShadowY)).setOnSeekBarChangeListener(this);
 
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+    public void onProgressChanged(SeekBar seekBar, int i, boolean b)
+    {
         switch (seekBar.getId())
         {
             case R.id.sbBubbleRadius:
                 mBubbleLayout.setBubbleRadius(dpTopx(i));
-                break;
-            case R.id.sbBubbleMargi:
-                mBubbleLayout.setBubbleMargin(dpTopx(i));
                 break;
             case R.id.sbLookPosition:
                 mBubbleLayout.setLookPosition(dpTopx(i));
@@ -83,18 +92,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
+    public void onStartTrackingTouch(SeekBar seekBar)
+    {
 
     }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
+    public void onStopTrackingTouch(SeekBar seekBar)
+    {
 
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
             default:
             case R.id.rbLeft:
                 mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
@@ -154,13 +167,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.csPurple:
                 mBubbleLayout.setShadowColor(getResources().getColor(android.R.color.holo_purple));
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.test, null))
+                        .setClickedView(csPurple)
+                        .calBar(true)
+                        .setTransParentBackground()
+                        .show();
+                break;
+            case R.id.btnDialogTop:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.test, null))
+                        .setClickedView(mBtnDialogTop)
+                        .setTransParentBackground()
+                        .calBar(true)
+                        .show();
                 break;
         }
         mBubbleLayout.invalidate();
     }
 
 
-    public int dpTopx(float dipValue) {
+    public int dpTopx(float dipValue)
+    {
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }

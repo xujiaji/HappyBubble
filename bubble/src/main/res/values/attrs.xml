@@ -13,7 +13,7 @@
         <attr name="lookLength"   format="dimension"/>
         <attr name="bubbleColor"  format="color"/>
         <attr name="bubbleRadius" format="dimension"/>
-        <attr name="bubbleMargin" format="dimension"/>
+        <attr name="bubblePadding" format="dimension"/>
         <attr name="shadowRadius" format="dimension"/>
         <attr name="shadowX"      format="dimension"/>
         <attr name="shadowY"      format="dimension"/>

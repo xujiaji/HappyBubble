@@ -1,26 +1,27 @@
 # HappyBubble
 ![](display/img1.png)
 
-#介绍
+# 介绍
 做项目经常会用到这样的布局，每每都是用的切的图片来实现的。由于这样不怎么方便，所以诞生了何不自己画一个的思路。目前这个布局可以通过设置一些属性来达到想要的一些效果，如下GIF图片。
 
 ![GIF](display/gif1.gif)
 
-#进度
+# 进度
 2017-12-4：实现dialog按钮处顶部弹出
-|||
+
+|案例一|案例二|
 |-|-|
 |![](display/img2.png) |![](display/img3.png)|
 
-#demo下载
+# demo下载
+https://link.jianshu.com/?t=https://github.com/xujiaji/HappyBubble/releases/download/demo1.0/BubbleLayoutDemo.apk
 
-
-#代码
+# 代码
 - 思路很简单，用的是path直接绘制的路径。
 - 通过Paint的setPathEffect方法设置圆弧
 - 通过Paint的setShadowLayer方法设置阴影
 - 话不多说了，接下来直接上代码。
->实现部分
+> 实现部分
 ``` java
 package com.xujiaji.bubblelayout;
 
@@ -352,5 +353,6 @@ public class BubbleLayout extends FrameLayout {
         app:lookWidth="16dp" />
 ```
 ---
-END
+
+# END
 现在只是实现的布局部分，接下来需要的是一个Dialog弹窗.后面将会将其融入Dialog，实现箭头能直接指向点击控件的中心。目前代码因该不算太完善，不足和考虑不周的地方也希望大家多多指点！

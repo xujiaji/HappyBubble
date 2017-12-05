@@ -9,8 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -71,17 +69,17 @@ public class BubbleLayout extends FrameLayout
     }
 
 
-    public BubbleLayout(@NonNull Context context)
+    public BubbleLayout(Context context)
     {
         this(context, null);
     }
 
-    public BubbleLayout(@NonNull Context context, @Nullable AttributeSet attrs)
+    public BubbleLayout(Context context, AttributeSet attrs)
     {
         this(context, attrs, 0);
     }
 
-    public BubbleLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr)
+    public BubbleLayout(Context context, AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
         setLayerType(LAYER_TYPE_SOFTWARE, null);

@@ -1,6 +1,8 @@
 package com.xujiaji.bubble;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 /**
  * Created by JiajiXu on 17-12-4.
@@ -19,8 +21,6 @@ public class Util
     /**
      * 获取状态栏的高度
      *
-     * @param context
-     * @return
      */
     public static int getStatusHeight(Context context) {
         int statusHeight = -1;
@@ -34,5 +34,16 @@ public class Util
             e.printStackTrace();
         }
         return statusHeight;
+    }
+
+    /**
+     * 获取屏幕宽高
+     */
+    public static int[] getScreenWH(Context context)
+    {
+        WindowManager manager = (WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        manager.getDefaultDisplay().getMetrics(outMetrics);
+        return new int[]{outMetrics.widthPixels, outMetrics.heightPixels};
     }
 }

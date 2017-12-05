@@ -3,9 +3,7 @@ package com.xujiaji.bubble;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,8 +19,9 @@ public class BubbleDialog extends Dialog
     private View mAddView;//需要添加的view
     private View mClickedView;//点击的View
     private boolean mCalBar;//计算中是否包含状态栏
+    private int mOffsetX, mOffsetY;//x和y方向的偏移
 
-    public BubbleDialog(@NonNull Context context)
+    public BubbleDialog(Context context)
     {
         super(context, R.style.bubble_dialog);
     }
@@ -67,9 +66,18 @@ public class BubbleDialog extends Dialog
         window.setGravity(Gravity.LEFT | Gravity.TOP);
         WindowManager.LayoutParams params = window.getAttributes();
         params.x = clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getWidth() / 2;
-        params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) - mBubbleLayout.getHeight();
+        params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) - mBubbleLayout.getHeight() + mOffsetY;
 
-        mBubbleLayout.setLookPosition(mBubbleLayout.getWidth() / 2 - mBubbleLayout.getLookPosition() / 2 - mBubbleLayout.getLookWidth() / 2);
+        if (params.x <= 0)
+        {
+            mBubbleLayout.setLookPosition(clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+        } else if (params.x + mBubbleLayout.getWidth() > Util.getScreenWH(getContext())[0])
+        {
+            mBubbleLayout.setLookPosition(clickedViewLocation[0] - (Util.getScreenWH(getContext())[0] - mBubbleLayout.getWidth()) + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+        } else
+        {
+            mBubbleLayout.setLookPosition(clickedViewLocation[0] - params.x + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+        }
         mBubbleLayout.setLook(BubbleLayout.Look.BOTTOM);
         mBubbleLayout.invalidate();
         window.setAttributes(params);
@@ -90,6 +98,18 @@ public class BubbleDialog extends Dialog
     public BubbleDialog addContentView(View view)
     {
         this.mAddView = view;
+        return this;
+    }
+
+    public BubbleDialog setOffsetX(int offsetX)
+    {
+        this.mOffsetX = offsetX;
+        return this;
+    }
+
+    public BubbleDialog setOffsetY(int offsetY)
+    {
+        this.mOffsetY = offsetY;
         return this;
     }
 

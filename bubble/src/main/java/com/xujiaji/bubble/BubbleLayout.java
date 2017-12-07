@@ -69,7 +69,7 @@ public class BubbleLayout extends FrameLayout
     }
 
 
-    public BubbleLayout(Context context)
+    public BubbleLayout( Context context)
     {
         this(context, null);
     }
@@ -79,7 +79,7 @@ public class BubbleLayout extends FrameLayout
         this(context, attrs, 0);
     }
 
-    public BubbleLayout(Context context, AttributeSet attrs, int defStyleAttr)
+    public BubbleLayout( Context context, AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
         setLayerType(LAYER_TYPE_SOFTWARE, null);

@@ -20,6 +20,7 @@ public class BubbleDialog extends Dialog
     private View mClickedView;//点击的View
     private boolean mCalBar;//计算中是否包含状态栏
     private int mOffsetX, mOffsetY;//x和y方向的偏移
+    private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
 
     public BubbleDialog(Context context)
     {
@@ -37,9 +38,12 @@ public class BubbleDialog extends Dialog
         }
         setContentView(mBubbleLayout);
 
-        Window window = getWindow();
+        final Window window = getWindow();
         if (window == null) return;
-
+        if (mSoftShowUp)
+        {
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        }
         window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         mBubbleLayout.post(new Runnable()
         {
@@ -49,7 +53,16 @@ public class BubbleDialog extends Dialog
                 dialogPosition();
             }
         });
+    }
 
+    @Override
+    public void dismiss()
+    {
+        if (mSoftShowUp)
+        {
+            Util.hide(BubbleDialog.this);
+        }
+        super.dismiss();
     }
 
     private void dialogPosition()
@@ -83,41 +96,68 @@ public class BubbleDialog extends Dialog
         window.setAttributes(params);
     }
 
-    public BubbleDialog calBar(boolean cal)
+    /**
+     * 计算时是否包含状态栏(如果有状态栏目，而没有设置为true将会出现上下的偏差)
+     */
+    public <T extends BubbleDialog> T calBar(boolean cal)
     {
         this.mCalBar = cal;
-        return this;
+        return (T) this;
     }
 
-    public BubbleDialog setClickedView(View view)
+    /**
+     * 设置被点击的view来设置弹出dialog的位置
+     */
+    public <T extends BubbleDialog> T setClickedView(View view)
     {
         this.mClickedView = view;
-        return this;
+        return (T) this;
     }
-    
-    public BubbleDialog addContentView(View view)
+
+    /**
+     * 当软件键盘弹出时，dialog根据条件上移
+     */
+    public <T extends BubbleDialog> T softShowUp()
+    {
+        this.mSoftShowUp = true;
+        return (T) this;
+    }
+
+    /**
+     * 设置dialog内容view
+     */
+    public <T extends BubbleDialog> T addContentView(View view)
     {
         this.mAddView = view;
-        return this;
+        return (T) this;
     }
 
-    public BubbleDialog setOffsetX(int offsetX)
+    /**
+     * 设置x方向偏移量
+     */
+    public <T extends BubbleDialog> T setOffsetX(int offsetX)
     {
         this.mOffsetX = offsetX;
-        return this;
+        return (T) this;
     }
 
-    public BubbleDialog setOffsetY(int offsetY)
+    /**
+     * 设置y方向偏移量
+     */
+    public <T extends BubbleDialog> T setOffsetY(int offsetY)
     {
         this.mOffsetY = offsetY;
-        return this;
+        return (T) this;
     }
 
-    public BubbleDialog setTransParentBackground()
+    /**
+     * 背景全透明
+     */
+    public <T extends BubbleDialog> T setTransParentBackground()
     {
         Window window = getWindow();
-        if (window == null) return this;
+        if (window == null) return (T) this;
         window.setDimAmount(0);
-        return this;
+        return (T) this;
     }
 }

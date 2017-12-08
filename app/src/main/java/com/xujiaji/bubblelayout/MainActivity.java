@@ -1,5 +1,6 @@
 package com.xujiaji.bubblelayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.csOrange).setOnClickListener(this);
         findViewById(R.id.csBlue).setOnClickListener(this);
         findViewById(R.id.csGreen).setOnClickListener(this);
+        findViewById(R.id.tvNextPage).setOnClickListener(this);
         csPurple = findViewById(R.id.csPurple);
         csPurple.setOnClickListener(this);
         mBtnDialogTop = findViewById(R.id.btnDialogTop);
@@ -109,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())
         {
             default:
+            case R.id.tvNextPage:
+                startActivity(new Intent(this, TestDialogActivity.class));
+                break;
             case R.id.rbLeft:
                 mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
                 break;

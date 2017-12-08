@@ -15,12 +15,36 @@ import android.widget.LinearLayout;
 
 public class BubbleDialog extends Dialog
 {
+    /**
+     * 气泡位置
+     */
+    public enum Position
+    {
+        /**
+         * 左边
+         */
+        LEFT,
+        /**
+         * 上边
+         */
+        TOP,
+        /**
+         * 右边
+         */
+        RIGHT,
+        /**
+         * 下边
+         */
+        BOTTOM
+    }
+
     private BubbleLayout mBubbleLayout;
     private View mAddView;//需要添加的view
     private View mClickedView;//点击的View
     private boolean mCalBar;//计算中是否包含状态栏
     private int mOffsetX, mOffsetY;//x和y方向的偏移
     private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
+    private Position mPosition = Position.TOP;//气泡位置，默认上位
 
     public BubbleDialog(Context context)
     {
@@ -78,20 +102,35 @@ public class BubbleDialog extends Dialog
         if (window == null) return;
         window.setGravity(Gravity.LEFT | Gravity.TOP);
         WindowManager.LayoutParams params = window.getAttributes();
-        params.x = clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getWidth() / 2;
-        params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) - mBubbleLayout.getHeight() + mOffsetY;
+        switch (mPosition)
+        {
+            case TOP:
+            case BOTTOM:
+                params.x = clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getWidth() / 2;
+                if (params.x <= 0)
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+                } else if (params.x + mBubbleLayout.getWidth() > Util.getScreenWH(getContext())[0])
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[0] - (Util.getScreenWH(getContext())[0] - mBubbleLayout.getWidth()) + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+                } else
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[0] - params.x + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+                }
+                if (mPosition == Position.BOTTOM)
+                {
+                    params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) + mOffsetY;
+                    mBubbleLayout.setLook(BubbleLayout.Look.TOP);
+                } else
+                {
+                    params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) - mBubbleLayout.getHeight() + mOffsetY;
+                    mBubbleLayout.setLook(BubbleLayout.Look.BOTTOM);
+                }
 
-        if (params.x <= 0)
-        {
-            mBubbleLayout.setLookPosition(clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
-        } else if (params.x + mBubbleLayout.getWidth() > Util.getScreenWH(getContext())[0])
-        {
-            mBubbleLayout.setLookPosition(clickedViewLocation[0] - (Util.getScreenWH(getContext())[0] - mBubbleLayout.getWidth()) + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
-        } else
-        {
-            mBubbleLayout.setLookPosition(clickedViewLocation[0] - params.x + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+                break;
         }
-        mBubbleLayout.setLook(BubbleLayout.Look.BOTTOM);
+
+        mBubbleLayout.initPadding();
         mBubbleLayout.invalidate();
         window.setAttributes(params);
     }
@@ -129,6 +168,12 @@ public class BubbleDialog extends Dialog
     public <T extends BubbleDialog> T addContentView(View view)
     {
         this.mAddView = view;
+        return (T) this;
+    }
+
+    public <T extends BubbleDialog> T setPosition(Position position)
+    {
+        this.mPosition = position;
         return (T) this;
     }
 

@@ -69,7 +69,7 @@ public class BubbleLayout extends FrameLayout
     }
 
 
-    public BubbleLayout( Context context)
+    public BubbleLayout(Context context)
     {
         this(context, null);
     }
@@ -79,7 +79,7 @@ public class BubbleLayout extends FrameLayout
         this(context, attrs, 0);
     }
 
-    public BubbleLayout( Context context, AttributeSet attrs, int defStyleAttr)
+    public BubbleLayout(Context context, AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
         setLayerType(LAYER_TYPE_SOFTWARE, null);
@@ -88,8 +88,25 @@ public class BubbleLayout extends FrameLayout
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPath = new Path();
+        initPadding();
+    }
+
+    public void initPadding()
+    {
         int p = mBubblePadding * 2;
-        setPadding(p, p, p, mLookLength + p);
+        switch (mLook)
+        {
+            case BOTTOM:
+                setPadding(p, p, p, mLookLength + p);
+                break;
+            case TOP:
+                setPadding(p, p + mLookLength, p, p);
+                break;
+            case LEFT:
+                break;
+            case RIGHT:
+                break;
+        }
     }
 
     /**
@@ -105,7 +122,7 @@ public class BubbleLayout extends FrameLayout
         mShadowX = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowX, 3);
         mShadowY = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowY, 3);
         mBubbleRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleRadius, 20);
-        mBubblePadding = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubblePadding, Util.dpToPx(getContext(),8));
+        mBubblePadding = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubblePadding, Util.dpToPx(getContext(), 8));
         mShadowColor = a.getColor(R.styleable.BubbleLayout_shadowColor, Color.GRAY);
         mBubbleColor = a.getColor(R.styleable.BubbleLayout_bubbleColor, Color.WHITE);
         a.recycle();
@@ -142,7 +159,7 @@ public class BubbleLayout extends FrameLayout
     {
         mPaint.setPathEffect(new CornerPathEffect(mBubbleRadius));
         mPaint.setShadowLayer(mShadowRadius, mShadowX, mShadowY, mShadowColor);
-        
+
         mLeft = mBubblePadding + (mLook == Look.LEFT ? mLookLength : 0);
         mTop = mBubblePadding + (mLook == Look.TOP ? mLookLength : 0);
         mRight = mWidth - mBubblePadding - (mLook == Look.RIGHT ? mLookLength : 0);

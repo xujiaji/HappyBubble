@@ -7,6 +7,8 @@
 ![GIF](display/gif1.gif)
 
 # 进度
+2017-12-8：实现dialog按钮底部弹出，修复一些bug
+2017-12-6：设置dialog有editText时可以上移。dialog关闭时，软键盘可自动关闭
 2017-12-4：实现dialog按钮处顶部弹出
 
 |案例一|案例二|

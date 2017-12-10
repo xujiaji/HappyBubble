@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.xujiaji.bubble.BubbleDialog;
 
@@ -79,7 +80,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
     /**
      * Button
      */
-    private Button mButton12;
+    private TextView mButton12;
 
     private BubbleDialog.Position mPosition = BubbleDialog.Position.TOP;
 
@@ -123,7 +124,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
         mButton10.setOnClickListener(this);
         mButton11 = (Button) findViewById(R.id.button11);
         mButton11.setOnClickListener(this);
-        mButton12 = (Button) findViewById(R.id.button12);
+        mButton12 = findViewById(R.id.button12);
         mButton12.setOnClickListener(this);
     }
 
@@ -147,26 +148,103 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                 mPosition = BubbleDialog.Position.BOTTOM;
                 break;
             case R.id.button:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button2:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton2)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button3:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton3)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button4:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton4)
+                        .setPosition(mPosition)
+                        .setOffsetY(8)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button5:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view2, null))
+                        .setClickedView(mButton5)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
                 break;
             case R.id.button6:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton6)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button7:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton7)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button8:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton8)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button9:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton9)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button10:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton10)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button11:
+                new BubbleDialog(this)
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .setClickedView(mButton11)
+                        .setPosition(mPosition)
+                        .calBar(true)
+                        .show();
+
                 break;
             case R.id.button12:
                 new BubbleDialog(this)

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
 
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="0dp"
@@ -14,6 +15,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dialog方向:"
+            android:textColor="@android:color/holo_purple" />
 
         <RadioButton
             android:id="@+id/rbLeft"
@@ -75,7 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
         android:layout_marginTop="36dp"
-        android:text="Button"
+        android:text="向下偏移8dp"
+        android:background="@android:color/holo_blue_light"
         app:layout_constraintStart_toStartOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
@@ -87,6 +95,7 @@
         android:layout_marginEnd="88dp"
         android:layout_marginStart="88dp"
         android:text="Button"
+        android:background="@android:color/holo_orange_light"
         app:layout_constraintBottom_toTopOf="@+id/button12"
         app:layout_constraintEnd_toEndOf="@+id/button9"
         app:layout_constraintStart_toStartOf="@+id/button2" />
@@ -126,8 +135,11 @@
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="61dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="48dp"
         android:text="Button"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button8"
         app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
@@ -151,13 +163,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button12" />
 
-    <Button
+    <TextView
         android:id="@+id/button12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
-        android:layout_marginEnd="4dp"
-        android:text="Button"
+        android:layout_width="90dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="52dp"
+        android:background="@android:color/holo_green_light"
+        android:gravity="center"
+        android:text="测试输入框"
         app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.xujiaji.bubble;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -69,6 +70,7 @@ public class BubbleDialog extends Dialog
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         }
         window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        setLook();
         mBubbleLayout.post(new Runnable()
         {
             @Override
@@ -77,6 +79,26 @@ public class BubbleDialog extends Dialog
                 dialogPosition();
             }
         });
+    }
+
+    private void setLook()
+    {
+        switch (mPosition)
+        {
+            case LEFT:
+                mBubbleLayout.setLook(BubbleLayout.Look.RIGHT);
+                break;
+            case TOP:
+                mBubbleLayout.setLook(BubbleLayout.Look.BOTTOM);
+                break;
+            case RIGHT:
+                mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
+                break;
+            case BOTTOM:
+                mBubbleLayout.setLook(BubbleLayout.Look.TOP);
+                break;
+        }
+        mBubbleLayout.initPadding();
     }
 
     @Override
@@ -106,7 +128,7 @@ public class BubbleDialog extends Dialog
         {
             case TOP:
             case BOTTOM:
-                params.x = clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getWidth() / 2;
+                params.x = clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getWidth() / 2 + mOffsetX;
                 if (params.x <= 0)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
@@ -119,18 +141,40 @@ public class BubbleDialog extends Dialog
                 }
                 if (mPosition == Position.BOTTOM)
                 {
-                    params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) + mOffsetY;
-                    mBubbleLayout.setLook(BubbleLayout.Look.TOP);
+                    params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) + mClickedView.getHeight() + mOffsetY;
+
                 } else
                 {
                     params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) - mBubbleLayout.getHeight() + mOffsetY;
-                    mBubbleLayout.setLook(BubbleLayout.Look.BOTTOM);
-                }
 
+                }
+                break;
+            case LEFT:
+            case RIGHT:
+                params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) + mOffsetY + mClickedView.getHeight() / 2 - mBubbleLayout.getHeight() / 2;
+                if (params.y <= 0)
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2);
+                } else if (params.y + mBubbleLayout.getHeight() > Util.getScreenWH(getContext())[1])
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - (Util.getScreenWH(getContext())[1] - mBubbleLayout.getHeight() + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2));
+                } else
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - params.y + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth()/ 2 - (mCalBar ? Util.getStatusHeight(getContext()) : 0));
+                }
+                if (mPosition == Position.RIGHT)
+                {
+
+                    params.x = clickedViewLocation[0] + mClickedView.getWidth() + mOffsetX;
+                } else
+                {
+
+                    params.x = clickedViewLocation[0] -  mBubbleLayout.getWidth() + mOffsetX;
+                }
                 break;
         }
 
-        mBubbleLayout.initPadding();
+
         mBubbleLayout.invalidate();
         window.setAttributes(params);
     }
@@ -182,7 +226,7 @@ public class BubbleDialog extends Dialog
      */
     public <T extends BubbleDialog> T setOffsetX(int offsetX)
     {
-        this.mOffsetX = offsetX;
+        this.mOffsetX = Util.dpToPx(getContext(), offsetX);
         return (T) this;
     }
 
@@ -191,7 +235,7 @@ public class BubbleDialog extends Dialog
      */
     public <T extends BubbleDialog> T setOffsetY(int offsetY)
     {
-        this.mOffsetY = offsetY;
+        this.mOffsetY = Util.dpToPx(getContext(), offsetY);
         return (T) this;
     }
 

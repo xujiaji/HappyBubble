@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 /**
@@ -103,8 +104,10 @@ public class BubbleLayout extends FrameLayout
                 setPadding(p, p + mLookLength, p, p);
                 break;
             case LEFT:
+                setPadding(p + mLookLength, p, p, p);
                 break;
             case RIGHT:
+                setPadding(p, p, p + mLookLength, p);
                 break;
         }
     }

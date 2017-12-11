@@ -1,4 +1,4 @@
-package com.xujiaji.bubble;
+package com.xujiaji.happybubble;
 
 import android.app.Dialog;
 import android.content.Context;

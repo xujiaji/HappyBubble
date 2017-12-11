@@ -80,25 +80,30 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="74dp"
-        android:layout_marginTop="36dp"
-        android:text="向下偏移8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/holo_blue_light"
+        android:text="向下偏移8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/button10" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="60dp"
         android:layout_marginEnd="88dp"
         android:layout_marginStart="88dp"
-        android:text="Button"
+        android:layout_marginTop="8dp"
         android:background="@android:color/holo_orange_light"
+        android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/button12"
         app:layout_constraintEnd_toEndOf="@+id/button9"
-        app:layout_constraintStart_toStartOf="@+id/button2" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/button10" />
 
     <Button
         android:id="@+id/button6"
@@ -106,11 +111,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="139dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="138dp"
-        android:text="Button"
+        android:layout_marginTop="8dp"
+        android:text="有状态栏却没有计算\n会向下偏移一个状态栏的高度"
         app:layout_constraintBottom_toBottomOf="@+id/button7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <Button
         android:id="@+id/button7"
@@ -149,7 +154,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="21dp"
-        android:text="Button"
+        android:textAllCaps="false"
+        android:background="@android:color/holo_purple"
+        android:text="继承BubbleDialog可操作的Dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button8" />
 

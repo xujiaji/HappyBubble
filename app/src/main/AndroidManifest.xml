@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xujiaji.bubblelayout">
+    package="com.xujiaji.happybubbletest">
 
     <application
         android:allowBackup="true"
@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.xujiaji.bubblelayout.MainActivity">
+        <activity android:name="com.xujiaji.happybubbletest.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestDialogActivity" />
+        <activity android:name="com.xujiaji.happybubbletest.TestDialogActivity" />
     </application>
 
 </manifest>

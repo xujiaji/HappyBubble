@@ -1,4 +1,4 @@
-package com.xujiaji.bubble;
+package com.xujiaji.happybubbletest;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.xujiaji.bubble.test", appContext.getPackageName());
+        assertEquals("com.xujiaji.bubbledialog", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.xujiaji.bubble;
+package com.xujiaji.happybubble;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,7 +10,6 @@ import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.FrameLayout;
 
 /**

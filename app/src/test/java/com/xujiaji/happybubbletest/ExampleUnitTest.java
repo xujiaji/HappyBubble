@@ -1,4 +1,4 @@
-package com.xujiaji.bubblelayout;
+package com.xujiaji.happybubbletest;
 
 import org.junit.Test;
 

@@ -6,7 +6,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <com.xujiaji.bubble.BubbleLayout
+    <com.xujiaji.happybubble.BubbleLayout
         android:id="@+id/bubbleLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"

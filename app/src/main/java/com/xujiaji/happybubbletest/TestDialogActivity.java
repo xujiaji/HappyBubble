@@ -1,4 +1,4 @@
-package com.xujiaji.bubblelayout;
+package com.xujiaji.happybubbletest;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.xujiaji.bubble.BubbleDialog;
+import com.xujiaji.happybubble.BubbleDialog;
 
 /**
  * Created by JiajiXu on 17-12-8.
@@ -197,7 +197,6 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton6)
                         .setPosition(mPosition)
-                        .calBar(true)
                         .show();
 
                 break;
@@ -229,13 +228,18 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 
                 break;
             case R.id.button10:
-                new BubbleDialog(this)
-                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
-                        .setClickedView(mButton10)
+                CustomOperateDialog codDialog = new CustomOperateDialog(this)
                         .setPosition(mPosition)
-                        .calBar(true)
-                        .show();
-
+                        .setClickedView(mButton10);
+                codDialog.setClickListener(new CustomOperateDialog.OnClickCustomButtonListener()
+                {
+                    @Override
+                    public void onClick(String str)
+                    {
+                        mButton10.setText("点击了：" + str);
+                    }
+                });
+                codDialog.show();
                 break;
             case R.id.button11:
                 new BubbleDialog(this)

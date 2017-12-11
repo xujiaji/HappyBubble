@@ -15,9 +15,9 @@
 
 2017-12-4：实现dialog按钮处顶部弹出
 
-|案例一|案例二|
-|-|-|
-|![](display/img2.png) |![](display/img3.png)|
+|案例一|案例二|测试Dialog|
+|-|-|-|
+|![](display/img2.png) |![](display/img3.png)|![](display/img4.png)|
 
 # demo下载
 https://link.jianshu.com/?t=https://github.com/xujiaji/HappyBubble/releases/download/demo1.0/BubbleLayoutDemo.apk

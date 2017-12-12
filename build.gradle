@@ -8,6 +8,9 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -19,9 +22,37 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'happy-bubble'
+
+    publishedGroupId = 'com.github.xujiaji'
+    libraryName = 'happy-bubble'
+    artifact = 'happy-bubble'
+
+    libraryDescription = 'Bubble layout change at will; Dialog according to click View position display;'
+
+    siteUrl = 'https://github.com/xujiaji/HappyBubble'
+    gitUrl = 'https://github.com/xujiaji/HappyBubble.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'xujiaji'
+    developerName = 'xujiaji'
+    developerEmail = 'jiajixu@qq.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }

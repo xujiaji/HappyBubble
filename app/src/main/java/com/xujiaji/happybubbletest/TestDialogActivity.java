@@ -1,6 +1,7 @@
 package com.xujiaji.happybubbletest;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.xujiaji.happybubble.BubbleDialog;
+import com.xujiaji.happybubble.BubbleLayout;
+import com.xujiaji.happybubble.Util;
 
 /**
  * Created by JiajiXu on 17-12-8.
@@ -210,11 +213,17 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 
                 break;
             case R.id.button8:
+                BubbleLayout bl = new BubbleLayout(this);
+                bl.setBubbleColor(Color.BLUE);
+                bl.setShadowColor(Color.RED);
+                bl.setLookLength(Util.dpToPx(this, 54));
+                bl.setLookWidth(Util.dpToPx(this, 48));
                 new BubbleDialog(this)
-                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view5, null))
                         .setClickedView(mButton8)
                         .setPosition(mPosition)
                         .calBar(true)
+                        .setBubbleLayout(bl)
                         .show();
 
                 break;

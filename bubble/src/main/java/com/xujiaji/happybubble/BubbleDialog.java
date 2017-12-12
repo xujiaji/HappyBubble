@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 /**
@@ -55,7 +56,10 @@ public class BubbleDialog extends Dialog
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        mBubbleLayout = new BubbleLayout(getContext());
+        if (mBubbleLayout == null)
+        {
+            mBubbleLayout = new BubbleLayout(getContext());
+        }
         if (mAddView != null)
         {
             mBubbleLayout.addView(mAddView);
@@ -235,6 +239,15 @@ public class BubbleDialog extends Dialog
     public <T extends BubbleDialog> T setOffsetY(int offsetY)
     {
         this.mOffsetY = Util.dpToPx(getContext(), offsetY);
+        return (T) this;
+    }
+
+    /**
+     * 自定义气泡布局
+     */
+    public <T extends BubbleDialog> T setBubbleLayout(BubbleLayout bl)
+    {
+        this.mBubbleLayout = bl;
         return (T) this;
     }
 

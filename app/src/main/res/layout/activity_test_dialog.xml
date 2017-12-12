@@ -61,6 +61,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="31dp"
         android:layout_marginStart="31dp"
         android:layout_marginTop="31dp"
         android:text="Button"
@@ -81,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="74dp"
         android:layout_marginStart="74dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/holo_blue_light"
@@ -110,6 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="139dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="有状态栏却没有计算\n会向下偏移一个状态栏的高度"
@@ -130,9 +133,14 @@
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="20dp"
-        android:text="Button"
+        android:text="自定义气泡布局的样式"
+        android:background="@android:color/holo_red_light"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
@@ -140,12 +148,13 @@
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="16dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="Button"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button8"
+        app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
     <Button
@@ -153,10 +162,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
         android:layout_marginTop="21dp"
-        android:textAllCaps="false"
         android:background="@android:color/holo_purple"
         android:text="继承BubbleDialog可操作的Dialog"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button8" />
 
@@ -166,6 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
         android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button12" />

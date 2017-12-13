@@ -1,4 +1,6 @@
 # HappyBubble
+[![GitHub release](https://img.shields.io/badge/release-demo-1.0.1-red.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.1-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.1) 
+
 Bubble layout change at will; Dialog according to click View position display;
 
 [Old README](README-old.md)
@@ -6,7 +8,7 @@ Bubble layout change at will; Dialog according to click View position display;
 # How to use?
 Add HappyBubble dependency into your build.gradle
 ```
-compile 'com.github.xujiaji:happy-bubble:1.0.0'
+compile 'com.github.xujiaji:happy-bubble:1.0.1'
 ```
 
 # License

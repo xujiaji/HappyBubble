@@ -1,1 +1,1 @@
-include ':app', ':bubble'
+include ':app', ':happy-bubble'

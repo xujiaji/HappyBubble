@@ -15,10 +15,25 @@ Add HappyBubble dependency into your build.gradle
 compile 'com.github.xujiaji:happy-bubble:1.0.1'
 ```
 
-## How to use HappyBubble?
+## How to use HappyBubble-BubbleDialog?
 > I am writing related doc.Stay tuned.
 
-## How to use BubbleLayout?
+> Method reference table
+
+|Description|Method|Param|
+|:-|:-|:-:|
+|Fill content view|addContentView|View|
+|Clicked view|setClickedView|View|
+|BubbleDialog relative to the location of the view being clicked|setPosition|enum BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|
+|Whether to calculate the status bar|calBar|boolean|
+|If you are not satisfied with the x position, you need to adjust.|setOffsetX|int|
+|If you are not satisfied with the y position, you need to adjust.|setOffsetY|int|
+|Custom BubbleLayout|setBubbleLayout|BubbleLayout|
+|Transparent background|setTransParentBackground|-|
+|When EditText gets the focus, you want it to move up.|softShowUp|-|
+|display|show|-|
+
+## How to use HappyBubble-BubbleLayout?
 ### Define attributes in XML code.
 > Attributes reference table
 
@@ -56,8 +71,10 @@ compile 'com.github.xujiaji:happy-bubble:1.0.1'
 
 ``` java
 mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
-mBubbleLayout.invalidate();
 ```
+> See more
+
+[MainActivity code](app/src/main/java/com/xujiaji/happybubbletest/MainActivity.java)
 
 # License
 ```

@@ -21,17 +21,17 @@ compile 'com.github.xujiaji:happy-bubble:1.0.1'
 > Method reference table
 
 |Description|Method|Param|
-|:-|:-|:-:|
-|Fill content view|addContentView|View|
-|Clicked view|setClickedView|View|
-|BubbleDialog relative to the location of the view being clicked|setPosition|enum BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|
-|Whether to calculate the status bar|calBar|boolean|
-|If you are not satisfied with the x position, you need to adjust.|setOffsetX|int|
-|If you are not satisfied with the y position, you need to adjust.|setOffsetY|int|
-|Custom BubbleLayout|setBubbleLayout|BubbleLayout|
-|Transparent background|setTransParentBackground|-|
-|When EditText gets the focus, you want it to move up.|softShowUp|-|
-|display|show|-|
+|:-|:-:|:-|
+|addContentView|View|Fill content view|
+|setClickedView|View|Clicked view|
+|setPosition|enum BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|BubbleDialog relative to the location of the view being clicked|
+|calBar|boolean|Whether to calculate the status bar|
+|setOffsetX|int|If you are not satisfied with the x position, you need to adjust.|
+|setOffsetY|int|If you are not satisfied with the y position, you need to adjust.|
+|setBubbleLayout|BubbleLayout|Custom BubbleLayout|
+|setTransParentBackground|-|Transparent background|
+|softShowUp|-|When EditText gets the focus, you want it to move up.|
+|show|-|display|
 
 ## How to use HappyBubble-BubbleLayout?
 ### Define attributes in XML code.
@@ -39,17 +39,17 @@ compile 'com.github.xujiaji:happy-bubble:1.0.1'
 
 |Description|Attrs|Value|
 |:-|:-|:-:|
-|Arrow pointing|lookAt|left, top, right, bottom|
-|Arrow length|lookLength|dimension|
-|Arrow relative x or y axis position|lookPosition|dimension|
-|Arrow width|lookWidth|dimension|
-|Bubble color|bubbleColor|color|
-|Bubble arc|bubbleRadius|dimension|
-|Bubble border to content distance|bubblePadding|dimension|
-|Shadow radius|shadowRadius|dimension|
-|Shading offset in the x-axis|shadowX|dimension|
-|Shading offset in the y-axis|shadowY|dimension|
-|Shades of color|shadowColor|color|
+|lookAt|left, top, right, bottom|Arrow pointing|
+|lookLength|dimension|Arrow length|
+|lookPosition|dimension|Arrow relative x or y axis position|
+|lookWidth|dimension|Arrow width|
+|bubbleColor|color|Bubble color|
+|bubbleRadius|dimension|Bubble arc|
+|bubblePadding|dimension|Bubble border to content distance|
+|shadowRadius|dimension|Shadow radius|
+|shadowX|dimension|Shading offset in the x-axis|
+|shadowY|dimension|Shading offset in the y-axis|
+|shadowColor|color|Shades of color|
 
 > xml example
 

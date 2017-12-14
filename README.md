@@ -1,23 +1,25 @@
 # HappyBubble
 [![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.1-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.1)
 
+![bubble](display/img5.png)
+
 Bubble layout change at will;
 
 Dialog according to click View position display;
 
 [Old README](README-old.md)
 
-# How to get started?
+## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
 compile 'com.github.xujiaji:happy-bubble:1.0.1'
 ```
 
-# How to use HappyBubble?
+## How to use HappyBubble?
 > I am writing related doc.Stay tuned.
 
-# How to use BubbleLayout?
-## Define attributes in XML code.
+## How to use BubbleLayout?
+### Define attributes in XML code.
 > Attributes reference table
 
 |Description|Attrs|Value|
@@ -49,7 +51,7 @@ compile 'com.github.xujiaji:happy-bubble:1.0.1'
         app:lookWidth="16dp" />
 ```
 
-## Define attributes in java code.
+### Define attributes in java code.
 > BubbleLayout by calling the 'set + Attr' method and invalidate method.As follows.
 
 ``` java

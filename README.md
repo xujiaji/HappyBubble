@@ -242,6 +242,11 @@ mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
 
 [MainActivity code](app/src/main/java/com/xujiaji/happybubbletest/MainActivity.java)
 
+![GIF](display/gif1.gif)
+
+### demo download
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) 
+
 ---
 
 # License

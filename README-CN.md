@@ -3,43 +3,43 @@
 
 ![bubble](display/img5.png)
 
-Bubble layout change at will;
+气泡布局的形状可以改变，如四角弧度、气泡颜色、箭头大小和阴影。
 
-Dialog according to click View position display;
+气泡Dialog可以根据被点击的view的位置来确定自己展示的位置。
 
-[中文文档](README-CN.md)
+[English Doc](README.md)
 
- [Old README（旧文档）](README-old.md)
+ [旧文档（Old README）](README-old.md)
 
-## How to get started?
-Add HappyBubble dependency into your build.gradle
+## 如何开始?
+在你模块中的build.gradle添加上HappyBubble依赖
 ```
 compile 'com.github.xujiaji:happy-bubble:1.0.1'
 ```
 
-## How to use HappyBubble-BubbleDialog?
-> Method reference table
+## 如何使用 HappyBubble-BubbleDialog?
+> 方法参考表
 
-|Method|Param|Description|
+|方法名|参数|描述|
 |:-|:-:|:-|
-|addContentView|View|Fill content view|
-|setClickedView|View|Clicked view|
-|setPosition|enum BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|BubbleDialog relative to the location of the view being clicked|
-|calBar|boolean|Whether to calculate the status bar|
-|setOffsetX|int|If you are not satisfied with the x position, you need to adjust.|
-|setOffsetY|int|If you are not satisfied with the y position, you need to adjust.|
-|setBubbleLayout|BubbleLayout|Custom BubbleLayout|
-|setTransParentBackground|-|Transparent background|
-|softShowUp|-|When EditText gets the focus, you want it to move up.|
-|show|-|display|
+|addContentView|View|添加填充在气泡中的视图|
+|setClickedView|View|被点击的View（触发Dialog出现的View）|
+|setPosition|enum BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|BubbleDialog相对于被点击的view的位置|
+|calBar|boolean|是否计算状态栏的高度（如果布局没有全屏，则需要计算）|
+|setOffsetX|int|如果您对dialog所展示的x轴位置不满，需要调整x轴方向偏移|
+|setOffsetY|int|如果您对dialog所展示的y轴位置不满，需要调整y轴方向偏移|
+|setBubbleLayout|BubbleLayout|自定义dialog的气泡布局|
+|setTransParentBackground|-|背景透明|
+|softShowUp|-|当气泡dialog中有EditText时，软键盘弹出会遮挡EditText时，dialog随软键盘上移。|
+|show|-|显示|
 
-### The easiest to achieve.
+### 最简单的实现
 |||
 |-|-|
 |![exampel1](display/img_example1.png)|![exampel2](display/img_example2.png)|
 
-> Need to provide Context, fill View, clicked View.</br>
-> If the layout is not full screen then you need to calculate the status bar.
+> 需要提供：Context、填充的View、被点击的View。</br>
+> 如果最外层布局没有全屏时，您需要计算状态栏的高度，否则会多向下偏移一个状态栏的高度。
 
 ``` java
 new BubbleDialog(this)
@@ -48,7 +48,7 @@ new BubbleDialog(this)
         .calBar(true)
         .show();
 ```
-### Off 8dp down.
+### 向下偏移8dp
 ![exampel3](display/img_example3.png)
 ``` java
 new BubbleDialog(this)
@@ -59,7 +59,7 @@ new BubbleDialog(this)
         .calBar(true)
         .show();
 ```
-### When the input box is covered by the keyboard.
+### 当想要输入框随软键盘上移时
 ![exampel4](display/gif_example4.gif)
 ``` java
 new BubbleDialog(this)
@@ -70,7 +70,7 @@ new BubbleDialog(this)
         .softShowUp()
         .show();
 ```
-### Custom BubbleLayout.
+### 自定义 BubbleLayout.
 ![exampel5](display/img_example5.png)
 
 ``` java
@@ -87,9 +87,9 @@ new BubbleDialog(this)
         .setBubbleLayout(bl)
         .show();
 ```
-### Custom BubbleDialog, actionable BubbleDialog.
+### 自定义 BubbleDialog，可交互的 BubbleDialog.
 ![exampel6](display/gif_example6.gif)
-> 1.layout
+> 1、布局
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -118,7 +118,7 @@ new BubbleDialog(this)
 
 </LinearLayout>
 ```
-> 2.Custom BubbleDialog
+> 2、自定义 BubbleDialog
 
 ``` java
 
@@ -179,7 +179,7 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
 
 ```
 
-> 3.display
+> 3、显示
 
 ``` java
 CustomOperateDialog codDialog = new CustomOperateDialog(this)
@@ -195,31 +195,31 @@ codDialog.setClickListener(new CustomOperateDialog.OnClickCustomButtonListener()
 });
 codDialog.show();
 ```
-### See more code.
-[TestDialogActivity code](app/src/main/java/com/xujiaji/happybubbletest/TestDialogActivity.java)
+### 查看关于BappyDialog的使用代码
+[TestDialogActivity 代码](app/src/main/java/com/xujiaji/happybubbletest/TestDialogActivity.java)
 
 ---
 
 
-## How to use HappyBubble-BubbleLayout?
-### Define attributes in XML code.
-> Attributes reference table
+## 如何使用 HappyBubble-BubbleLayout?
+### 在XML代码中设置属性值
+> 属性参照表
 
-|Attrs|Value|Description|
+|属性|值|描述|
 |:-|:-:|:-|
-|lookAt|left, top, right, bottom|Arrow pointing|
-|lookLength|dimension|Arrow length|
-|lookPosition|dimension|Arrow relative x or y axis position|
-|lookWidth|dimension|Arrow width|
-|bubbleColor|color|Bubble color|
-|bubbleRadius|dimension|Bubble arc|
-|bubblePadding|dimension|Bubble border to content distance|
-|shadowRadius|dimension|Shadow radius|
-|shadowX|dimension|Shading offset in the x-axis|
-|shadowY|dimension|Shading offset in the y-axis|
-|shadowColor|color|Shades of color|
+|lookAt|left, top, right, bottom|箭头指向|
+|lookLength|dimension|箭头的长度|
+|lookPosition|dimension|箭头相对于x或y轴的位置|
+|lookWidth|dimension|箭头的宽度|
+|bubbleColor|color|气泡的颜色|
+|bubbleRadius|dimension|气泡四角的圆弧|
+|bubblePadding|dimension|气泡边缘到内容的距离|
+|shadowRadius|dimension|阴影的扩散大小|
+|shadowX|dimension|阴影在x轴方向的偏移|
+|shadowY|dimension|阴影在y轴方向的偏移|
+|shadowColor|color|阴影的颜色|
 
-> xml example
+> xml 例子
 
 ``` xml
     <com.xujiaji.happybubble.BubbleLayout
@@ -234,19 +234,19 @@ codDialog.show();
         app:lookWidth="16dp" />
 ```
 
-### Define attributes in java code.
-> BubbleLayout by calling the 'set + Attr' method and invalidate method.As follows.
+### 在java代码中定义属性值。
+> BubbleLayout 通过“set属性名”方法和invalidate方法来更新BubbleLayout。
 
 ``` java
 mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
 ```
-> See more
+> 查看更多
 
-[MainActivity code](app/src/main/java/com/xujiaji/happybubbletest/MainActivity.java)
+[MainActivity 代码](app/src/main/java/com/xujiaji/happybubbletest/MainActivity.java)
 
 ![GIF](display/gif1.gif)
 
-### demo download.
+### demo 下载
 [![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases)
 
 ---

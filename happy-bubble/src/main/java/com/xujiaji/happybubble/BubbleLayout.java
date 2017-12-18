@@ -10,6 +10,8 @@ import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
 /**
@@ -28,6 +30,7 @@ public class BubbleLayout extends FrameLayout
     private int mLookPosition, mLookWidth, mLookLength;
     private int mShadowColor, mShadowRadius, mShadowX, mShadowY;
     private int mBubbleRadius, mBubbleColor;
+    private OnClickEdgeListener mListener;
 
     /**
      * 箭头指向
@@ -225,6 +228,22 @@ public class BubbleLayout extends FrameLayout
         canvas.drawPath(mPath, mPaint);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        if (event.getAction() == MotionEvent.ACTION_DOWN)
+        {
+            if (event.getX() < getPaddingLeft()
+                    || event.getX() > getWidth() - getPaddingLeft()
+                    || event.getY() < getPaddingTop()
+                    || event.getY() > getHeight() - getPaddingBottom())
+            {
+                mListener.edge();
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
     public Paint getPaint()
     {
         return mPaint;
@@ -384,5 +403,17 @@ public class BubbleLayout extends FrameLayout
         super.onRestoreInstanceState(state);
     }
 
+    public void setOnClickEdgeListener(OnClickEdgeListener l)
+    {
+        this.mListener = l;
+    }
+
+    /**
+     * 触摸到气泡的边缘
+     */
+    public interface OnClickEdgeListener
+    {
+        void edge();
+    }
 
 }

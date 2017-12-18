@@ -82,6 +82,15 @@ public class BubbleDialog extends Dialog
                 dialogPosition();
             }
         });
+
+        mBubbleLayout.setOnClickEdgeListener(new BubbleLayout.OnClickEdgeListener()
+        {
+            @Override
+            public void edge()
+            {
+                dismiss();
+            }
+        });
     }
 
     private void setLook()

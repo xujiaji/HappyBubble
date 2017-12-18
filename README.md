@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.1-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.1)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.2)
 
 ![bubble](display/img5.png)
 
@@ -10,11 +10,13 @@ Dialog according to click View position display;
 [中文文档](README-CN.md)
 
  [Old README（旧文档）](README-old.md)
+## update
+- 1.0.2:Fix click on the dialog edge can not be canceled.
 
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-compile 'com.github.xujiaji:happy-bubble:1.0.1'
+compile 'com.github.xujiaji:happy-bubble:1.0.2'
 ```
 
 ## How to use HappyBubble-BubbleDialog?

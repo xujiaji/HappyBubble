@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Region;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -31,6 +33,7 @@ public class BubbleLayout extends FrameLayout
     private int mShadowColor, mShadowRadius, mShadowX, mShadowY;
     private int mBubbleRadius, mBubbleColor;
     private OnClickEdgeListener mListener;
+    private Region mRegion = new Region();
 
     /**
      * 箭头指向
@@ -233,10 +236,10 @@ public class BubbleLayout extends FrameLayout
     {
         if (event.getAction() == MotionEvent.ACTION_DOWN)
         {
-            if (event.getX() < getPaddingLeft()
-                    || event.getX() > getWidth() - getPaddingLeft()
-                    || event.getY() < getPaddingTop()
-                    || event.getY() > getHeight() - getPaddingBottom())
+            RectF r = new RectF();
+            mPath.computeBounds(r, true);
+            mRegion.setPath(mPath, new Region((int) r.left, (int) r.top, (int) r.right, (int) r.bottom));
+            if (!mRegion.contains((int) event.getX(), (int) event.getY()))
             {
                 mListener.edge();
             }

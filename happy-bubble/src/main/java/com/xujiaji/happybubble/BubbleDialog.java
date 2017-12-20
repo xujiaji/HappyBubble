@@ -4,10 +4,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 /**
@@ -46,6 +46,7 @@ public class BubbleDialog extends Dialog
     private int mOffsetX, mOffsetY;//x和y方向的偏移
     private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
     private Position mPosition = Position.TOP;//气泡位置，默认上位
+    private boolean mCancelable;//是否能够取消
 
     public BubbleDialog(Context context)
     {
@@ -56,6 +57,7 @@ public class BubbleDialog extends Dialog
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setCancelable(true);
         if (mBubbleLayout == null)
         {
             mBubbleLayout = new BubbleLayout(getContext());
@@ -189,6 +191,32 @@ public class BubbleDialog extends Dialog
 
         mBubbleLayout.invalidate();
         window.setAttributes(params);
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        Window window = getWindow();
+
+        if (window == null) return false;
+        final View decorView = window.getDecorView();
+        if (mCancelable && isShowing() && shouldCloseOnTouch(event, decorView)) {
+            cancel();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean shouldCloseOnTouch(MotionEvent event, View decorView) {
+        final int x = (int) event.getX();
+        final int y = (int) event.getY();
+        return (x <= 0) || (y <= 0)
+                || (x > (decorView.getWidth()))
+                || (y > (decorView.getHeight()));
+    }
+
+    public void setCancelable(boolean flag)
+    {
+        super.setCancelable(flag);
+        mCancelable = flag;
     }
 
     /**

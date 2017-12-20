@@ -19,7 +19,7 @@
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```
-compile 'com.github.xujiaji:happy-bubble:1.0.2'
+compile 'com.github.xujiaji:happy-bubble:1.0.3'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog?

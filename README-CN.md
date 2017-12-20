@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.2)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.3)
 
 ![bubble](display/img5.png)
 
@@ -12,6 +12,8 @@
  [旧文档（Old README）](README-old.md)
  
 ## update
+- 1.0.3:继续优化了点击在气泡之外才会被dismiss；修复了Dialog周围会有部分点击无法dismiss；
+
 - 1.0.2:修复点击dialog边缘无法取消
 
 ## 如何开始?

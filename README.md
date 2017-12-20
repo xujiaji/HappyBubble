@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.2)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.3)
 
 ![bubble](display/img5.png)
 
@@ -11,6 +11,8 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.0.3:Continue to optimize the click outside the bubble will be dismiss; fix some Dialog around Dialog can not dismiss;
+
 - 1.0.2:Fix click on the dialog edge can not be canceled.
 
 ## How to get started?

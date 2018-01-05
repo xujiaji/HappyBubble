@@ -45,28 +45,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="下" />
+
+        <RadioButton
+            android:id="@+id/rbAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自动"/>
     </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/checkBoxThrough"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="事件是否穿透Dialog"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
         android:text="Button"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxThrough" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="31dp"
-        android:layout_marginStart="31dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="31dp"
         android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/radioGroup" />
+        app:layout_constraintStart_toEndOf="@+id/checkBoxThrough"
+        app:layout_constraintTop_toTopOf="@+id/radioGroup"
+        android:layout_marginLeft="8dp" />
 
     <Button
         android:id="@+id/button3"
@@ -191,4 +206,5 @@
         android:text="测试输入框"
         app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -7,12 +7,16 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.xujiaji.happybubble.BubbleDialog;
 import com.xujiaji.happybubble.BubbleLayout;
 import com.xujiaji.happybubble.Util;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by JiajiXu on 17-12-8.
@@ -36,6 +40,8 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
      * 下
      */
     private RadioButton mRbBottom;
+
+    private RadioButton mRbAuto;
     /**
      * Button
      */
@@ -85,7 +91,11 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
      */
     private TextView mButton12;
 
+    private CheckBox mCheckBoxThrough;
+    private boolean isAuto;
+
     private BubbleDialog.Position mPosition = BubbleDialog.Position.TOP;
+    private BubbleDialog mCurrentDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -105,6 +115,8 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
         mRbRight.setOnClickListener(this);
         mRbBottom = (RadioButton) findViewById(R.id.rbBottom);
         mRbBottom.setOnClickListener(this);
+        mRbAuto = (RadioButton) findViewById(R.id.rbAuto);
+        mRbAuto.setOnClickListener(this);
         mButton = (Button) findViewById(R.id.button);
         mButton.setOnClickListener(this);
         mButton2 = (Button) findViewById(R.id.button2);
@@ -129,6 +141,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
         mButton11.setOnClickListener(this);
         mButton12 = findViewById(R.id.button12);
         mButton12.setOnClickListener(this);
+        mCheckBoxThrough = findViewById(R.id.checkBoxThrough);
     }
 
     @Override
@@ -150,66 +163,93 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
             case R.id.rbBottom:
                 mPosition = BubbleDialog.Position.BOTTOM;
                 break;
+            case R.id.rbAuto:
+                isAuto = mRbAuto.isChecked();
+                break;
+        }
+
+        if (mCurrentDialog != null && mCurrentDialog.isShowing())
+        {
+            mCurrentDialog.dismiss();
+        }
+
+        switch (v.getId())
+        {
+            default:
+                break;
             case R.id.button:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton)
                         .setPosition(mPosition)
-                        .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+                        .calBar(true);
+                mCurrentDialog.show();
 
                 break;
             case R.id.button2:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton2)
                         .setPosition(mPosition)
-                        .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+                        .calBar(true);
+                mCurrentDialog.show();
 
                 break;
             case R.id.button3:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton3)
                         .setPosition(mPosition)
-                        .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+                        .calBar(true);
+                mCurrentDialog.show();
 
                 break;
             case R.id.button4:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton4)
                         .setPosition(mPosition)
                         .setOffsetY(8)
-                        .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+                        .calBar(true);
+                mCurrentDialog.show();
 
                 break;
             case R.id.button5:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view2, null))
                         .setClickedView(mButton5)
                         .setPosition(mPosition)
-                        .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+                        .calBar(true);
+                mCurrentDialog.show();
                 break;
             case R.id.button6:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton6)
                         .setPosition(mPosition)
-                        .show();
-
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
+                mCurrentDialog.show();
                 break;
             case R.id.button7:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton7)
                         .setPosition(mPosition)
                         .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
+                mCurrentDialog.show();
 
                 break;
             case R.id.button8:
@@ -218,22 +258,26 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                 bl.setShadowColor(Color.RED);
                 bl.setLookLength(Util.dpToPx(this, 54));
                 bl.setLookWidth(Util.dpToPx(this, 48));
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view5, null))
                         .setClickedView(mButton8)
                         .setPosition(mPosition)
                         .calBar(true)
                         .setBubbleLayout(bl)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
+                mCurrentDialog.show();
 
                 break;
             case R.id.button9:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton9)
                         .setPosition(mPosition)
                         .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
+                mCurrentDialog.show();
 
                 break;
             case R.id.button10:
@@ -248,25 +292,33 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         mButton10.setText("点击了：" + str);
                     }
                 });
-                codDialog.show();
+                codDialog.autoPosition(isAuto);
+                codDialog.setThroughEvent(mCheckBoxThrough.isChecked(), true);
+                mCurrentDialog = codDialog;
+                mCurrentDialog.show();
                 break;
             case R.id.button11:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton11)
                         .setPosition(mPosition)
-                        .calBar(true)
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+                        .calBar(true);
+
+                mCurrentDialog.show();
 
                 break;
             case R.id.button12:
-                new BubbleDialog(this)
+                mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view, null))
                         .setClickedView(mButton12)
                         .setPosition(mPosition)
                         .calBar(true)
                         .softShowUp()
-                        .show();
+                        .autoPosition(isAuto)
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
+                mCurrentDialog.show();
 
                 break;
         }

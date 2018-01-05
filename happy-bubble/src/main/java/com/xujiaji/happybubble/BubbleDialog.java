@@ -1,9 +1,11 @@
 package com.xujiaji.happybubble;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 /**
+ *
  * Created by JiajiXu on 17-12-4.
  */
 
@@ -46,18 +49,66 @@ public class BubbleDialog extends Dialog
     private int mOffsetX, mOffsetY;//x和y方向的偏移
     private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
     private Position mPosition = Position.TOP;//气泡位置，默认上位
+    private boolean isAutoPosition = false;//是否自动决定显示的位置
+    private boolean isThroughEvent = false;//是否穿透Dialog事件交互
     private boolean mCancelable;//是否能够取消
+    private int[] clickedViewLocation = new int[2];
+    private Activity mActivity;
 
     public BubbleDialog(Context context)
     {
         super(context, R.style.bubble_dialog);
+        setCancelable(true);
+
+        mActivity = (Activity) context;
+        Window window = getWindow();
+        if (window == null) return;
+        final WindowManager.LayoutParams params = window.getAttributes();
+        final int screenW = Util.getScreenWH(getContext())[0];
+        final int statusBar = Util.getStatusHeight(getContext());
+        getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                if (isThroughEvent)
+                {
+                    float x = params.x < 0 ? 0 : params.x;//如果小于0则等于0
+                    x = x + v.getWidth() > screenW ? screenW - v.getWidth() : x;
+
+                    x += event.getX();
+                    float y = params.y + event.getY() + (mCalBar ? statusBar : 0);
+
+//                LogUtil.e2(String.format("(%s, %s) > (%s, %s)", event.getX(), event.getY(), x, y));
+                    event.setLocation(x, y);
+                    mActivity.getWindow().getDecorView().dispatchTouchEvent(event);
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (isThroughEvent && keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+        {
+            dismiss();
+            mActivity.onBackPressed();
+            mActivity = null;
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setCancelable(true);
         if (mBubbleLayout == null)
         {
             mBubbleLayout = new BubbleLayout(getContext());
@@ -75,6 +126,9 @@ public class BubbleDialog extends Dialog
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         }
         window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        onAutoPosition();
+
         setLook();
         mBubbleLayout.post(new Runnable()
         {
@@ -90,9 +144,44 @@ public class BubbleDialog extends Dialog
             @Override
             public void edge()
             {
-                dismiss();
+                if (BubbleDialog.this.mCancelable)
+                {
+                    dismiss();
+                }
             }
         });
+    }
+
+    /**
+     * 处理自动位置
+     */
+    private void onAutoPosition()
+    {
+        if (!isAutoPosition || mClickedView == null) return;
+        final int[] spaces = new int[4];//被点击View左上右下分别的距离边缘的间隔距离
+        spaces[0] = clickedViewLocation[0];//左距离
+        spaces[1] = clickedViewLocation[1];//上距离
+        spaces[2] = Util.getScreenWH(getContext())[0] - clickedViewLocation[0] - mClickedView.getWidth();//右距离
+        spaces[3] = Util.getScreenWH(getContext())[1] - clickedViewLocation[1] - mClickedView.getHeight() - (mCalBar ? Util.getStatusHeight(getContext()) : 0);//下距离
+        int max = 0;
+        for (int value : spaces)
+        {
+            if (value > max) max = value;
+        }
+
+        if (max == spaces[0])
+        {
+            mPosition = Position.LEFT;
+        } else if (max == spaces[1])
+        {
+            mPosition = Position.TOP;
+        } else if (max == spaces[2])
+        {
+            mPosition = Position.RIGHT;
+        } else if (max == spaces[3])
+        {
+            mPosition = Position.BOTTOM;
+        }
     }
 
     private void setLook()
@@ -132,8 +221,6 @@ public class BubbleDialog extends Dialog
             throw new RuntimeException("Please add the clicked view.");
         }
 
-        int[] clickedViewLocation = new int[2];
-        mClickedView.getLocationOnScreen(clickedViewLocation);
         Window window = getWindow();
         if (window == null) return;
         window.setGravity(Gravity.LEFT | Gravity.TOP);
@@ -198,7 +285,7 @@ public class BubbleDialog extends Dialog
 
         if (window == null) return false;
         final View decorView = window.getDecorView();
-        if (mCancelable && isShowing() && shouldCloseOnTouch(event, decorView)) {
+        if (this.mCancelable && isShowing() && shouldCloseOnTouch(event, decorView)) {
             cancel();
             return true;
         }
@@ -234,6 +321,7 @@ public class BubbleDialog extends Dialog
     public <T extends BubbleDialog> T setClickedView(View view)
     {
         this.mClickedView = view;
+        mClickedView.getLocationOnScreen(clickedViewLocation);
         return (T) this;
     }
 
@@ -255,9 +343,38 @@ public class BubbleDialog extends Dialog
         return (T) this;
     }
 
+    /**
+     * 设置气泡位置
+     */
     public <T extends BubbleDialog> T setPosition(Position position)
     {
         this.mPosition = position;
+        return (T) this;
+    }
+
+    /**
+     * 设置是否自动设置Dialog位置
+     */
+    public <T extends BubbleDialog> T autoPosition(boolean isAutoPosition)
+    {
+        this.isAutoPosition = isAutoPosition;
+        return (T) this;
+    }
+
+    /**
+     * 设置是否穿透Dialog手势交互
+     * @param cancelable 点击空白是否能取消Dialog，只有当"isThroughEvent = false"时才有效
+     */
+    public <T extends BubbleDialog> T setThroughEvent(boolean isThroughEvent, boolean cancelable)
+    {
+        this.isThroughEvent = isThroughEvent;
+        if (isThroughEvent)
+        {
+            setCancelable(false);
+        } else
+        {
+            setCancelable(cancelable);
+        }
         return (T) this;
     }
 

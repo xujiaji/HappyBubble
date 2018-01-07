@@ -11,7 +11,7 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
-- 1.1.0:① Dialog interactive events passed to the Activity to achieve not without closing the dialog box,can opreate Activity.<br>② Add automatically according to click the distance from the edge of the screen to determine the location of the dialog box.
+- 1.1.0:① Dialog interactive events passed to the Activity to achieve not without closing the dialog box,can opreate Activity.<br>② Add automatically according to click the distance from the edge of the screen to determine the location of the dialog box.<br>③Added "autoPosition" and "setThroughEvent" methods, please refer to "BubbleDialog method reference table"
 ![1.1.0.gif](display/1.1.0.gif)
 
 - 1.0.3:Continue to optimize the click outside the bubble will be dismiss; fix some Dialog around Dialog can not dismiss;
@@ -39,6 +39,9 @@ compile 'com.github.xujiaji:happy-bubble:1.1.0'
 |setTransParentBackground|-|Transparent background|
 |softShowUp|-|When EditText gets the focus, you want it to move up.|
 |show|-|display|
+|autoPosition|boolean|Whether to enable the automatic position determination function is enabled, the "setPosition" function is disabled|
+|setThroughEvent|boolean, boolean|The first parameter, "isThroughEvent", sets whether or not to penetrate the Dialog gesture interaction. The second argument, "cancelable", clicks whether the blank can cancel Dialog, only valid if "isThroughEvent = false".|
+
 
 ### The easiest to achieve.
 |||

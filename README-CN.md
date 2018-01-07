@@ -12,7 +12,7 @@
  [旧文档（Old README）](README-old.md)
  
 ## 更新
-- 1.1.0:①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。<br>③新增“autoPosition”和“setThroughEvent”方法，请参考“BubbleDialog方法参考表”
+- 1.1.0:<br>①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。<br>③新增“autoPosition”和“setThroughEvent”方法，请参考“BubbleDialog方法参考表”
 ![1.1.0.gif](display/1.1.0.gif)
 
 - 1.0.3:继续优化了点击在气泡之外才会被dismiss；修复了Dialog周围会有部分点击无法dismiss；
@@ -42,7 +42,7 @@ compile 'com.github.xujiaji:happy-bubble:1.1.0'
 |softShowUp|-|当气泡dialog中有EditText时，软键盘弹出会遮挡EditText时，dialog随软键盘上移。|
 |show|-|显示|
 |autoPosition|boolean|是否开启自动确定位置功能，开启后，“setPosition”功能失效|
-|setThroughEvent|boolean, boolean|第一个参数isThroughEvent设置是否穿透Dialog手势交互，第二个参数cancelable 点击空白是否能取消Dialog，只有当"isThroughEvent = false"时才有效|
+|setThroughEvent|boolean, boolean|第一个参数isThroughEvent设置是否穿透Dialog手势交互。<br>第二个参数cancelable 点击空白是否能取消Dialog，只有当"isThroughEvent = false"时才有效|
 
 ### 最简单的实现
 |||

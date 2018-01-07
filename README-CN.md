@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.0.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.0.3)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.0-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.0)
 
 ![bubble](display/img5.png)
 
@@ -11,7 +11,10 @@
 
  [旧文档（Old README）](README-old.md)
  
-## update
+## 更新
+- 1.1.0:①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。
+![1.1.0.gif](display/1.1.0.gif)
+
 - 1.0.3:继续优化了点击在气泡之外才会被dismiss；修复了Dialog周围会有部分点击无法dismiss；
 
 - 1.0.2:修复点击dialog边缘无法取消
@@ -19,7 +22,7 @@
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```
-compile 'com.github.xujiaji:happy-bubble:1.0.3'
+compile 'com.github.xujiaji:happy-bubble:1.1.0'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog?

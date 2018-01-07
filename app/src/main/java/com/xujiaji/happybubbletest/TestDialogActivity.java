@@ -152,15 +152,19 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
             default:
                 break;
             case R.id.rbLeft:
+                isAuto = false;
                 mPosition = BubbleDialog.Position.LEFT;
                 break;
             case R.id.rbTop:
+                isAuto = false;
                 mPosition = BubbleDialog.Position.TOP;
                 break;
             case R.id.rbRight:
+                isAuto = false;
                 mPosition = BubbleDialog.Position.RIGHT;
                 break;
             case R.id.rbBottom:
+                isAuto = false;
                 mPosition = BubbleDialog.Position.BOTTOM;
                 break;
             case R.id.rbAuto:

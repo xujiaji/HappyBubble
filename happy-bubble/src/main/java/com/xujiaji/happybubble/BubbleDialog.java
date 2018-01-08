@@ -3,11 +3,14 @@ package com.xujiaji.happybubble;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -54,6 +57,7 @@ public class BubbleDialog extends Dialog
     private boolean mCancelable;//是否能够取消
     private int[] clickedViewLocation = new int[2];
     private Activity mActivity;
+    private ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener;
 
     public BubbleDialog(Context context)
     {
@@ -130,14 +134,30 @@ public class BubbleDialog extends Dialog
         onAutoPosition();
 
         setLook();
-        mBubbleLayout.post(new Runnable()
+//        mBubbleLayout.post(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                dialogPosition();
+//            }
+//        });
+
+        mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener()
         {
+            int lastWidth, lastHeight;
             @Override
-            public void run()
+            public void onGlobalLayout()
             {
+                if (lastWidth == mBubbleLayout.getWidth() && lastHeight == mBubbleLayout.getHeight()) return;
                 dialogPosition();
+                lastWidth = mBubbleLayout.getWidth();
+                lastHeight = mBubbleLayout.getHeight();
             }
-        });
+        };
+
+        mBubbleLayout.getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayoutListener);
+
 
         mBubbleLayout.setOnClickEdgeListener(new BubbleLayout.OnClickEdgeListener()
         {
@@ -211,6 +231,10 @@ public class BubbleDialog extends Dialog
         {
             Util.hide(BubbleDialog.this);
         }
+        if (mBubbleLayout != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+        {
+            mBubbleLayout.getViewTreeObserver().removeOnGlobalLayoutListener(mOnGlobalLayoutListener);
+        }
         super.dismiss();
     }
 
@@ -255,10 +279,10 @@ public class BubbleDialog extends Dialog
                 params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) + mOffsetY + mClickedView.getHeight() / 2 - mBubbleLayout.getHeight() / 2;
                 if (params.y <= 0)
                 {
-                    mBubbleLayout.setLookPosition(clickedViewLocation[1] + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2);
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2 - (mCalBar ? Util.getStatusHeight(getContext()) : 0));
                 } else if (params.y + mBubbleLayout.getHeight() > Util.getScreenWH(getContext())[1])
                 {
-                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - (Util.getScreenWH(getContext())[1] - mBubbleLayout.getHeight() + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2));
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - (Util.getScreenWH(getContext())[1] - mBubbleLayout.getHeight()) + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2);
                 } else
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[1] - params.y + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth()/ 2 - (mCalBar ? Util.getStatusHeight(getContext()) : 0));

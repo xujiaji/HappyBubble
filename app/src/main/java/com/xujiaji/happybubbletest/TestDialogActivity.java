@@ -8,14 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.xujiaji.happybubble.BubbleDialog;
 import com.xujiaji.happybubble.BubbleLayout;
 import com.xujiaji.happybubble.Util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -204,14 +208,15 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 
                 break;
             case R.id.button3:
-                mCurrentDialog = new BubbleDialog(this)
-                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
-                        .setClickedView(mButton3)
-                        .setPosition(mPosition)
-                        .autoPosition(isAuto)
-                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-                        .calBar(true);
-                mCurrentDialog.show();
+                initListDialog();
+//                mCurrentDialog = new BubbleDialog(this)
+//                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+//                        .setClickedView(mButton3)
+//                        .setPosition(mPosition)
+//                        .autoPosition(isAuto)
+//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+//                        .calBar(true);
+//                mCurrentDialog.show();
 
                 break;
             case R.id.button4:
@@ -302,14 +307,24 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                 mCurrentDialog.show();
                 break;
             case R.id.button11:
+//                mCurrentDialog = new BubbleDialog(this)
+//                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+//                        .setClickedView(mButton11)
+//                        .setPosition(mPosition)
+//                        .autoPosition(isAuto)
+//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+//                        .calBar(true);
+//
+//                mCurrentDialog.show();
+
                 mCurrentDialog = new BubbleDialog(this)
-                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view, null))
                         .setClickedView(mButton11)
                         .setPosition(mPosition)
+                        .calBar(true)
+                        .softShowUp()
                         .autoPosition(isAuto)
-                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-                        .calBar(true);
-
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
 
                 break;
@@ -326,5 +341,44 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 
                 break;
         }
+    }
+
+    private void initListDialog()
+    {
+        final List<Map<String, String>> list = new ArrayList<>();
+        for (int i = 0; i < 3; i++)
+        {
+            Map<String, String> map = new HashMap<>();
+            map.put("text", "Text " + i);
+            list.add(map);
+        }
+
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_test_list, null);
+        Button btnAdd = view.findViewById(R.id.btnAdd);
+        ListView mListView = view.findViewById(R.id.listView);
+        final SimpleAdapter adapter = new SimpleAdapter(this, list, android.R.layout.simple_list_item_1, new String[]{"text"}, new int[]{android.R.id.text1});
+        mListView.setAdapter(adapter);
+
+        btnAdd.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Map<String, String> map = new HashMap<>();
+                map.put("text", "Text click");
+                list.add(map);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+        mCurrentDialog = new BubbleDialog(this)
+                .addContentView(view)
+                .setClickedView(mButton3)
+                .setPosition(mPosition)
+                .autoPosition(isAuto)
+                .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+                .calBar(true);
+        mCurrentDialog.show();
     }
 }

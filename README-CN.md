@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.1-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.1)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.2)
 
 ![bubble](display/img5.png)
 
@@ -12,6 +12,8 @@
  [旧文档（Old README）](README-old.md)
  
 ## 更新
+- 1.1.2:修复默认值没有适配屏幕
+
 - 1.1.1:修复大小变化后，没有对应变化位置的问题；修复接触顶部偏位问题；
 
 - 1.1.0:<br>①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。<br>③新增“autoPosition”和“setThroughEvent”方法，请参考“BubbleDialog方法参考表”
@@ -25,7 +27,7 @@
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.1'
+compile 'com.github.xujiaji:happy-bubble:1.1.2'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog?

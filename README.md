@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.1-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.1)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.2)
 
 ![bubble](display/img5.png)
 
@@ -11,6 +11,8 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.1.2: Fix default values does not adaptation screen.
+
 - 1.1.1:Repair the size of the change, there is no response to change the location; repair contact offset the top of the problem;
 
 - 1.1.0:<br>① Dialog interactive events passed to the Activity to achieve not without closing the dialog box,can opreate Activity.<br>② Add automatically according to click the distance from the edge of the screen to determine the location of the dialog box.<br>③Added "autoPosition" and "setThroughEvent" methods, please refer to "BubbleDialog method reference table"
@@ -23,7 +25,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.1'
+compile 'com.github.xujiaji:happy-bubble:1.1.2'
 ```
 
 ## How to use HappyBubble-BubbleDialog?

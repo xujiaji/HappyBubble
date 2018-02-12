@@ -14,6 +14,7 @@
 ## 更新
 - 1.1.3:<br>①通过重新调用setClickedView可以直接更新当前dialog的所在位置。<br>②新添加setRelativeOffset(int)方法，设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移）
 <br>③[测试页面SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
+
 ![1.1.3.gif](display/1.1.3.gif)
 
 - 1.1.2:修复默认值没有适配屏幕

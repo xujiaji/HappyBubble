@@ -13,6 +13,7 @@ Dialog according to click View position display;
 ## update
 - 1.1.3:<br>①By calling setClickedView can be directly updated the current location of the dialog.<br>②Add a new setRelativeOffset (int) method that sets the offset of the dialog relative to the view being clicked (Negative value: Offset to the center of the view being clicked; Positive value: Offset to the outside of the view being clicked).
 <br>③[Test page:SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
+
 ![1.1.3.gif](display/1.1.3.gif)
 
 - 1.1.2: Fix default values does not adaptation screen.

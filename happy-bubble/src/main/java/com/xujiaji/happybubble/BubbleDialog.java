@@ -242,7 +242,7 @@ public class BubbleDialog extends Dialog
     {
         if (mClickedView == null)
         {
-            throw new RuntimeException("Please add the clicked view.");
+            return;
         }
 
         Window window = getWindow();
@@ -346,6 +346,12 @@ public class BubbleDialog extends Dialog
     {
         this.mClickedView = view;
         mClickedView.getLocationOnScreen(clickedViewLocation);
+        if (mOnGlobalLayoutListener != null)
+        {
+            onAutoPosition();
+            setLook();
+            dialogPosition();
+        }
         return (T) this;
     }
 

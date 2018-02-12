@@ -1,6 +1,7 @@
 package com.xujiaji.happybubbletest;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -197,14 +198,15 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 
                 break;
             case R.id.button2:
-                mCurrentDialog = new BubbleDialog(this)
-                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
-                        .setClickedView(mButton2)
-                        .setPosition(mPosition)
-                        .autoPosition(isAuto)
-                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-                        .calBar(true);
-                mCurrentDialog.show();
+                startActivity(new Intent(this, SetClickedViewTestActivity.class));
+//                mCurrentDialog = new BubbleDialog(this)
+//                        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+//                        .setClickedView(mButton2)
+//                        .setPosition(mPosition)
+//                        .autoPosition(isAuto)
+//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
+//                        .calBar(true);
+//                mCurrentDialog.show();
 
                 break;
             case R.id.button3:

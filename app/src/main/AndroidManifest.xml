@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.xujiaji.happybubbletest.TestDialogActivity" />
+        <activity android:name=".SetClickedViewTestActivity" />
     </application>
 
 </manifest>

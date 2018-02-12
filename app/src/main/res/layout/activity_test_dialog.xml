@@ -78,7 +78,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="31dp"
-        android:text="Button"
+        android:text="去测试setClickedView"
+        android:textSize="8sp"
+        android:background="@android:color/holo_red_dark"
+        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/checkBoxThrough"
         app:layout_constraintTop_toTopOf="@+id/radioGroup"
         android:layout_marginLeft="8dp" />

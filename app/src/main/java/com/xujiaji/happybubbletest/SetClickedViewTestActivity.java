@@ -46,6 +46,7 @@ public class SetClickedViewTestActivity extends AppCompatActivity {
                 .addContentView(dialogMain)
                 .calBar(true)
                 .setTransParentBackground()
+                .setRelativeOffset(-16)
                 .setThroughEvent(true, false)
                 .autoPosition(true);
     }
@@ -66,7 +67,7 @@ public class SetClickedViewTestActivity extends AppCompatActivity {
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialogText.setText("当前点击位置：" + position);
+                    dialogText.setText("当前点击位置" + position);
                     bubbleDialog.setClickedView(v);
                     bubbleDialog.show();
                 }

@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.2)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.3)
 
 ![bubble](display/img5.png)
 
@@ -12,6 +12,11 @@
  [旧文档（Old README）](README-old.md)
  
 ## 更新
+- 1.1.3:<br>①通过重新调用setClickedView可以直接更新当前dialog的所在位置。<br>②新添加setRelativeOffset(int)方法，设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移）
+<br>③[测试页面SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
+
+![1.1.3.gif](display/1.1.3.gif)
+
 - 1.1.2:修复默认值没有适配屏幕
 
 - 1.1.1:修复大小变化后，没有对应变化位置的问题；修复接触顶部偏位问题；
@@ -27,7 +32,7 @@
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.2'
+compile 'com.github.xujiaji:happy-bubble:1.1.3'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog?
@@ -47,6 +52,7 @@ compile 'com.github.xujiaji:happy-bubble:1.1.2'
 |show|-|显示|
 |autoPosition|boolean|是否开启自动确定位置功能，开启后，“setPosition”功能失效|
 |setThroughEvent|boolean, boolean|第一个参数isThroughEvent设置是否穿透Dialog手势交互。<br>第二个参数cancelable 点击空白是否能取消Dialog，只有当"isThroughEvent = false"时才有效|
+|setRelativeOffset|int|设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移），设置后会直接影响setOffsetX和setOffsetY方法。|
 
 ### 最简单的实现
 |||

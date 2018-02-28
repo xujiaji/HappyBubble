@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.2)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.3)
 
 ![bubble](display/img5.png)
 
@@ -11,6 +11,11 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.1.3:<br>①By calling setClickedView can be directly updated the current location of the dialog.<br>②Add a new setRelativeOffset (int) method that sets the offset of the dialog relative to the view being clicked (Negative value: Offset to the center of the view being clicked; Positive value: Offset to the outside of the view being clicked).
+<br>③[Test page:SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
+
+![1.1.3.gif](display/1.1.3.gif)
+
 - 1.1.2: Fix default values does not adaptation screen.
 
 - 1.1.1:Repair the size of the change, there is no response to change the location; repair contact offset the top of the problem;
@@ -25,7 +30,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.2'
+compile 'com.github.xujiaji:happy-bubble:1.1.3'
 ```
 
 ## How to use HappyBubble-BubbleDialog?
@@ -45,7 +50,7 @@ compile 'com.github.xujiaji:happy-bubble:1.1.2'
 |show|-|display|
 |autoPosition|boolean|Whether to enable the automatic position determination function is enabled, the "setPosition" function is disabled|
 |setThroughEvent|boolean, boolean|The first parameter, "isThroughEvent", sets whether or not to penetrate the Dialog gesture interaction. <br>The second argument, "cancelable", clicks whether the blank can cancel Dialog, only valid if "isThroughEvent = false".|
-
+|setRelativeOffset|int|Set the dialog relative to the offset of the View being clicked (negative: Offset to the center of the view being clicked; Positive: Offset to the outside of the clicked view). This setting directly affects the setOffsetX and setOffsetY methods.|
 
 ### The easiest to achieve.
 |||

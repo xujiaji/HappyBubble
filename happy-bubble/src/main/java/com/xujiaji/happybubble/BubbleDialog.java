@@ -50,6 +50,7 @@ public class BubbleDialog extends Dialog
     private View mClickedView;//点击的View
     private boolean mCalBar;//计算中是否包含状态栏
     private int mOffsetX, mOffsetY;//x和y方向的偏移
+    private int mRelativeOffset;//相对与被点击view的偏移
     private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
     private Position mPosition = Position.TOP;//气泡位置，默认上位
     private boolean isAutoPosition = false;//是否自动决定显示的位置
@@ -266,12 +267,13 @@ public class BubbleDialog extends Dialog
                 }
                 if (mPosition == Position.BOTTOM)
                 {
+                    if (mRelativeOffset != 0) mOffsetY = mRelativeOffset;
                     params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) + mClickedView.getHeight() + mOffsetY;
 
                 } else
                 {
+                    if (mRelativeOffset != 0) mOffsetY = -mRelativeOffset;
                     params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) - mBubbleLayout.getHeight() + mOffsetY;
-
                 }
                 break;
             case LEFT:
@@ -289,11 +291,11 @@ public class BubbleDialog extends Dialog
                 }
                 if (mPosition == Position.RIGHT)
                 {
-
+                    if (mRelativeOffset != 0) mOffsetX = mRelativeOffset;
                     params.x = clickedViewLocation[0] + mClickedView.getWidth() + mOffsetX;
                 } else
                 {
-
+                    if (mRelativeOffset != 0) mOffsetX = -mRelativeOffset;
                     params.x = clickedViewLocation[0] -  mBubbleLayout.getWidth() + mOffsetX;
                 }
                 break;
@@ -423,6 +425,15 @@ public class BubbleDialog extends Dialog
     public <T extends BubbleDialog> T setOffsetY(int offsetY)
     {
         this.mOffsetY = Util.dpToPx(getContext(), offsetY);
+        return (T) this;
+    }
+
+    /**
+     * 设置dialog相对与被点击View的偏移
+     */
+    public <T extends BubbleDialog> T setRelativeOffset(int relativeOffset)
+    {
+        this.mRelativeOffset = Util.dpToPx(getContext(), relativeOffset);
         return (T) this;
     }
 

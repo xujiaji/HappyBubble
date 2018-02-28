@@ -212,6 +212,23 @@ codDialog.show();
 ### See more code.
 [TestDialogActivity code](app/src/main/java/com/xujiaji/happybubbletest/TestDialogActivity.java)
 
+### Code advice
+According to [@hm] (https://juejin.im/user/57bda1ada633bd005d4bc2a9) the friend in the [article] (https://juejin.im/post/5a333f0af265da431523f408) feedback, multiple clicks Show BubbleDialog, the location is not correct problem. Due to multiple settings BappyDialog lead, it is recommended that the following wording. (Of course, if you need to set a different clicked control to repeatedly call the setClickedView () method to update the location, you need to write it out.)
+
+``` java
+if(mBubbleDialog == null)
+{
+    mBubbleDialog = new BubbleDialog(this)
+        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+        .setClickedView(mButton4)
+        .setPosition(mPosition)
+        .setOffsetY(8)
+        .calBar(true);
+}
+mBubbleDialog.show();
+```
+
+
 ---
 
 

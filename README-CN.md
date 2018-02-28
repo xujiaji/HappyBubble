@@ -213,6 +213,22 @@ codDialog.show();
 ### 查看关于BappyDialog的使用代码
 [TestDialogActivity 代码](app/src/main/java/com/xujiaji/happybubbletest/TestDialogActivity.java)
 
+### 写法建议
+根据[@hm](https://juejin.im/user/57bda1ada633bd005d4bc2a9)该朋友在[文章](https://juejin.im/post/5a333f0af265da431523f408)中反馈的多次点击后位置不对的问题，是由于多次对BappyDialog进行了设置导致，所以建议下方写法。(当然如果对重复调用setClickedView()方法设置不同的被点击的控件来更新位置有需要，是需要写在外面的。)
+
+``` java
+if(mBubbleDialog == null)
+{
+    mBubbleDialog = new BubbleDialog(this)
+        .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
+        .setClickedView(mButton4)
+        .setPosition(mPosition)
+        .setOffsetY(8)
+        .calBar(true);
+}
+mBubbleDialog.show();
+```
+
 ---
 
 

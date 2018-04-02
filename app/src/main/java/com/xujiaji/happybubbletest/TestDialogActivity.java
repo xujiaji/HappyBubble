@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
@@ -326,6 +327,9 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .calBar(true)
                         .softShowUp()
                         .autoPosition(isAuto)
+                        .setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
+                                Util.dpToPx(this, 200),
+                                Util.dpToPx(this, 32))
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
 

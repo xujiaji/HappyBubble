@@ -5,15 +5,18 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  *
@@ -46,6 +49,7 @@ public class BubbleDialog extends Dialog
     }
 
     private BubbleLayout mBubbleLayout;
+    private int mWidth, mHeight, mMargin;
     private View mAddView;//需要添加的view
     private View mClickedView;//点击的View
     private boolean mCalBar;//计算中是否包含状态栏
@@ -250,12 +254,50 @@ public class BubbleDialog extends Dialog
         if (window == null) return;
         window.setGravity(Gravity.LEFT | Gravity.TOP);
         WindowManager.LayoutParams params = window.getAttributes();
+        FrameLayout.LayoutParams bubbleParams = null;
+
+//        if (mWidth != 0 || mHeight != 0)
+//        {
+//            ViewGroup.LayoutParams bubbleParams = mBubbleLayout.getLayoutParams();
+//            bubbleParams.width = MATCH_PARENT;
+//            bubbleParams.height = MATCH_PARENT;
+//            mBubbleLayout.setLayoutParams(bubbleParams);
+//        }
+
+        if (mWidth != 0)
+        {
+            params.width = mWidth;
+        }
+
+        if (mHeight != 0)
+        {
+            params.height = mHeight;
+        }
+
+        if (mMargin != 0)
+        {
+            bubbleParams = (FrameLayout.LayoutParams) mBubbleLayout.getLayoutParams();
+            if (mPosition == Position.TOP || mPosition == Position.BOTTOM)
+            {
+                bubbleParams.leftMargin = mMargin;
+                bubbleParams.rightMargin = mMargin;
+            } else
+            {
+                bubbleParams.topMargin = mMargin;
+                bubbleParams.bottomMargin = mMargin;
+            }
+            mBubbleLayout.setLayoutParams(bubbleParams);
+        }
+
         switch (mPosition)
         {
             case TOP:
             case BOTTOM:
                 params.x = clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getWidth() / 2 + mOffsetX;
-                if (params.x <= 0)
+                if (mMargin != 0 && mWidth == MATCH_PARENT)
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[0] - mMargin + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
+                } else if (params.x <= 0)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[0] + mClickedView.getWidth() / 2 - mBubbleLayout.getLookWidth() / 2);
                 } else if (params.x + mBubbleLayout.getWidth() > Util.getScreenWH(getContext())[0])
@@ -279,7 +321,10 @@ public class BubbleDialog extends Dialog
             case LEFT:
             case RIGHT:
                 params.y = clickedViewLocation[1] - (mCalBar ? Util.getStatusHeight(getContext()) : 0) + mOffsetY + mClickedView.getHeight() / 2 - mBubbleLayout.getHeight() / 2;
-                if (params.y <= 0)
+                if (mMargin != 0 && mHeight == MATCH_PARENT)
+                {
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - mMargin + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2 - (mCalBar ? Util.getStatusHeight(getContext()) : 0));
+                } else if (params.y <= 0)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[1] + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2 - (mCalBar ? Util.getStatusHeight(getContext()) : 0));
                 } else if (params.y + mBubbleLayout.getHeight() > Util.getScreenWH(getContext())[1])
@@ -330,6 +375,20 @@ public class BubbleDialog extends Dialog
     {
         super.setCancelable(flag);
         mCancelable = flag;
+    }
+
+
+    /**
+     * @param width 设置气泡的宽
+     * @param height 设置气泡的高
+     * @param margin 设置距离屏幕边缘的间距,只有当设置 width 或 height 为 MATCH_PARENT 才有效
+     */
+    public <T extends BubbleDialog> T setLayout(int width, int height, int margin)
+    {
+        mWidth = width;
+        mHeight = height;
+        mMargin = margin;
+        return (T) this;
     }
 
     /**

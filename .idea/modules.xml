@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HappyBubble.iml" filepath="$PROJECT_DIR$/HappyBubble.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/happy-bubble/bubble.iml" filepath="$PROJECT_DIR$/happy-bubble/bubble.iml" />
       <module fileurl="file://$PROJECT_DIR$/happy-bubble/happy-bubble.iml" filepath="$PROJECT_DIR$/happy-bubble/happy-bubble.iml" />
     </modules>
   </component>

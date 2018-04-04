@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.xujiaji.happybubble.Auto;
 import com.xujiaji.happybubble.BubbleDialog;
 import com.xujiaji.happybubble.BubbleLayout;
 import com.xujiaji.happybubble.Util;
@@ -47,7 +48,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
      */
     private RadioButton mRbBottom;
 
-    private RadioButton mRbAuto;
+    private RadioButton mRbAuto, mRbAutoUpAndDown, mRbAutoLeftAndRight;
     /**
      * Button
      */
@@ -98,7 +99,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
     private TextView mButton12;
 
     private CheckBox mCheckBoxThrough;
-    private boolean isAuto;
+    private Auto mAuto;
 
     private BubbleDialog.Position mPosition = BubbleDialog.Position.TOP;
     private BubbleDialog mCurrentDialog;
@@ -123,6 +124,10 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
         mRbBottom.setOnClickListener(this);
         mRbAuto = (RadioButton) findViewById(R.id.rbAuto);
         mRbAuto.setOnClickListener(this);
+        mRbAutoUpAndDown = (RadioButton) findViewById(R.id.rbAutoUpAndDown);
+        mRbAutoUpAndDown.setOnClickListener(this);
+        mRbAutoLeftAndRight = (RadioButton) findViewById(R.id.rbAutoLeftAndRight);
+        mRbAutoLeftAndRight.setOnClickListener(this);
         mButton = (Button) findViewById(R.id.button);
         mButton.setOnClickListener(this);
         mButton2 = (Button) findViewById(R.id.button2);
@@ -158,23 +163,29 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
             default:
                 break;
             case R.id.rbLeft:
-                isAuto = false;
+                mRbAuto = null;
                 mPosition = BubbleDialog.Position.LEFT;
                 break;
             case R.id.rbTop:
-                isAuto = false;
+                mRbAuto = null;
                 mPosition = BubbleDialog.Position.TOP;
                 break;
             case R.id.rbRight:
-                isAuto = false;
+                mRbAuto = null;
                 mPosition = BubbleDialog.Position.RIGHT;
                 break;
             case R.id.rbBottom:
-                isAuto = false;
+                mRbAuto = null;
                 mPosition = BubbleDialog.Position.BOTTOM;
                 break;
             case R.id.rbAuto:
-                isAuto = mRbAuto.isChecked();
+                mAuto = Auto.AROUND;
+                break;
+            case R.id.rbAutoLeftAndRight:
+                mAuto = Auto.LEFT_AND_RIGHT;
+                break;
+            case R.id.rbAutoUpAndDown:
+                mAuto = Auto.UP_AND_DOWN;
                 break;
         }
 
@@ -192,7 +203,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton)
                         .setPosition(mPosition)
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true)
                         .calBar(true);
                 mCurrentDialog.show();
@@ -228,7 +239,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setClickedView(mButton4)
                         .setPosition(mPosition)
                         .setOffsetY(8)
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true)
                         .calBar(true);
                 mCurrentDialog.show();
@@ -239,7 +250,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view2, null))
                         .setClickedView(mButton5)
                         .setPosition(mPosition)
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true)
                         .calBar(true);
                 mCurrentDialog.show();
@@ -249,7 +260,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton6)
                         .setPosition(mPosition)
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
                 break;
@@ -259,7 +270,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setClickedView(mButton7)
                         .setPosition(mPosition)
                         .calBar(true)
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
 
@@ -276,7 +287,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setPosition(mPosition)
                         .calBar(true)
                         .setBubbleLayout(bl)
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
 
@@ -287,7 +298,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setClickedView(mButton9)
                         .setPosition(mPosition)
                         .calBar(true)
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
 
@@ -304,7 +315,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         mButton10.setText("点击了：" + str);
                     }
                 });
-                codDialog.autoPosition(isAuto);
+                codDialog.autoPosition(mAuto);
                 codDialog.setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog = codDialog;
                 mCurrentDialog.show();
@@ -326,7 +337,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setPosition(mPosition)
                         .calBar(true)
                         .softShowUp()
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
                                 Util.dpToPx(this, 200),
                                 Util.dpToPx(this, 32))
@@ -341,7 +352,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setPosition(mPosition)
                         .calBar(true)
                         .softShowUp()
-                        .autoPosition(isAuto)
+                        .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
 
@@ -382,7 +393,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                 .addContentView(view)
                 .setClickedView(mButton3)
                 .setPosition(mPosition)
-                .autoPosition(isAuto)
+                .autoPosition(mAuto)
                 .setThroughEvent(mCheckBoxThrough.isChecked(), true)
                 .calBar(true);
         mCurrentDialog.show();

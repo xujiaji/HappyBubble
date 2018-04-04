@@ -26,31 +26,52 @@
             android:id="@+id/rbLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="8sp"
             android:text="左" />
 
         <RadioButton
             android:id="@+id/rbTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="8sp"
             android:text="上" />
 
         <RadioButton
             android:id="@+id/rbRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="8sp"
             android:text="右" />
 
         <RadioButton
             android:id="@+id/rbBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="8sp"
             android:text="下" />
-
+        
+        
         <RadioButton
             android:id="@+id/rbAuto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="自动"/>
+            android:textSize="8sp"
+            android:text="四周" />
+
+        <RadioButton
+            android:id="@+id/rbAutoUpAndDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8sp"
+            android:text="上下" />
+
+        <RadioButton
+            android:id="@+id/rbAutoLeftAndRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8sp"
+            android:text="左右" />
+
     </RadioGroup>
 
     <CheckBox

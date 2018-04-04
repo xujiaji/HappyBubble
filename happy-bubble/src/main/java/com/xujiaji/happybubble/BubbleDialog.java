@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
@@ -58,6 +57,7 @@ public class BubbleDialog extends Dialog
     private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
     private Position mPosition = Position.TOP;//气泡位置，默认上位
     private boolean isAutoPosition = false;//是否自动决定显示的位置
+    private Auto mAuto;//记录自动确定位置的方案
     private boolean isThroughEvent = false;//是否穿透Dialog事件交互
     private boolean mCancelable;//是否能够取消
     private int[] clickedViewLocation = new int[2];
@@ -182,12 +182,26 @@ public class BubbleDialog extends Dialog
      */
     private void onAutoPosition()
     {
-        if (!isAutoPosition || mClickedView == null) return;
+        if (!isAutoPosition && mAuto == null || mClickedView == null) return;
         final int[] spaces = new int[4];//被点击View左上右下分别的距离边缘的间隔距离
         spaces[0] = clickedViewLocation[0];//左距离
         spaces[1] = clickedViewLocation[1];//上距离
         spaces[2] = Util.getScreenWH(getContext())[0] - clickedViewLocation[0] - mClickedView.getWidth();//右距离
         spaces[3] = Util.getScreenWH(getContext())[1] - clickedViewLocation[1] - mClickedView.getHeight() - (mCalBar ? Util.getStatusHeight(getContext()) : 0);//下距离
+
+        switch (mAuto)
+        {
+            case AROUND:
+                break;
+            case UP_AND_DOWN:
+                mPosition = spaces[1] > spaces[3] ? Position.TOP : Position.BOTTOM;
+                return;
+            case LEFT_AND_RIGHT:
+                mPosition = spaces[0] > spaces[2] ? Position.LEFT : Position.RIGHT;
+                return;
+                default:
+        }
+
         int max = 0;
         for (int value : spaces)
         {
@@ -445,10 +459,25 @@ public class BubbleDialog extends Dialog
 
     /**
      * 设置是否自动设置Dialog位置
+     * @deprecated 弃用，改用新方法{@link #autoPosition(Auto)}
      */
+    @Deprecated
     public <T extends BubbleDialog> T autoPosition(boolean isAutoPosition)
     {
         this.isAutoPosition = isAutoPosition;
+        return (T) this;
+    }
+
+    /**
+     * 设置是否自动设置Dialog的位置
+     * @param auto 自动设置位置的方案
+     * @see Auto#AROUND 位置可在相对于被点击控件的四周
+     * @see Auto#LEFT_AND_RIGHT 位置只可在相对于被点击控件左右
+     * @see Auto#UP_AND_DOWN 位置只可在相对于被点击控件的上下
+     */
+    public <T extends BubbleDialog> T autoPosition(Auto auto)
+    {
+        this.mAuto = auto;
         return (T) this;
     }
 

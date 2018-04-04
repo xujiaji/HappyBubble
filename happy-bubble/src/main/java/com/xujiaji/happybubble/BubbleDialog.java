@@ -189,17 +189,20 @@ public class BubbleDialog extends Dialog
         spaces[2] = Util.getScreenWH(getContext())[0] - clickedViewLocation[0] - mClickedView.getWidth();//右距离
         spaces[3] = Util.getScreenWH(getContext())[1] - clickedViewLocation[1] - mClickedView.getHeight() - (mCalBar ? Util.getStatusHeight(getContext()) : 0);//下距离
 
-        switch (mAuto)
+        if (mAuto != null)
         {
-            case AROUND:
-                break;
-            case UP_AND_DOWN:
-                mPosition = spaces[1] > spaces[3] ? Position.TOP : Position.BOTTOM;
-                return;
-            case LEFT_AND_RIGHT:
-                mPosition = spaces[0] > spaces[2] ? Position.LEFT : Position.RIGHT;
-                return;
+            switch (mAuto)
+            {
+                case AROUND:
+                    break;
+                case UP_AND_DOWN:
+                    mPosition = spaces[1] > spaces[3] ? Position.TOP : Position.BOTTOM;
+                    return;
+                case LEFT_AND_RIGHT:
+                    mPosition = spaces[0] > spaces[2] ? Position.LEFT : Position.RIGHT;
+                    return;
                 default:
+            }
         }
 
         int max = 0;

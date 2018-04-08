@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.3)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.4-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.4)
 
 ![bubble](display/img5.png)
 
@@ -11,6 +11,27 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.1.4:
+<br>①New method `setLayout(int width, int height, int margin)`，width（set the width of the bubble）、height（set the height of the bubble）、margin（set the distance from the screen edge, only valid if you set width or height to MATCH_PARENT）.
+<br>②`autoPosition(true)`method is ready to be deprecated （and can be used now）， using the new method `autoPosition(Auto)`.If both are used, `autoPosition(Auto)` is used directly。 
+``` java
+public enum Auto
+{
+    /**
+     * 四周
+     */
+    AROUND,
+    /**
+     * 上下显示
+     */
+    UP_AND_DOWN,
+    /**
+     * 左右显示
+     */
+    LEFT_AND_RIGHT
+}
+```
+
 - 1.1.3:<br>①By calling setClickedView can be directly updated the current location of the dialog.<br>②Add a new setRelativeOffset (int) method that sets the offset of the dialog relative to the view being clicked (Negative value: Offset to the center of the view being clicked; Positive value: Offset to the outside of the view being clicked).
 <br>③[Test page:SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
 
@@ -30,7 +51,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.3'
+compile 'com.github.xujiaji:happy-bubble:1.1.4'
 ```
 
 ## How to use HappyBubble-BubbleDialog?
@@ -48,9 +69,11 @@ compile 'com.github.xujiaji:happy-bubble:1.1.3'
 |setTransParentBackground|-|Transparent background|
 |softShowUp|-|When EditText gets the focus, you want it to move up.|
 |show|-|display|
-|autoPosition|boolean|Whether to enable the automatic position determination function is enabled, the "setPosition" function is disabled|
+|autoPosition(Discarded)|boolean|Whether to enable the automatic position determination function is enabled, the "setPosition" function is disabled|
+|autoPosition| enum <br>`（Auto:AROUND，UP_AND_DOWN，LEFT_AND_RIGHT）`|The position function is automatically determined to show the maximum space at the edge of the screen when the View is clicked.When turned on, the “setPosition” function is disabled.<br>AROUND：Clicked around the View; <br>UP_AND_DOWN：Clicked View is displayed above and below; <br>LEFT_AND_RIGHT：Clicked around the View to display;|
 |setThroughEvent|boolean, boolean|The first parameter, "isThroughEvent", sets whether or not to penetrate the Dialog gesture interaction. <br>The second argument, "cancelable", clicks whether the blank can cancel Dialog, only valid if "isThroughEvent = false".|
 |setRelativeOffset|int|Set the dialog relative to the offset of the View being clicked (negative: Offset to the center of the view being clicked; Positive: Offset to the outside of the clicked view). This setting directly affects the setOffsetX and setOffsetY methods.|
+|setLayout|int，int，int|Set the width and height of the bubble and the distance from the edge of the screen.<br>The first parameter: width (set the width of the bubble);<br>The second parameter: height (set the height of the bubble);<br>he third parameter: margin (sets the distance from the edge of the screen, only if you set width or height to MATCH_PARENT).<br>Width Height is px or MATCH_PARENT|
 
 ### The easiest to achieve.
 |||

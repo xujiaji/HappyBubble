@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.3)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![GitHub release](https://img.shields.io/badge/bintray-1.1.4-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.4)
 
 ![bubble](display/img5.png)
 
@@ -12,16 +12,37 @@
  [旧文档（Old README）](README-old.md)
  
 ## 更新
-- 1.1.3:<br>①通过重新调用setClickedView可以直接更新当前dialog的所在位置。<br>②新添加setRelativeOffset(int)方法，设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移）
+- 1.1.4：
+<br>①新增方法`setLayout(int width, int height, int margin)`，width（设置气泡的宽）、height（设置气泡的高）、margin（设置距离屏幕边缘的间距,只有当设置 width 或 height 为 MATCH_PARENT 才有效）。
+<br>②`autoPosition(true)`方法准备弃用（现在还可以用），使用新方法`autoPosition(Auto)`,如果两个都使用了会直接用`autoPosition(Auto)`。
+``` java
+public enum Auto
+{
+    /**
+     * 四周
+     */
+    AROUND,
+    /**
+     * 上下显示
+     */
+    UP_AND_DOWN,
+    /**
+     * 左右显示
+     */
+    LEFT_AND_RIGHT
+}
+```
+<br>②感谢[@wolf8088521](https://github.com/wolf8088521)提出建议[#4](https://github.com/xujiaji/HappyBubble/issues/4)
+- 1.1.3：<br>①通过重新调用setClickedView可以直接更新当前dialog的所在位置。<br>②新添加setRelativeOffset(int)方法，设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移）
 <br>③[测试页面SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
 
 ![1.1.3.gif](display/1.1.3.gif)
 
-- 1.1.2:修复默认值没有适配屏幕
+- 1.1.2：修复默认值没有适配屏幕
 
-- 1.1.1:修复大小变化后，没有对应变化位置的问题；修复接触顶部偏位问题；
+- 1.1.1：修复大小变化后，没有对应变化位置的问题；修复接触顶部偏位问题；
 
-- 1.1.0:<br>①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。<br>③新增“autoPosition”和“setThroughEvent”方法，请参考“BubbleDialog方法参考表”
+- 1.1.0：<br>①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。<br>③新增“autoPosition”和“setThroughEvent”方法，请参考“BubbleDialog方法参考表”
 ![1.1.0.gif](display/1.1.0.gif)
 
 - 1.0.3:继续优化了点击在气泡之外才会被dismiss；修复了Dialog周围会有部分点击无法dismiss；
@@ -32,7 +53,7 @@
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.3'
+compile 'com.github.xujiaji:happy-bubble:1.1.4'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog?
@@ -42,7 +63,7 @@ compile 'com.github.xujiaji:happy-bubble:1.1.3'
 |:-|:-:|:-|
 |addContentView|View|添加填充在气泡中的视图|
 |setClickedView|View|被点击的View（触发Dialog出现的View）|
-|setPosition|enum BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|BubbleDialog相对于被点击的view的位置|
+|setPosition|enum `BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM`|BubbleDialog相对于被点击的view的位置|
 |calBar|boolean|是否计算状态栏的高度（如果布局没有全屏，则需要计算）|
 |setOffsetX|int|如果您对dialog所展示的x轴位置不满，需要调整x轴方向偏移|
 |setOffsetY|int|如果您对dialog所展示的y轴位置不满，需要调整y轴方向偏移|
@@ -50,9 +71,11 @@ compile 'com.github.xujiaji:happy-bubble:1.1.3'
 |setTransParentBackground|-|背景透明|
 |softShowUp|-|当气泡dialog中有EditText时，软键盘弹出会遮挡EditText时，dialog随软键盘上移。|
 |show|-|显示|
-|autoPosition|boolean|是否开启自动确定位置功能，开启后，“setPosition”功能失效|
+|autoPosition（已弃）|boolean|是否开启自动确定位置功能，开启后，“setPosition”功能失效|
+|autoPosition| enum <br>`（Auto:AROUND，UP_AND_DOWN，LEFT_AND_RIGHT）`|自动确定位置功能，显示在被点击View距离屏幕边缘的最大空间。开启后，“setPosition”功能失效。<br>AROUND：被点击View四周；<br>UP_AND_DOWN：被点击View上下显示；<br>LEFT_AND_RIGHT：被点击View左右显示；|
 |setThroughEvent|boolean, boolean|第一个参数isThroughEvent设置是否穿透Dialog手势交互。<br>第二个参数cancelable 点击空白是否能取消Dialog，只有当"isThroughEvent = false"时才有效|
 |setRelativeOffset|int|设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移），设置后会直接影响setOffsetX和setOffsetY方法。|
+|setLayout|int，int，int|设置气泡的宽高和距离屏幕边缘的距离<br>第一个参数：width（设置气泡的宽）；<br>第二个参数：height（设置气泡的高）；<br>第三个参数：margin（设置距离屏幕边缘的间距,只有当设置 width 或 height 为 MATCH_PARENT 才有效）。<br>宽高单位为px或MATCH_PARENT|
 
 ### 最简单的实现
 |||

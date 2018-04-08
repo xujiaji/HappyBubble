@@ -14,25 +14,9 @@
 ## 更新
 - 1.1.4：
 <br>①新增方法`setLayout(int width, int height, int margin)`，width（设置气泡的宽）、height（设置气泡的高）、margin（设置距离屏幕边缘的间距,只有当设置 width 或 height 为 MATCH_PARENT 才有效）。
-<br>②`autoPosition(true)`方法准备弃用（现在还可以用），使用新方法`autoPosition(Auto)`,如果两个都使用了会直接用`autoPosition(Auto)`。
-``` java
-public enum Auto
-{
-    /**
-     * 四周
-     */
-    AROUND,
-    /**
-     * 上下显示
-     */
-    UP_AND_DOWN,
-    /**
-     * 左右显示
-     */
-    LEFT_AND_RIGHT
-}
-```
-<br>②感谢[@wolf8088521](https://github.com/wolf8088521)提出建议[#4](https://github.com/xujiaji/HappyBubble/issues/4)
+<br>②`autoPosition(true)`方法准备弃用（现在还可以用），使用新方法`autoPosition(Auto)`,如果两个都使用了会直接用`autoPosition(Auto)`。请参考下方“方法参考表”。
+<br>③感谢[@wolf8088521](https://github.com/wolf8088521)提供建议[#4](https://github.com/xujiaji/HappyBubble/issues/4)
+
 - 1.1.3：<br>①通过重新调用setClickedView可以直接更新当前dialog的所在位置。<br>②新添加setRelativeOffset(int)方法，设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移）
 <br>③[测试页面SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
 

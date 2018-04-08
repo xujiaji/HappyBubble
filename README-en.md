@@ -13,24 +13,7 @@ Dialog according to click View position display;
 ## update
 - 1.1.4:
 <br>①New method `setLayout(int width, int height, int margin)`，width（set the width of the bubble）、height（set the height of the bubble）、margin（set the distance from the screen edge, only valid if you set width or height to MATCH_PARENT）.
-<br>②`autoPosition(true)`method is ready to be deprecated （and can be used now）， using the new method `autoPosition(Auto)`.If both are used, `autoPosition(Auto)` is used directly。 
-``` java
-public enum Auto
-{
-    /**
-     * 四周
-     */
-    AROUND,
-    /**
-     * 上下显示
-     */
-    UP_AND_DOWN,
-    /**
-     * 左右显示
-     */
-    LEFT_AND_RIGHT
-}
-```
+<br>②`autoPosition(true)`method is ready to be deprecated （and can be used now）， using the new method `autoPosition(Auto)`.If both are used, `autoPosition(Auto)` is used directly. Please refer to the "Method Reference Table" below.
 
 - 1.1.3:<br>①By calling setClickedView can be directly updated the current location of the dialog.<br>②Add a new setRelativeOffset (int) method that sets the offset of the dialog relative to the view being clicked (Negative value: Offset to the center of the view being clicked; Positive value: Offset to the outside of the view being clicked).
 <br>③[Test page:SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)

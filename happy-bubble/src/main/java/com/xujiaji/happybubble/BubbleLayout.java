@@ -314,6 +314,7 @@ public class BubbleLayout extends FrameLayout
     public void setLook(Look mLook)
     {
         this.mLook = mLook;
+        initPadding();
     }
 
     public void setLookPosition(int mLookPosition)
@@ -329,6 +330,7 @@ public class BubbleLayout extends FrameLayout
     public void setLookLength(int mLookLength)
     {
         this.mLookLength = mLookLength;
+        initPadding();
     }
 
     public void setShadowColor(int mShadowColor)

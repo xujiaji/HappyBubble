@@ -1,10 +1,10 @@
 # HappyBubble
-![](display/img1.png)
+![](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img1.png)
 
 # 介绍
 做项目经常会用到这样的布局，每每都是用的切的图片来实现的。由于这样不怎么方便，所以诞生了何不自己画一个的思路。目前这个布局可以通过设置一些属性来达到想要的一些效果，如下GIF图片。
 
-![GIF](display/gif1.gif)
+![GIF](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/gif1.gif)
 
 # 进度
 2017-12-12：添加自定义气泡的方法，并添加其测试代码
@@ -21,7 +21,7 @@
 
 |案例一|案例二|测试Dialog|
 |-|-|-|
-|![](display/img2.png) |![](display/img3.png)|![](display/img4.png)|
+|![](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img2.png) |![](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img3.png)|![](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img4.png)|
 
 # demo下载
 https://link.jianshu.com/?t=https://github.com/xujiaji/HappyBubble/releases/download/demo1.0/BubbleLayoutDemo.apk

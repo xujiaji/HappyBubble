@@ -1,7 +1,7 @@
 # HappyBubble
 [![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.4-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.4)
 
-![bubble](display/img5.png)
+![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
 Bubble layout change at will;
 
@@ -18,14 +18,14 @@ Dialog according to click View position display;
 - 1.1.3:<br>①By calling setClickedView can be directly updated the current location of the dialog.<br>②Add a new setRelativeOffset (int) method that sets the offset of the dialog relative to the view being clicked (Negative value: Offset to the center of the view being clicked; Positive value: Offset to the outside of the view being clicked).
 <br>③[Test page:SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
 
-![1.1.3.gif](display/1.1.3.gif)
+![1.1.3.gif](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/1.1.3.gif)
 
 - 1.1.2: Fix default values does not adaptation screen.
 
 - 1.1.1:Repair the size of the change, there is no response to change the location; repair contact offset the top of the problem;
 
 - 1.1.0:<br>① Dialog interactive events passed to the Activity to achieve not without closing the dialog box,can opreate Activity.<br>② Add automatically according to click the distance from the edge of the screen to determine the location of the dialog box.<br>③Added "autoPosition" and "setThroughEvent" methods, please refer to "BubbleDialog method reference table"
-![1.1.0.gif](display/1.1.0.gif)
+![1.1.0.gif](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/1.1.0.gif)
 
 - 1.0.3:Continue to optimize the click outside the bubble will be dismiss; fix some Dialog around Dialog can not dismiss;
 
@@ -61,7 +61,7 @@ compile 'com.github.xujiaji:happy-bubble:1.1.4'
 ### The easiest to achieve.
 |||
 |-|-|
-|![exampel1](display/img_example1.png)|![exampel2](display/img_example2.png)|
+|![exampel1](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img_example1.png)|![exampel2](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img_example2.png)|
 
 > Need to provide Context, fill View, clicked View.</br>
 > If the layout is not full screen then you need to calculate the status bar.
@@ -74,7 +74,7 @@ new BubbleDialog(this)
         .show();
 ```
 ### Off 8dp down.
-![exampel3](display/img_example3.png)
+![exampel3](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img_example3.png)
 ``` java
 new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
@@ -85,7 +85,7 @@ new BubbleDialog(this)
         .show();
 ```
 ### When the input box is covered by the keyboard.
-![exampel4](display/gif_example4.gif)
+![exampel4](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/gif_example4.gif)
 ``` java
 new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view, null))
@@ -96,7 +96,7 @@ new BubbleDialog(this)
         .show();
 ```
 ### Custom BubbleLayout.
-![exampel5](display/img_example5.png)
+![exampel5](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img_example5.png)
 
 ``` java
 BubbleLayout bl = new BubbleLayout(this);
@@ -113,7 +113,7 @@ new BubbleDialog(this)
         .show();
 ```
 ### Custom BubbleDialog, actionable BubbleDialog.
-![exampel6](display/gif_example6.gif)
+![exampel6](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/gif_example6.gif)
 > 1.layout
 
 ``` xml
@@ -284,12 +284,12 @@ mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
 ```
 > See more
 
-[MainActivity code](app/src/main/java/com/xujiaji/happybubbletest/MainActivity.java)
+[MainActivity Code](app/src/main/java/com/xujiaji/happybubbletest/MainActivity.java)
 
-![GIF](display/gif1.gif)
+![GIF](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/gif1.gif)
 
 ### demo download.
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases)
+[![Download Demo](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases)
 
 ---
 

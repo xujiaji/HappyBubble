@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">BubbleDialog</string>
+    <string name="direction_">where:</string>
+    <string name="left">left</string>
+    <string name="up">up</string>
+    <string name="right">right</string>
+    <string name="down">down</string>
+    <string name="all">around</string>
+    <string name="up_down">up-down</string>
+    <string name="left_right">left-right</string>
+    <string name="event_through_dialog">Event through Dialog</string>
+    <string name="to_test_setClickedView">To test "setClickedView"</string>
+    <string name="test_view_changed">Test View changed</string>
+    <string name="down_offset_8dp">Down offset 8dp</string>
+    <string name="have_status_but_no_cal_status_height">Page have status bar but no calculation \n will offset the height of a status bar down</string>
+    <string name="custom_bubble_style">Custom bubble style</string>
+    <string name="test_edittext">Test EditText</string>
+    <string name="extend_BubbleDialog_can_do">Extend BubbleDialog，Operational Dialog</string>
+    <string name="arrow_pointing">Arrow direction:</string>
+    <string name="bubble_color_">Bubble color:</string>
+    <string name="shadow_color_">Shadow color:</string>
+    <string name="bubble_arc_">Bubble arc:</string>
+    <string name="arrow_position_">Arrow position:</string>
+    <string name="arrow_width_">Arrow width:</string>
+    <string name="arrow_length_">Arrow len:</string>
+    <string name="shadow_arc_">Shadow arc:</string>
+    <string name="shadow_x_offset">Shadow offset "x":</string>
+    <string name="shadow_y_offset">Shadow offset "y":</string>
+    <string name="pop_dialog">Pop up Dialog</string>
+    <string name="to_next_page_test">To next test Dialog position</string>
+    <string name="bubble_table_info">"
+        \n《Parameter attribute reference value》
+        \nArrow direction: lookPosition
+        \nArrow width: lookWidth
+        \nArrow len: lookLength
+        \nBubble color: bubbleColor
+        \nBubble arc: bubbleRadius
+        \nBubble margin: bubbleMargin
+        \nShadow arc: shadowRadius
+        \nShadow offset "x": shadowX
+        \nShadow offset "y": shadowY
+        \nShadow color: shadowColor"</string>
+    <string name="i_in_dialog">I am in dialog</string>
+    <string name="please_input_content">Please input content…</string>
+    <string name="test_test_test_">TestTestTestTest\nTestdsafsafdsfsafjslakfjdlksj</string>
+    <string name="test_test_">TestTestTest\nTestTestdsafasdf\nsafdsafsafdsafsdfTest</string>
+    <string name="test">Test</string>
+    <string name="custom_bubble_style_">Custom bubble\n layout style</string>
+    <string name="now_click_position">Now click position</string>
+    <string name="test_use_in_list">
+        Test event penetration. Test direction is automatic. \n
+        Test the dialog text and position directly and dynamically. \n
+        Test slide cancel. Test relative layout offset</string>
+    <string name="clicked_">clicked:</string>
+</resources>

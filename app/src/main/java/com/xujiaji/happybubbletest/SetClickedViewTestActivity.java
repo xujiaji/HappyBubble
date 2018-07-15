@@ -1,14 +1,15 @@
 package com.xujiaji.happybubbletest;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.xujiaji.happybubble.Auto;
 import com.xujiaji.happybubble.BubbleDialog;
 
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ import java.util.List;
  * Created by Administrator on 2018/2/12.
  */
 
-public class SetClickedViewTestActivity extends AppCompatActivity {
+public class SetClickedViewTestActivity extends Activity
+{
 
 
     private RecyclerView recyclerView;
@@ -48,7 +50,17 @@ public class SetClickedViewTestActivity extends AppCompatActivity {
                 .setTransParentBackground()
                 .setRelativeOffset(-16)
                 .setThroughEvent(true, false)
-                .autoPosition(true);
+                .autoPosition(Auto.AROUND);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState)
+            {
+                super.onScrollStateChanged(recyclerView, newState);
+                bubbleDialog.dismiss();
+            }
+        });
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -67,7 +79,7 @@ public class SetClickedViewTestActivity extends AppCompatActivity {
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialogText.setText("当前点击位置" + position);
+                    dialogText.setText(getString(R.string.now_click_position) + position);
                     bubbleDialog.setClickedView(v);
                     bubbleDialog.show();
                 }

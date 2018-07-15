@@ -35,7 +35,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="箭头指向：" />
+                    android:text="@string/arrow_pointing" />
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -46,24 +46,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="左"/>
+                        android:text="@string/left"/>
                     <RadioButton
                         android:id="@+id/rbTop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="上"/>
+                        android:text="@string/up"/>
 
                     <RadioButton
                         android:id="@+id/rbRight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="右"/>
+                        android:text="@string/right"/>
 
                     <RadioButton
                         android:id="@+id/rbBottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="下"/>
+                        android:text="@string/down"/>
 
                 </RadioGroup>
             </LinearLayout>
@@ -77,7 +77,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="气泡颜色：" />
+                    android:text="@string/bubble_color_" />
 
                 <View
                     android:id="@+id/cbWhite"
@@ -147,7 +147,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="阴影颜色：" />
+                    android:text="@string/shadow_color_" />
 
                 <View
                     android:id="@+id/csWhite"
@@ -216,7 +216,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="气泡圆弧：" />
+                    android:text="@string/bubble_arc_" />
 
                 <SeekBar
                     android:id="@+id/sbBubbleRadius"
@@ -234,7 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="箭头位置：" />
+                    android:text="@string/arrow_position_" />
 
                 <SeekBar
                     android:id="@+id/sbLookPosition"
@@ -251,7 +251,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="箭头宽度：" />
+                    android:text="@string/arrow_width_" />
 
                 <SeekBar
                     android:id="@+id/sbLookWidth"
@@ -268,7 +268,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="箭头长度：" />
+                    android:text="@string/arrow_length_" />
 
                 <SeekBar
                     android:id="@+id/sbLookLength"
@@ -285,7 +285,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="阴影圆弧：" />
+                    android:text="@string/shadow_arc_" />
 
                 <SeekBar
                     android:id="@+id/sbShadowRadius"
@@ -302,7 +302,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="阴影 x 轴：" />
+                    android:text="@string/shadow_x_offset" />
 
                 <SeekBar
                     android:id="@+id/sbShadowX"
@@ -319,7 +319,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="阴影 y 轴：" />
+                    android:text="@string/shadow_y_offset" />
 
                 <SeekBar
                     android:id="@+id/sbShadowY"
@@ -332,31 +332,17 @@
                 android:id="@+id/btnDialogTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="弹出Dialog"/>
+                android:text="@string/pop_dialog"/>
 
             <Button
                 android:id="@+id/tvNextPage"
-                android:text="到下一页进行Dialog位置测试"
+                android:text="@string/to_next_page_test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=
-                    "
-                    \n《参数属性参考值》
-                    \n箭头指向：lookPosition
-                    \n箭头宽度：lookWidth
-                    \n箭头长度：lookLength
-                    \n气泡颜色：bubbleColor
-                    \n气泡圆弧：bubbleRadius
-                    \n气泡外距：bubbleMargin
-                    \n阴影圆弧：shadowRadius
-                    \n阴影 x 轴：shadowX
-                    \n阴影 y 轴：shadowY
-                    \n阴影颜色：shadowColor
-"
-                />
+                android:text="@string/bubble_table_info" />
 
         </LinearLayout>
 

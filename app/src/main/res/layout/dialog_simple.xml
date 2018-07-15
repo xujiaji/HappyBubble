@@ -7,7 +7,7 @@
         android:id="@+id/tv_title"
         android:layout_width="90dp"
         android:layout_height="50dp"
-        android:text="我在dialog中"
+        android:text="@string/i_in_dialog"
         android:gravity="center"/>
 
 </RelativeLayout>

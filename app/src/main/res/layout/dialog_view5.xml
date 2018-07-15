@@ -8,6 +8,6 @@
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:gravity="center"
-        android:text="自定义气泡\n布局的样式"/>
+        android:text="@string/custom_bubble_style_"/>
 
 </LinearLayout>

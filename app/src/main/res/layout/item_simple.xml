@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="center"
-        android:text="测试" />
+        android:text="@string/test" />
 
     <View
         android:layout_width="match_parent"

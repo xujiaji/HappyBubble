@@ -14,12 +14,13 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dialog方向:"
+            android:text="@string/direction_"
             android:textColor="@android:color/holo_purple" />
 
         <RadioButton
@@ -27,28 +28,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
-            android:text="左" />
+            android:text="@string/left" />
 
         <RadioButton
             android:id="@+id/rbTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
-            android:text="上" />
+            android:text="@string/up" />
 
         <RadioButton
             android:id="@+id/rbRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
-            android:text="右" />
+            android:text="@string/right" />
 
         <RadioButton
             android:id="@+id/rbBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
-            android:text="下" />
+            android:text="@string/down" />
         
         
         <RadioButton
@@ -56,21 +57,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
-            android:text="四周" />
+            android:text="@string/all" />
 
         <RadioButton
             android:id="@+id/rbAutoUpAndDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
-            android:text="上下" />
+            android:text="@string/up_down" />
 
         <RadioButton
             android:id="@+id/rbAutoLeftAndRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
-            android:text="左右" />
+            android:text="@string/left_right" />
 
     </RadioGroup>
 
@@ -79,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="事件是否穿透Dialog"
+        android:text="@string/event_through_dialog"
         android:textStyle="bold"
         android:textColor="@android:color/holo_green_light"
         app:layout_constraintTop_toBottomOf="@id/radioGroup" />
@@ -99,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="31dp"
-        android:text="去测试setClickedView"
+        android:text="@string/to_test_setClickedView"
         android:textSize="8sp"
         android:background="@android:color/holo_red_dark"
         android:textAllCaps="false"
@@ -112,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="测试View改变"
+        android:text="@string/test_view_changed"
         android:textColor="@android:color/white"
         android:background="@android:color/background_dark"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +128,7 @@
         android:layout_marginStart="74dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/holo_blue_light"
-        android:text="向下偏移8dp"
+        android:text="@string/down_offset_8dp"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintStart_toStartOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/button10" />
@@ -156,7 +157,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="有状态栏却没有计算\n会向下偏移一个状态栏的高度"
+        android:textAllCaps="false"
+        android:text="@string/have_status_but_no_cal_status_height"
         app:layout_constraintBottom_toBottomOf="@+id/button7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
@@ -179,7 +181,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="20dp"
-        android:text="自定义气泡布局的样式"
+        android:text="@string/custom_bubble_style"
         android:background="@android:color/holo_red_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/button2"
@@ -206,7 +208,7 @@
         android:layout_marginRight="4dp"
         android:layout_marginTop="21dp"
         android:background="@android:color/holo_purple"
-        android:text="继承BubbleDialog可操作的Dialog"
+        android:text="@string/extend_BubbleDialog_can_do"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button8" />
@@ -229,7 +231,7 @@
         android:layout_marginBottom="52dp"
         android:background="@android:color/holo_green_light"
         android:gravity="center"
-        android:text="测试输入框"
+        android:text="@string/test_edittext"
         app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintEnd_toEndOf="parent" />
 

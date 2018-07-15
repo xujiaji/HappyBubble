@@ -163,19 +163,19 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
             default:
                 break;
             case R.id.rbLeft:
-                mRbAuto = null;
+                mAuto = null;
                 mPosition = BubbleDialog.Position.LEFT;
                 break;
             case R.id.rbTop:
-                mRbAuto = null;
+                mAuto = null;
                 mPosition = BubbleDialog.Position.TOP;
                 break;
             case R.id.rbRight:
-                mRbAuto = null;
+                mAuto = null;
                 mPosition = BubbleDialog.Position.RIGHT;
                 break;
             case R.id.rbBottom:
-                mRbAuto = null;
+                mAuto = null;
                 mPosition = BubbleDialog.Position.BOTTOM;
                 break;
             case R.id.rbAuto:
@@ -312,7 +312,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                     @Override
                     public void onClick(String str)
                     {
-                        mButton10.setText("点击了：" + str);
+                        mButton10.setText(getString(R.string.clicked_) + str);
                     }
                 });
                 codDialog.autoPosition(mAuto);

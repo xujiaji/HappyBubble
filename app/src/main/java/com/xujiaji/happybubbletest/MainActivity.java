@@ -1,8 +1,8 @@
 package com.xujiaji.happybubbletest;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.SeekBar;
@@ -10,7 +10,7 @@ import android.widget.SeekBar;
 import com.xujiaji.happybubble.BubbleDialog;
 import com.xujiaji.happybubble.BubbleLayout;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener
+public class MainActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener
 {
 
     private BubbleLayout mBubbleLayout;

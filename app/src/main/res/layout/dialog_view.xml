@@ -9,11 +9,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="测试测试测试测试测\n试测试dsafsaf\ndsfsafjslakfjdlksj"/>
+        android:text="@string/test_test_test_"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="请输入内容..."/>
+        android:hint="@string/please_input_content"/>
 
 </LinearLayout>

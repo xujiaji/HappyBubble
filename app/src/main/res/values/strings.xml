@@ -1,3 +1,52 @@
 <resources>
     <string name="app_name">BubbleDialog</string>
+    <string name="direction_">方向:</string>
+    <string name="left">左</string>
+    <string name="up">上</string>
+    <string name="right">右</string>
+    <string name="down">下</string>
+    <string name="all">四周</string>
+    <string name="up_down">上下</string>
+    <string name="left_right">左右</string>
+    <string name="event_through_dialog">事件是否穿透Dialog</string>
+    <string name="to_test_setClickedView">去测试setClickedView</string>
+    <string name="test_view_changed">测试View改变</string>
+    <string name="down_offset_8dp">向下偏移8dp</string>
+    <string name="have_status_but_no_cal_status_height">有状态栏却没有计算\n会向下偏移一个状态栏的高度</string>
+    <string name="custom_bubble_style">自定义气泡布局的样式</string>
+    <string name="test_edittext">测试输入框</string>
+    <string name="extend_BubbleDialog_can_do">继承BubbleDialog可操作的Dialog</string>
+    <string name="arrow_pointing">箭头指向：</string>
+    <string name="bubble_color_">气泡颜色：</string>
+    <string name="shadow_color_">阴影颜色：</string>
+    <string name="bubble_arc_">气泡圆弧：</string>
+    <string name="arrow_position_">箭头位置：</string>
+    <string name="arrow_width_">箭头宽度：</string>
+    <string name="arrow_length_">箭头长度：</string>
+    <string name="shadow_arc_">阴影圆弧：</string>
+    <string name="shadow_x_offset">阴影 x 轴：</string>
+    <string name="shadow_y_offset">阴影 y 轴：</string>
+    <string name="pop_dialog">弹出Dialog</string>
+    <string name="to_next_page_test">到下一页进行Dialog位置测试</string>
+    <string name="bubble_table_info">"
+        \n《参数属性参考值》
+        \n箭头指向：lookPosition
+        \n箭头宽度：lookWidth
+        \n箭头长度：lookLength
+        \n气泡颜色：bubbleColor
+        \n气泡圆弧：bubbleRadius
+        \n气泡外距：bubbleMargin
+        \n阴影圆弧：shadowRadius
+        \n阴影 x 轴：shadowX
+        \n阴影 y 轴：shadowY
+        \n阴影颜色：shadowColor"</string>
+    <string name="i_in_dialog">我在dialog中</string>
+    <string name="please_input_content">请输入内容…</string>
+    <string name="test_test_test_">测试测试测试测试测\n试测试dsafsafdsfsafjslakfjdlksj</string>
+    <string name="test_test_">测试测试测试\n测试测试dsafasdf\nsafdsafsafdsafsdf测试</string>
+    <string name="test">测试</string>
+    <string name="custom_bubble_style_">自定义气泡\n布局的样式</string>
+    <string name="now_click_position">当前点击位置</string>
+    <string name="test_use_in_list">测试事件穿透、测试方向自动、\n 测试dialog文本和位置直接动态改变、\n测试滑动取消、测试相对布局偏移</string>
+    <string name="clicked_">点击了：</string>
 </resources>

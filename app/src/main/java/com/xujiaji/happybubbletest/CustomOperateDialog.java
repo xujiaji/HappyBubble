@@ -3,6 +3,7 @@ package com.xujiaji.happybubbletest;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import com.xujiaji.happybubble.BubbleDialog;
@@ -21,7 +22,7 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
     {
         super(context);
         calBar(true);
-        setTransParentBackground();
+//        setTransParentBackground();
         setPosition(Position.TOP);
         View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_view4, null);
         mViewHolder = new ViewHolder(rootView);
@@ -29,6 +30,9 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
         mViewHolder.btn13.setOnClickListener(this);
         mViewHolder.btn14.setOnClickListener(this);
         mViewHolder.btn15.setOnClickListener(this);
+        Window window = getWindow();
+        window.setWindowAnimations(R.style.dialogWindowAnim);
+
     }
 
     @Override

@@ -238,7 +238,7 @@ public class BubbleLayout extends FrameLayout
             RectF r = new RectF();
             mPath.computeBounds(r, true);
             mRegion.setPath(mPath, new Region((int) r.left, (int) r.top, (int) r.right, (int) r.bottom));
-            if (!mRegion.contains((int) event.getX(), (int) event.getY()))
+            if (!mRegion.contains((int) event.getX(), (int) event.getY()) && mListener != null)
             {
                 mListener.edge();
             }

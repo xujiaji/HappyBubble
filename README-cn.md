@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.4-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.4)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.5-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.5)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img5.png)
 
@@ -12,6 +12,8 @@
  [旧文档（Old README）](README-old.md)
  
 ## 更新
+- 1.1.5: 
+<br>[fix:issues/8](https://github.com/xujiaji/HappyBubble/issues/8)
 - 1.1.4：
 <br>①新增方法`setLayout(int width, int height, int margin)`，width（设置气泡的宽）、height（设置气泡的高）、margin（设置距离屏幕边缘的间距,只有当设置 width 或 height 为 MATCH_PARENT 才有效）。
 <br>②`autoPosition(true)`方法准备弃用（现在还可以用），使用新方法`autoPosition(Auto)`,如果两个都使用了会直接用`autoPosition(Auto)`。请参考下方“方法参考表”。

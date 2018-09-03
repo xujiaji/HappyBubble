@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.4-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.4)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.5-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.5)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
@@ -11,6 +11,8 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.1.5: 
+<br>[fix:issues/8](https://github.com/xujiaji/HappyBubble/issues/8)
 - 1.1.4:
 <br>①New method `setLayout(int width, int height, int margin)`，width（set the width of the bubble）、height（set the height of the bubble）、margin（set the distance from the screen edge, only valid if you set width or height to MATCH_PARENT）.
 <br>②`autoPosition(true)`method is ready to be deprecated （and can be used now）， using the new method `autoPosition(Auto)`.If both are used, `autoPosition(Auto)` is used directly. Please refer to the "Method Reference Table" below.
@@ -34,7 +36,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.4'
+compile 'com.github.xujiaji:happy-bubble:1.1.5'
 ```
 
 ## How to use HappyBubble-BubbleDialog?

@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.5-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.5)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.6-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.6)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img5.png)
 
@@ -12,8 +12,10 @@
  [旧文档（Old README）](README-old.md)
  
 ## 更新
+- 1.1.6:
+<br>[新增方向优先级:issues/9](https://github.com/xujiaji/HappyBubble/issues/9)
 - 1.1.5: 
-<br>[fix:issues/8](https://github.com/xujiaji/HappyBubble/issues/8)
+<br>[修复:issues/8](https://github.com/xujiaji/HappyBubble/issues/8)
 - 1.1.4：
 <br>①新增方法`setLayout(int width, int height, int margin)`，width（设置气泡的宽）、height（设置气泡的高）、margin（设置距离屏幕边缘的间距,只有当设置 width 或 height 为 MATCH_PARENT 才有效）。
 <br>②`autoPosition(true)`方法准备弃用（现在还可以用），使用新方法`autoPosition(Auto)`,如果两个都使用了会直接用`autoPosition(Auto)`。请参考下方“方法参考表”。
@@ -39,7 +41,7 @@
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.4'
+implementation 'com.github.xujiaji:happy-bubble:1.1.6'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog?
@@ -49,7 +51,7 @@ compile 'com.github.xujiaji:happy-bubble:1.1.4'
 |:-|:-:|:-|
 |addContentView|View|添加填充在气泡中的视图|
 |setClickedView|View|被点击的View（触发Dialog出现的View）|
-|setPosition|enum `BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM`|BubbleDialog相对于被点击的view的位置|
+|setPosition|enum ... `BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM`|BubbleDialog相对于被点击的view的位置。如果传入多个位置，那么最前面的位置优先级越高|
 |calBar|boolean|是否计算状态栏的高度（如果布局没有全屏，则需要计算）|
 |setOffsetX|int|如果您对dialog所展示的x轴位置不满，需要调整x轴方向偏移|
 |setOffsetY|int|如果您对dialog所展示的y轴位置不满，需要调整y轴方向偏移|
@@ -57,7 +59,6 @@ compile 'com.github.xujiaji:happy-bubble:1.1.4'
 |setTransParentBackground|-|背景透明|
 |softShowUp|-|当气泡dialog中有EditText时，软键盘弹出会遮挡EditText时，dialog随软键盘上移。|
 |show|-|显示|
-|autoPosition（已弃）|boolean|是否开启自动确定位置功能，开启后，“setPosition”功能失效|
 |autoPosition| enum <br>`（Auto:AROUND，UP_AND_DOWN，LEFT_AND_RIGHT）`|自动确定位置功能，显示在被点击View距离屏幕边缘的最大空间。开启后，“setPosition”功能失效。<br>AROUND：被点击View四周；<br>UP_AND_DOWN：被点击View上下显示；<br>LEFT_AND_RIGHT：被点击View左右显示；|
 |setThroughEvent|boolean, boolean|第一个参数isThroughEvent设置是否穿透Dialog手势交互。<br>第二个参数cancelable 点击空白是否能取消Dialog，只有当"isThroughEvent = false"时才有效|
 |setRelativeOffset|int|设置dialog相对与被点击View的偏移（负值：向被点击view的中心偏移；正值：向被点击view的外侧偏移），设置后会直接影响setOffsetX和setOffsetY方法。|
@@ -259,7 +260,7 @@ mBubbleDialog.show();
 |lookWidth|dimension|箭头的宽度|
 |bubbleColor|color|气泡的颜色|
 |bubbleRadius|dimension|气泡四角的圆弧|
-|bubblePadding|dimension|气泡边缘到内容的距离|
+|bubblePadding|dimension|气泡边缘到BubbleLayout边缘的距离|
 |shadowRadius|dimension|阴影的扩散大小|
 |shadowX|dimension|阴影在x轴方向的偏移|
 |shadowY|dimension|阴影在y轴方向的偏移|

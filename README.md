@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.5-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.5)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.6-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.6)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
@@ -11,8 +11,10 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.1.6:
+<br>[feat position priority: #9](https://github.com/xujiaji/HappyBubble/issues/9)
 - 1.1.5: 
-<br>[fix:issues/8](https://github.com/xujiaji/HappyBubble/issues/8)
+<br>[fix: #8](https://github.com/xujiaji/HappyBubble/issues/8)
 - 1.1.4:
 <br>①New method `setLayout(int width, int height, int margin)`，width（set the width of the bubble）、height（set the height of the bubble）、margin（set the distance from the screen edge, only valid if you set width or height to MATCH_PARENT）.
 <br>②`autoPosition(true)`method is ready to be deprecated （and can be used now）， using the new method `autoPosition(Auto)`.If both are used, `autoPosition(Auto)` is used directly. Please refer to the "Method Reference Table" below.
@@ -36,7 +38,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-compile 'com.github.xujiaji:happy-bubble:1.1.5'
+implementation 'com.github.xujiaji:happy-bubble:1.1.6'
 ```
 
 ## How to use HappyBubble-BubbleDialog?
@@ -46,7 +48,7 @@ compile 'com.github.xujiaji:happy-bubble:1.1.5'
 |:-|:-:|:-|
 |addContentView|View|Fill content view|
 |setClickedView|View|Clicked view|
-|setPosition|enum BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|BubbleDialog relative to the location of the view being clicked|
+|setPosition|enum ... BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|BubbleDialog relative to the location of the view being clicked. If you pass in multiple locations, the higher the priority of the front position|
 |calBar|boolean|Whether to calculate the status bar|
 |setOffsetX|int|If you are not satisfied with the x position, you need to adjust.|
 |setOffsetY|int|If you are not satisfied with the y position, you need to adjust.|
@@ -54,7 +56,6 @@ compile 'com.github.xujiaji:happy-bubble:1.1.5'
 |setTransParentBackground|-|Transparent background|
 |softShowUp|-|When EditText gets the focus, you want it to move up.|
 |show|-|display|
-|autoPosition(Discarded)|boolean|Whether to enable the automatic position determination function is enabled, the "setPosition" function is disabled|
 |autoPosition| enum <br>`（Auto:AROUND，UP_AND_DOWN，LEFT_AND_RIGHT）`|The position function is automatically determined to show the maximum space at the edge of the screen when the View is clicked.When turned on, the “setPosition” function is disabled.<br>AROUND：Clicked around the View; <br>UP_AND_DOWN：Clicked View is displayed above and below; <br>LEFT_AND_RIGHT：Clicked around the View to display;|
 |setThroughEvent|boolean, boolean|The first parameter, "isThroughEvent", sets whether or not to penetrate the Dialog gesture interaction. <br>The second argument, "cancelable", clicks whether the blank can cancel Dialog, only valid if "isThroughEvent = false".|
 |setRelativeOffset|int|Set the dialog relative to the offset of the View being clicked (negative: Offset to the center of the view being clicked; Positive: Offset to the outside of the clicked view). This setting directly affects the setOffsetX and setOffsetY methods.|
@@ -257,7 +258,7 @@ mBubbleDialog.show();
 |lookWidth|dimension|Arrow width|
 |bubbleColor|color|Bubble color|
 |bubbleRadius|dimension|Bubble arc|
-|bubblePadding|dimension|Bubble border to content distance|
+|bubblePadding|dimension|Bubble border to 'BubbleLayout' border distance|
 |shadowRadius|dimension|Shadow radius|
 |shadowX|dimension|Shading offset in the x-axis|
 |shadowY|dimension|Shading offset in the y-axis|

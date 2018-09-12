@@ -183,6 +183,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
                 new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.test, null))
                         .setClickedView(mBtnDialogTop)
+                        .setPosition(BubbleDialog.Position.BOTTOM, BubbleDialog.Position.RIGHT)
                         .setTransParentBackground()
                         .calBar(true)
                         .show();

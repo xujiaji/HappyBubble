@@ -56,7 +56,7 @@ public class BubbleDialog extends Dialog
     private int mRelativeOffset;//相对与被点击view的偏移
     private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
     private Position mPosition = Position.TOP;//气泡位置，默认上位
-    private boolean isAutoPosition = false;//是否自动决定显示的位置
+    private Position[] mPositions = new Position[4];
     private Auto mAuto;//记录自动确定位置的方案
     private boolean isThroughEvent = false;//是否穿透Dialog事件交互
     private boolean mCancelable;//是否能够取消
@@ -182,13 +182,48 @@ public class BubbleDialog extends Dialog
      */
     private void onAutoPosition()
     {
-        if (!isAutoPosition && mAuto == null || mClickedView == null) return;
+        if (mClickedView == null || (mAuto == null && mPositions.length <= 1)) return;
+
         final int[] spaces = new int[4];//被点击View左上右下分别的距离边缘的间隔距离
         spaces[0] = clickedViewLocation[0];//左距离
         spaces[1] = clickedViewLocation[1];//上距离
         spaces[2] = Util.getScreenWH(getContext())[0] - clickedViewLocation[0] - mClickedView.getWidth();//右距离
         spaces[3] = Util.getScreenWH(getContext())[1] - clickedViewLocation[1] - mClickedView.getHeight() - (mCalBar ? Util.getStatusHeight(getContext()) : 0);//下距离
 
+        if (mPositions.length > 1) { // 设置了优先级的情况
+            mAddView.measure(0, 0);
+            for (Position p : mPositions) {
+                if (p == null) return;
+                switch (p) {
+                    case LEFT:
+                        if (spaces[0] > mAddView.getMeasuredWidth()) {
+                            mPosition = Position.LEFT;
+                            return;
+                        }
+                        break;
+                    case TOP:
+                        if (spaces[1] > mAddView.getMeasuredHeight()) {
+                            mPosition = Position.TOP;
+                            return;
+                        }
+                        break;
+                    case RIGHT:
+                        if (spaces[2] > mAddView.getMeasuredWidth()) {
+                            mPosition = Position.RIGHT;
+                            return;
+                        }
+                        break;
+                    case BOTTOM:
+                        if (spaces[3] > mAddView.getMeasuredHeight()) {
+                            mPosition = Position.BOTTOM;
+                            return;
+                        }
+                        break;
+                }
+            }
+            mPosition = mPositions[0]; // 如果都不能在有限的空间中显示完，那么默认第一优先级的位置
+            return;
+        }
         if (mAuto != null)
         {
             switch (mAuto)
@@ -205,6 +240,7 @@ public class BubbleDialog extends Dialog
             }
         }
 
+        // 自动位置
         int max = 0;
         for (int value : spaces)
         {
@@ -452,22 +488,21 @@ public class BubbleDialog extends Dialog
     }
 
     /**
-     * 设置气泡位置
+     * 设置气泡位置，排列最前的优先级越高<hr/>
+     * <li>注意1：调用该方法后{@link #autoPosition(Auto)}将失效</li>
+     * <li>注意2：如果设置的位置数组中没有满足可在空间中显示完的条件，那么默认第一优先级位置</li>
+     * @param positions 设置气泡可能出现的位置 <br/>
+     * 设置显示全部并设置优先级（下 > 左 > 上 > 右）： setPosition(Position.BOTTOM, Position.LEFT, Position.TOP, Position.RIGHT); <br/>
+     * 显示左下，优先级 （下， 左）： setPosition(Position.BOTTOM, Position.LEFT);  <br/>
+     * 显示在上面：setPosition(Position.TOP);
      */
-    public <T extends BubbleDialog> T setPosition(Position position)
+    public <T extends BubbleDialog> T setPosition(Position ... positions)
     {
-        this.mPosition = position;
-        return (T) this;
-    }
-
-    /**
-     * 设置是否自动设置Dialog位置
-     * @deprecated 弃用，改用新方法{@link #autoPosition(Auto)}
-     */
-    @Deprecated
-    public <T extends BubbleDialog> T autoPosition(boolean isAutoPosition)
-    {
-        this.isAutoPosition = isAutoPosition;
+        if (positions.length == 1) {
+            this.mPosition = positions[0];
+            return (T) this;
+        }
+        this.mPositions = positions;
         return (T) this;
     }
 

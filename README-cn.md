@@ -38,6 +38,11 @@
 - 1.0.2:修复点击dialog边缘无法取消
 
 
+## 哪些app使用了它 ?
+|玩清单|
+|-|
+|[![Todo](https://raw.githubusercontent.com/xujiaji/Todo/master/app/src/main/res/mipmap-hdpi/ic_launcher.png)](https://www.coolapk.com/apk/211388)|
+
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```

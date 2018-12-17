@@ -35,6 +35,11 @@ Dialog according to click View position display;
 
 - 1.0.2:Fix click on the dialog edge can not be canceled.
 
+## Which apps use it ?
+|Todo|
+|-|
+|[![Todo](https://raw.githubusercontent.com/xujiaji/Todo/master/app/src/main/res/mipmap-hdpi/ic_launcher.png)](https://www.coolapk.com/apk/211388)|
+
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```

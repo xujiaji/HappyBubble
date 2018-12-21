@@ -447,9 +447,10 @@ public class BubbleDialog extends Dialog
     /**
      * 计算时是否包含状态栏(如果有状态栏目，而没有设置为true将会出现上下的偏差)
      */
+    @Deprecated
     public <T extends BubbleDialog> T calBar(boolean cal)
     {
-        this.mCalBar = cal;
+//        this.mCalBar = cal;
         return (T) this;
     }
 
@@ -460,6 +461,11 @@ public class BubbleDialog extends Dialog
     {
         this.mClickedView = view;
         mClickedView.getLocationOnScreen(clickedViewLocation);
+
+        int[] contentLocation = new int[2];
+        view.getRootView().findViewById(android.R.id.content).getLocationOnScreen(contentLocation);
+        clickedViewLocation[0] -= contentLocation[0];
+        clickedViewLocation[1] -= contentLocation[1];
         if (mOnGlobalLayoutListener != null)
         {
             onAutoPosition();

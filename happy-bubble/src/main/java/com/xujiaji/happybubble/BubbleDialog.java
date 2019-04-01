@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -177,6 +178,16 @@ public class BubbleDialog extends Dialog
         });
     }
 
+    private boolean havePositions() {
+        int num = 0;
+        for (Position p : mPositions) {
+            if (p != null) {
+                num++;
+            }
+        }
+        return num > 0;
+    }
+
     /**
      * 处理自动位置
      */
@@ -190,7 +201,7 @@ public class BubbleDialog extends Dialog
         spaces[2] = Util.getScreenWH(getContext())[0] - clickedViewLocation[0] - mClickedView.getWidth();//右距离
         spaces[3] = Util.getScreenWH(getContext())[1] - clickedViewLocation[1] - mClickedView.getHeight() - (mCalBar ? Util.getStatusHeight(getContext()) : 0);//下距离
 
-        if (mPositions.length > 1) { // 设置了优先级的情况
+        if (havePositions()) { // 设置了优先级的情况
             mAddView.measure(0, 0);
             for (Position p : mPositions) {
                 if (p == null) return;
@@ -463,7 +474,15 @@ public class BubbleDialog extends Dialog
         mClickedView.getLocationOnScreen(clickedViewLocation);
 
         int[] contentLocation = new int[2];
-        view.getRootView().findViewById(android.R.id.content).getLocationOnScreen(contentLocation);
+        View contentView = view.getRootView();
+        if (contentView != null) {
+            contentView = contentView.findViewById(android.R.id.content);
+        }
+        if (contentView != null) {
+            contentView.getLocationOnScreen(contentLocation);
+        } else {
+            Log.e("BubbleDialog", "HappyBubble may have an offset. Please adjust the offset by manual call setOffsetX() or setOffsetY() method.");
+        }
         clickedViewLocation[0] -= contentLocation[0];
         clickedViewLocation[1] -= contentLocation[1];
         if (mOnGlobalLayoutListener != null)
@@ -504,7 +523,7 @@ public class BubbleDialog extends Dialog
      */
     public <T extends BubbleDialog> T setPosition(Position ... positions)
     {
-        if (positions.length == 1) {
+        if (positions.length == 1 && positions[0] != null) {
             this.mPosition = positions[0];
             return (T) this;
         }

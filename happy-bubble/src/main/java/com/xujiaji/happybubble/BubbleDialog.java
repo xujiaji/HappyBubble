@@ -193,7 +193,7 @@ public class BubbleDialog extends Dialog
      */
     private void onAutoPosition()
     {
-        if (mClickedView == null || (mAuto == null && mPositions.length <= 1)) return;
+        if (mClickedView == null || (mAuto == null && !havePositions())) return;
 
         final int[] spaces = new int[4];//被点击View左上右下分别的距离边缘的间隔距离
         spaces[0] = clickedViewLocation[0];//左距离

@@ -117,6 +117,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
         mRbLeft = (RadioButton) findViewById(R.id.rbLeft);
         mRbLeft.setOnClickListener(this);
         mRbTop = (RadioButton) findViewById(R.id.rbTop);
+        mRbTop.setChecked(true);
         mRbTop.setOnClickListener(this);
         mRbRight = (RadioButton) findViewById(R.id.rbRight);
         mRbRight.setOnClickListener(this);

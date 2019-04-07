@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.7-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.7)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk) [![maven](https://img.shields.io/badge/bintray-1.1.7-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.7)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img5.png)
 

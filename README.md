@@ -7,7 +7,7 @@ Bubble layout change at will;
 
 Dialog according to click View position display;
 
-[中文文档](README-cn.md)
+[中文文档](https://blog.xujiaji.com/post/happy-bubble)
 
  [Old README（旧文档）](README-old.md)
 ## update

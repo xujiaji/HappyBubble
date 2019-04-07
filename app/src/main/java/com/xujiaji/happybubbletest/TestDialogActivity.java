@@ -208,8 +208,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setClickedView(mButton)
                         .setPosition(mPosition)
                         .autoPosition(mAuto)
-                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-                        .calBar(true);
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
 
                 break;
@@ -220,8 +219,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 //                        .setClickedView(mButton2)
 //                        .setPosition(mPosition)
 //                        .autoPosition(isAuto)
-//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-//                        .calBar(true);
+//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
 //                mCurrentDialog.show();
 
                 break;
@@ -232,8 +230,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 //                        .setClickedView(mButton3)
 //                        .setPosition(mPosition)
 //                        .autoPosition(isAuto)
-//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-//                        .calBar(true);
+//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
 //                mCurrentDialog.show();
 
                 break;
@@ -243,9 +240,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setClickedView(mButton4)
                         .setPosition(mPosition)
                         .setOffsetY(8)
-                        .autoPosition(mAuto)
-                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-                        .calBar(true);
+                        .autoPosition(mAuto);
                 mCurrentDialog.show();
 
                 break;
@@ -255,8 +250,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .setClickedView(mButton5)
                         .setPosition(mPosition)
                         .autoPosition(mAuto)
-                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-                        .calBar(true);
+                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
                 break;
             case R.id.button6:
@@ -273,7 +267,6 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton7)
                         .setPosition(mPosition)
-                        .calBar(true)
                         .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
@@ -281,15 +274,15 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                 break;
             case R.id.button8:
                 BubbleLayout bl = new BubbleLayout(this);
-                bl.setBubbleColor(Color.BLUE);
+                bl.setBubbleColor(Color.YELLOW);
                 bl.setShadowColor(Color.RED);
-                bl.setLookLength(Util.dpToPx(this, 54));
-                bl.setLookWidth(Util.dpToPx(this, 48));
+                bl.setLookLength(Util.dpToPx(this, 18));
+                bl.setLookWidth(Util.dpToPx(this, 24));
+                bl.setBubbleRadius(Util.dpToPx(this, 3));
                 mCurrentDialog = new BubbleDialog(this)
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view5, null))
                         .setClickedView(mButton8)
                         .setPosition(mPosition)
-                        .calBar(true)
                         .setBubbleLayout(bl)
                         .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
@@ -330,8 +323,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
 //                        .setClickedView(mButton11)
 //                        .setPosition(mPosition)
 //                        .autoPosition(isAuto)
-//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-//                        .calBar(true);
+//                        .setThroughEvent(mCheckBoxThrough.isChecked(), true);
 //
 //                mCurrentDialog.show();
 
@@ -339,7 +331,6 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view, null))
                         .setClickedView(mButton11)
                         .setPosition(mPosition)
-                        .calBar(true)
                         .softShowUp()
                         .autoPosition(mAuto)
                         .setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -354,7 +345,6 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view, null))
                         .setClickedView(mButton12)
                         .setPosition(mPosition)
-                        .calBar(true)
                         .softShowUp()
                         .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
@@ -398,8 +388,7 @@ public class TestDialogActivity extends Activity implements View.OnClickListener
                 .setClickedView(mButton3)
                 .setPosition(mPosition)
                 .autoPosition(mAuto)
-                .setThroughEvent(mCheckBoxThrough.isChecked(), true)
-                .calBar(true);
+                .setThroughEvent(mCheckBoxThrough.isChecked(), true);
         mCurrentDialog.show();
     }
 }

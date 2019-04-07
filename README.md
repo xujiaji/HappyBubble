@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.6-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.6)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.7-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.7)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
@@ -11,6 +11,7 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.1.7: fix position error, fix `autoPosition` invalid ... [#13](https://github.com/xujiaji/HappyBubble/issues/13) [#11](https://github.com/xujiaji/HappyBubble/issues/11) [#10](https://github.com/xujiaji/HappyBubble/issues/10)
 - 1.1.6:
 <br>[feat position priority: #9](https://github.com/xujiaji/HappyBubble/issues/9)
 - 1.1.5: 
@@ -43,7 +44,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-implementation 'com.github.xujiaji:happy-bubble:1.1.6'
+implementation 'com.github.xujiaji:happy-bubble:1.1.7'
 ```
 
 ## How to use HappyBubble-BubbleDialog?
@@ -54,7 +55,6 @@ implementation 'com.github.xujiaji:happy-bubble:1.1.6'
 |addContentView|View|Fill content view|
 |setClickedView|View|Clicked view|
 |setPosition|enum ... BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM|BubbleDialog relative to the location of the view being clicked. If you pass in multiple locations, the higher the priority of the front position|
-|calBar|boolean|Whether to calculate the status bar|
 |setOffsetX|int|If you are not satisfied with the x position, you need to adjust.|
 |setOffsetY|int|If you are not satisfied with the y position, you need to adjust.|
 |setBubbleLayout|BubbleLayout|Custom BubbleLayout|
@@ -71,14 +71,10 @@ implementation 'com.github.xujiaji:happy-bubble:1.1.6'
 |-|-|
 |![exampel1](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img_example1.png)|![exampel2](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img_example2.png)|
 
-> Need to provide Context, fill View, clicked View.</br>
-> If the layout is not full screen then you need to calculate the status bar.
-
 ``` java
 new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
         .setClickedView(mButton)
-        .calBar(true)
         .show();
 ```
 ### Off 8dp down.
@@ -89,7 +85,6 @@ new BubbleDialog(this)
         .setClickedView(mButton4)
         .setPosition(mPosition)
         .setOffsetY(8)
-        .calBar(true)
         .show();
 ```
 ### When the input box is covered by the keyboard.
@@ -99,24 +94,23 @@ new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view, null))
         .setClickedView(mButton12)
         .setPosition(mPosition)
-        .calBar(true)
         .softShowUp()
         .show();
 ```
 ### Custom BubbleLayout.
-![exampel5](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img_example5.png)
+![exampel5](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/20190407164631.png)
 
 ``` java
 BubbleLayout bl = new BubbleLayout(this);
-bl.setBubbleColor(Color.BLUE);
+bl.setBubbleColor(Color.YELLOW);
 bl.setShadowColor(Color.RED);
-bl.setLookLength(Util.dpToPx(this, 54));
-bl.setLookWidth(Util.dpToPx(this, 48));
+bl.setLookLength(Util.dpToPx(this, 18));
+bl.setLookWidth(Util.dpToPx(this, 24));
+bl.setBubbleRadius(Util.dpToPx(this, 3));
 new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view5, null))
         .setClickedView(mButton8)
         .setPosition(mPosition)
-        .calBar(true)
         .setBubbleLayout(bl)
         .show();
 ```
@@ -168,7 +162,6 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
     public CustomOperateDialog(Context context)
     {
         super(context);
-        calBar(true);
         setTransParentBackground();
         setPosition(Position.TOP);
         View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_view4, null);
@@ -241,8 +234,7 @@ if(mBubbleDialog == null)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
         .setClickedView(mButton4)
         .setPosition(mPosition)
-        .setOffsetY(8)
-        .calBar(true);
+        .setOffsetY(8);
 }
 mBubbleDialog.show();
 ```

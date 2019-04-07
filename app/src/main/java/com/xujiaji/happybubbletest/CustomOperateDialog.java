@@ -21,7 +21,6 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
     public CustomOperateDialog(Context context)
     {
         super(context);
-        calBar(true);
 //        setTransParentBackground();
         setPosition(Position.TOP);
         View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_view4, null);

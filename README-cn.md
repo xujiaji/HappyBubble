@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.6-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.6)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases) [![maven](https://img.shields.io/badge/bintray-1.1.7-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.7)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img5.png)
 
@@ -12,6 +12,7 @@
  [旧文档（Old README）](README-old.md)
  
 ## 更新
+- 1.1.7: 修复位置问题，修复`autoPosition`无效问题，修复横屏模式问题。[issues13](https://github.com/xujiaji/HappyBubble/issues/13) [issues11](https://github.com/xujiaji/HappyBubble/issues/11) [issues10](https://github.com/xujiaji/HappyBubble/issues/10)
 - 1.1.6:
 <br>[新增方向优先级:issues/9](https://github.com/xujiaji/HappyBubble/issues/9)
 - 1.1.5: 
@@ -46,7 +47,7 @@
 ## 如何开始?
 在你模块中的build.gradle添加上HappyBubble依赖
 ```
-implementation 'com.github.xujiaji:happy-bubble:1.1.6'
+implementation 'com.github.xujiaji:happy-bubble:1.1.7'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog?
@@ -57,7 +58,6 @@ implementation 'com.github.xujiaji:happy-bubble:1.1.6'
 |addContentView|View|添加填充在气泡中的视图|
 |setClickedView|View|被点击的View（触发Dialog出现的View）|
 |setPosition|enum ... `BubbleDialog.Position:LEFT, TOP, RIGHT, BOTTOM`|BubbleDialog相对于被点击的view的位置。如果传入多个位置，那么最前面的位置优先级越高|
-|calBar|boolean|是否计算状态栏的高度（如果布局没有全屏，则需要计算）|
 |setOffsetX|int|如果您对dialog所展示的x轴位置不满，需要调整x轴方向偏移|
 |setOffsetY|int|如果您对dialog所展示的y轴位置不满，需要调整y轴方向偏移|
 |setBubbleLayout|BubbleLayout|自定义dialog的气泡布局|
@@ -74,14 +74,10 @@ implementation 'com.github.xujiaji:happy-bubble:1.1.6'
 |-|-|
 |![exampel1](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img_example1.png)|![exampel2](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img_example2.png)|
 
-> 需要提供：Context、填充的View、被点击的View。</br>
-> 如果最外层布局没有全屏时，您需要计算状态栏的高度，否则会多向下偏移一个状态栏的高度。
-
 ``` java
 new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
         .setClickedView(mButton)
-        .calBar(true)
         .show();
 ```
 ### 向下偏移8dp
@@ -92,7 +88,6 @@ new BubbleDialog(this)
         .setClickedView(mButton4)
         .setPosition(mPosition)
         .setOffsetY(8)
-        .calBar(true)
         .show();
 ```
 ### 当想要输入框随软键盘上移时
@@ -102,24 +97,23 @@ new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view, null))
         .setClickedView(mButton12)
         .setPosition(mPosition)
-        .calBar(true)
         .softShowUp()
         .show();
 ```
 ### 自定义 BubbleLayout.
-![exampel5](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/img_example5.png)
+![exampel5](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/20190407164328.png)
 
 ``` java
 BubbleLayout bl = new BubbleLayout(this);
-bl.setBubbleColor(Color.BLUE);
+bl.setBubbleColor(Color.YELLOW);
 bl.setShadowColor(Color.RED);
-bl.setLookLength(Util.dpToPx(this, 54));
-bl.setLookWidth(Util.dpToPx(this, 48));
+bl.setLookLength(Util.dpToPx(this, 18));
+bl.setLookWidth(Util.dpToPx(this, 24));
+bl.setBubbleRadius(Util.dpToPx(this, 3));
 new BubbleDialog(this)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view5, null))
         .setClickedView(mButton8)
         .setPosition(mPosition)
-        .calBar(true)
         .setBubbleLayout(bl)
         .show();
 ```
@@ -171,7 +165,6 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
     public CustomOperateDialog(Context context)
     {
         super(context);
-        calBar(true);
         setTransParentBackground();
         setPosition(Position.TOP);
         View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_view4, null);
@@ -244,8 +237,7 @@ if(mBubbleDialog == null)
         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
         .setClickedView(mButton4)
         .setPosition(mPosition)
-        .setOffsetY(8)
-        .calBar(true);
+        .setOffsetY(8);
 }
 mBubbleDialog.show();
 ```

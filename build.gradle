@@ -46,7 +46,7 @@ ext {
     siteUrl = 'https://github.com/xujiaji/HappyBubble'
     gitUrl = 'https://github.com/xujiaji/HappyBubble.git'
 
-    libraryVersion = '1.1.6'
+    libraryVersion = '1.1.7'
 
     developerId = 'xujiaji'
     developerName = 'xujiaji'

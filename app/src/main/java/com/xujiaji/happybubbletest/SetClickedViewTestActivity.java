@@ -38,15 +38,21 @@ public class SetClickedViewTestActivity extends Activity
         recyclerView = findViewById(R.id.recycle_view);
         recyclerView.setAdapter(new MyAdapter());
         for (int i = 0; i < 100; i++) {
-            lists.add("text" + i);
+            lists.add("点击位置" + i);
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        View dialogMain = getLayoutInflater().inflate(R.layout.dialog_simple, null);
+        final View dialogMain = getLayoutInflater().inflate(R.layout.dialog_simple, null);
         dialogText = dialogMain.findViewById(R.id.tv_title);
+        dialogText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogText.setText("测试测试测试测试测试测试测测测测测测测测测测试测试测试测试测试测试");
+                dialogMain.requestLayout();
+            }
+        });
         bubbleDialog = new BubbleDialog(SetClickedViewTestActivity.this)
                 .addContentView(dialogMain)
-                .calBar(true)
                 .setTransParentBackground()
                 .setRelativeOffset(-16)
                 .setThroughEvent(true, false)

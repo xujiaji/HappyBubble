@@ -590,7 +590,7 @@ public class BubbleDialog extends Dialog
     {
         Window window = getWindow();
         if (window == null) return (T) this;
-        window.setDimAmount(0);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         return (T) this;
     }
 }

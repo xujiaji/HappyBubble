@@ -112,7 +112,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="56dp"
         android:text="@string/test_view_changed"
         android:textColor="@android:color/white"
         android:background="@android:color/background_dark"

@@ -386,16 +386,16 @@ public class BubbleDialog extends Dialog
                 params.y = clickedViewLocation[1] + mOffsetY + mClickedView.getHeight() / 2 - mBubbleLayout.getHeight() / 2 - mStatusBarHeight;
                 if (mMargin != 0 && mHeight == MATCH_PARENT)
                 {
-                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - mMargin + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2);
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - mMargin + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2 - mStatusBarHeight);
                 } else if (params.y <= 0)
                 {
-                    mBubbleLayout.setLookPosition(clickedViewLocation[1] + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2 );
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2 - mStatusBarHeight);
                 } else if (params.y + mBubbleLayout.getHeight() > Util.getScreenWH(getContext())[1])
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[1] - (Util.getScreenWH(getContext())[1] - mBubbleLayout.getHeight()) + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2);
                 } else
                 {
-                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - params.y + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth()/ 2);
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - params.y + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth()/ 2 - mStatusBarHeight);
                 }
                 if (mPosition == Position.RIGHT)
                 {

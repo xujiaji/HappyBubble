@@ -52,6 +52,7 @@ public class BubbleDialog extends Dialog
     private View mAddView;//需要添加的view
     private View mClickedView;//点击的View
     private int mOffsetX, mOffsetY;//x和y方向的偏移
+    private int mStatusBarHeight;
     private int mRelativeOffset;//相对与被点击view的偏移
     private boolean mSoftShowUp;//当软件盘弹出时Dialog上移
     private Position mPosition = Position.TOP;//气泡位置，默认上位
@@ -73,7 +74,7 @@ public class BubbleDialog extends Dialog
         if (window == null) return;
         final WindowManager.LayoutParams params = window.getAttributes();
         final int screenW = Util.getScreenWH(getContext())[0];
-        final int statusBar = Util.getStatusHeight(getContext());
+        mStatusBarHeight = Util.getStatusHeight(getContext());
         getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener()
         {
             @Override
@@ -372,17 +373,17 @@ public class BubbleDialog extends Dialog
                 if (mPosition == Position.BOTTOM)
                 {
                     if (mRelativeOffset != 0) mOffsetY = mRelativeOffset;
-                    params.y = clickedViewLocation[1] + mClickedView.getHeight() + mOffsetY;
+                    params.y = clickedViewLocation[1] + mClickedView.getHeight() + mOffsetY - mStatusBarHeight;
 
                 } else
                 {
                     if (mRelativeOffset != 0) mOffsetY = -mRelativeOffset;
-                    params.y = clickedViewLocation[1] - mBubbleLayout.getHeight() + mOffsetY;
+                    params.y = clickedViewLocation[1] - mBubbleLayout.getHeight() + mOffsetY - mStatusBarHeight;
                 }
                 break;
             case LEFT:
             case RIGHT:
-                params.y = clickedViewLocation[1] + mOffsetY + mClickedView.getHeight() / 2 - mBubbleLayout.getHeight() / 2;
+                params.y = clickedViewLocation[1] + mOffsetY + mClickedView.getHeight() / 2 - mBubbleLayout.getHeight() / 2 - mStatusBarHeight;
                 if (mMargin != 0 && mHeight == MATCH_PARENT)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[1] - mMargin + mClickedView.getHeight() / 2 - mBubbleLayout.getLookWidth() / 2);

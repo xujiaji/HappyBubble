@@ -1,10 +1,10 @@
 package com.xujiaji.happybubbletest;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +29,7 @@ import java.util.Map;
  * Created by JiajiXu on 17-12-8.
  */
 
-public class TestDialogActivity extends AppCompatActivity implements View.OnClickListener
+public class TestDialogActivity extends Activity implements View.OnClickListener
 {
     /**
      * 左
@@ -294,6 +294,7 @@ public class TestDialogActivity extends AppCompatActivity implements View.OnClic
                         .addContentView(LayoutInflater.from(this).inflate(R.layout.dialog_view3, null))
                         .setClickedView(mButton9)
                         .setPosition(mPosition)
+                        .calBar(true)
                         .autoPosition(mAuto)
                         .setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog.show();
@@ -301,8 +302,7 @@ public class TestDialogActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.button10:
                 CustomOperateDialog codDialog = new CustomOperateDialog(this)
-                        .setPosition(mPosition)
-                        .setTransParentBackground()
+//                        .setPosition(mPosition)
                         .setClickedView(mButton10);
                 codDialog.setClickListener(new CustomOperateDialog.OnClickCustomButtonListener()
                 {
@@ -312,8 +312,8 @@ public class TestDialogActivity extends AppCompatActivity implements View.OnClic
                         mButton10.setText(getString(R.string.clicked_) + str);
                     }
                 });
-                codDialog.autoPosition(mAuto);
-                codDialog.setThroughEvent(mCheckBoxThrough.isChecked(), true);
+//                codDialog.autoPosition(mAuto);
+//                codDialog.setThroughEvent(mCheckBoxThrough.isChecked(), true);
                 mCurrentDialog = codDialog;
                 mCurrentDialog.show();
                 break;
@@ -357,7 +357,7 @@ public class TestDialogActivity extends AppCompatActivity implements View.OnClic
     private void initListDialog()
     {
         final List<Map<String, String>> list = new ArrayList<>();
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             Map<String, String> map = new HashMap<>();
             map.put("text", "Text " + i);

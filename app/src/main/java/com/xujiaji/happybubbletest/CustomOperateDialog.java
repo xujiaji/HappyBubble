@@ -1,12 +1,14 @@
 package com.xujiaji.happybubbletest;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
 import com.xujiaji.happybubble.BubbleDialog;
+import com.xujiaji.happybubble.BubbleLayout;
 
 /**
  * 自定义可操作性dialog
@@ -21,16 +23,19 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
     public CustomOperateDialog(Context context)
     {
         super(context);
-//        setTransParentBackground();
-        setPosition(Position.TOP);
+        setPosition(Position.BOTTOM);
+        setTransParentBackground();
+        BubbleLayout bubbleLayout = new BubbleLayout(context);
+        bubbleLayout.setBubbleColor(Color.YELLOW);
+        setBubbleLayout(bubbleLayout);
         View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_view4, null);
         mViewHolder = new ViewHolder(rootView);
         addContentView(rootView);
         mViewHolder.btn13.setOnClickListener(this);
         mViewHolder.btn14.setOnClickListener(this);
         mViewHolder.btn15.setOnClickListener(this);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.dialogWindowAnim);
+//        Window window = getWindow();
+//        window.setWindowAnimations(R.style.dialogWindowAnim);
 
     }
 

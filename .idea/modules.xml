@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-HappyBubble.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-HappyBubble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-HappyBubble.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-HappyBubble.iml" group="HappyBubble" />
       <module fileurl="file://$PROJECT_DIR$/HappyBubble.iml" filepath="$PROJECT_DIR$/HappyBubble.iml" group="HappyBubble" />
-      <module fileurl="file://$PROJECT_DIR$/app/HappyBubble-app.iml" filepath="$PROJECT_DIR$/app/HappyBubble-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/happy-bubble/HappyBubble-happy-bubble.iml" filepath="$PROJECT_DIR$/happy-bubble/HappyBubble-happy-bubble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/HappyBubble-app.iml" filepath="$PROJECT_DIR$/app/HappyBubble-app.iml" group="HappyBubble/app" />
+      <module fileurl="file://$PROJECT_DIR$/happy-bubble/HappyBubble-happy-bubble.iml" filepath="$PROJECT_DIR$/happy-bubble/HappyBubble-happy-bubble.iml" group="HappyBubble/happy-bubble" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="HappyBubble/app" />
       <module fileurl="file://$PROJECT_DIR$/happy-bubble/happy-bubble.iml" filepath="$PROJECT_DIR$/happy-bubble/happy-bubble.iml" group="HappyBubble/happy-bubble" />
     </modules>

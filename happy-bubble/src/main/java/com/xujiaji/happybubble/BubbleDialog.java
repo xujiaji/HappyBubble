@@ -149,6 +149,8 @@ public class BubbleDialog extends Dialog
 //                dialogPosition();
 //            }
 //        });
+        mBubbleLayout.measure(0, 0);
+        dialogPosition();
 
         mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener()
         {
@@ -156,10 +158,10 @@ public class BubbleDialog extends Dialog
             @Override
             public void onGlobalLayout()
             {
-                if (lastWidth == mBubbleLayout.getWidth() && lastHeight == mBubbleLayout.getHeight()) return;
+                if (lastWidth == mBubbleLayout.getMeasuredWidth() && lastHeight == mBubbleLayout.getMeasuredHeight()) return;
                 dialogPosition();
-                lastWidth = mBubbleLayout.getWidth();
-                lastHeight = mBubbleLayout.getHeight();
+                lastWidth = mBubbleLayout.getMeasuredWidth();
+                lastHeight = mBubbleLayout.getMeasuredHeight();
             }
         };
 
@@ -358,16 +360,16 @@ public class BubbleDialog extends Dialog
         {
             case TOP:
             case BOTTOM:
-                params.x = clickedViewLocation[0] + mClickedRect.width() / 2 - mBubbleLayout.getWidth() / 2 + mOffsetX;
+                params.x = clickedViewLocation[0] + mClickedRect.width() / 2 - mBubbleLayout.getMeasuredWidth() / 2 + mOffsetX;
                 if (mMargin != 0 && mWidth == MATCH_PARENT)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[0] - mMargin + mClickedRect.width() / 2 - mBubbleLayout.getLookWidth() / 2);
                 } else if (params.x <= 0)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[0] + mClickedRect.width() / 2 - mBubbleLayout.getLookWidth() / 2);
-                } else if (params.x + mBubbleLayout.getWidth() > Util.getScreenWH(getContext())[0])
+                } else if (params.x + mBubbleLayout.getMeasuredWidth() > Util.getScreenWH(getContext())[0])
                 {
-                    mBubbleLayout.setLookPosition(clickedViewLocation[0] - (Util.getScreenWH(getContext())[0] - mBubbleLayout.getWidth()) + mClickedRect.width() / 2 - mBubbleLayout.getLookWidth() / 2);
+                    mBubbleLayout.setLookPosition(clickedViewLocation[0] - (Util.getScreenWH(getContext())[0] - mBubbleLayout.getMeasuredWidth()) + mClickedRect.width() / 2 - mBubbleLayout.getLookWidth() / 2);
                 } else
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[0] - params.x + mClickedRect.width() / 2 - mBubbleLayout.getLookWidth() / 2);
@@ -380,21 +382,21 @@ public class BubbleDialog extends Dialog
                 } else
                 {
                     if (mRelativeOffset != 0) mOffsetY = -mRelativeOffset;
-                    params.y = clickedViewLocation[1] - mBubbleLayout.getHeight() + mOffsetY - mStatusBarHeight;
+                    params.y = clickedViewLocation[1] - mBubbleLayout.getMeasuredHeight() + mOffsetY - mStatusBarHeight;
                 }
                 break;
             case LEFT:
             case RIGHT:
-                params.y = clickedViewLocation[1] + mOffsetY + mClickedRect.height() / 2 - mBubbleLayout.getHeight() / 2 - mStatusBarHeight;
+                params.y = clickedViewLocation[1] + mOffsetY + mClickedRect.height() / 2 - mBubbleLayout.getMeasuredHeight() / 2 - mStatusBarHeight;
                 if (mMargin != 0 && mHeight == MATCH_PARENT)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[1] - mMargin + mClickedRect.height() / 2 - mBubbleLayout.getLookWidth() / 2 - mStatusBarHeight);
                 } else if (params.y <= 0)
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[1] + mClickedRect.height() / 2 - mBubbleLayout.getLookWidth() / 2 - mStatusBarHeight);
-                } else if (params.y + mBubbleLayout.getHeight() > Util.getScreenWH(getContext())[1])
+                } else if (params.y + mBubbleLayout.getMeasuredHeight() > Util.getScreenWH(getContext())[1])
                 {
-                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - (Util.getScreenWH(getContext())[1] - mBubbleLayout.getHeight()) + mClickedRect.height() / 2 - mBubbleLayout.getLookWidth() / 2);
+                    mBubbleLayout.setLookPosition(clickedViewLocation[1] - (Util.getScreenWH(getContext())[1] - mBubbleLayout.getMeasuredHeight()) + mClickedRect.height() / 2 - mBubbleLayout.getLookWidth() / 2);
                 } else
                 {
                     mBubbleLayout.setLookPosition(clickedViewLocation[1] - params.y + mClickedRect.height() / 2 - mBubbleLayout.getLookWidth()/ 2 - mStatusBarHeight);
@@ -406,7 +408,7 @@ public class BubbleDialog extends Dialog
                 } else
                 {
                     if (mRelativeOffset != 0) mOffsetX = -mRelativeOffset;
-                    params.x = clickedViewLocation[0] -  mBubbleLayout.getWidth() + mOffsetX;
+                    params.x = clickedViewLocation[0] -  mBubbleLayout.getMeasuredWidth() + mOffsetX;
                 }
                 break;
         }
@@ -489,9 +491,9 @@ public class BubbleDialog extends Dialog
     }
 
     private void handleGlobalLayoutListener() {
+        onAutoPosition();
         if (mOnGlobalLayoutListener != null)
         {
-            onAutoPosition();
             setLook();
             dialogPosition();
         }
@@ -508,8 +510,19 @@ public class BubbleDialog extends Dialog
 
     /**
      * 设置dialog内容view
+     * 请使用{@link #setBubbleContentView(View)}
      */
+    @Deprecated
     public <T extends BubbleDialog> T addContentView(View view)
+    {
+        this.mAddView = view;
+        return (T) this;
+    }
+
+    /**
+     * 设置dialog内容view
+     */
+    public <T extends BubbleDialog> T setBubbleContentView(View view)
     {
         this.mAddView = view;
         return (T) this;

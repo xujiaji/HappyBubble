@@ -34,8 +34,8 @@ public class CustomOperateDialog extends BubbleDialog implements View.OnClickLis
         mViewHolder.btn13.setOnClickListener(this);
         mViewHolder.btn14.setOnClickListener(this);
         mViewHolder.btn15.setOnClickListener(this);
-//        Window window = getWindow();
-//        window.setWindowAnimations(R.style.dialogWindowAnim);
+        Window window = getWindow();
+        window.setWindowAnimations(R.style.dialogWindowAnim);
 
     }
 

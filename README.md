@@ -46,7 +46,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-implementation 'com.github.xujiaji:happy-bubble:1.1.7'
+implementation 'com.github.xujiaji:happy-bubble:1.1.9'
 ```
 
 ## How to use HappyBubble-BubbleDialog?

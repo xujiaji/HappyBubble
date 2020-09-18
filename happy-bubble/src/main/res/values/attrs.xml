@@ -13,10 +13,19 @@
         <attr name="lookLength"   format="dimension"/>
         <attr name="bubbleColor"  format="color"/>
         <attr name="bubbleRadius" format="dimension"/>
+        <attr name="bubbleLeftTopRadius"     format="dimension"/>
+        <attr name="bubbleRightTopRadius"    format="dimension"/>
+        <attr name="bubbleRightDownRadius" format="dimension"/>
+        <attr name="bubbleLeftDownRadius"  format="dimension"/>
         <attr name="bubblePadding" format="dimension"/>
         <attr name="shadowRadius" format="dimension"/>
         <attr name="shadowX"      format="dimension"/>
         <attr name="shadowY"      format="dimension"/>
         <attr name="shadowColor"  format="color"/>
+
+        <attr name="bubbleArrowTopLeftRadius"        format="dimension"/>
+        <attr name="bubbleArrowTopRightRadius"       format="dimension"/>
+        <attr name="bubbleArrowDownLeftRadius"       format="dimension"/>
+        <attr name="bubbleArrowDownRightRadius"      format="dimension"/>
     </declare-styleable>
 </resources>

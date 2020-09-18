@@ -61,6 +61,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
         ((SeekBar) findViewById(R.id.sbShadowX)).setOnSeekBarChangeListener(this);
         ((SeekBar) findViewById(R.id.sbShadowY)).setOnSeekBarChangeListener(this);
 
+        ((SeekBar) findViewById(R.id.sbArrowTopLeftRadius)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbArrowTopRightRadius)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbArrowDownLeftRadius)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbArrowDownRightRadius)).setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -88,6 +92,19 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
                 break;
             case R.id.sbShadowY:
                 mBubbleLayout.setShadowY(dpTopx(i));
+                break;
+
+            case R.id.sbArrowTopLeftRadius:
+                mBubbleLayout.setArrowTopLeftRadius(dpTopx(i));
+                break;
+            case R.id.sbArrowTopRightRadius:
+                mBubbleLayout.setArrowTopRightRadius(dpTopx(i));
+                break;
+            case R.id.sbArrowDownLeftRadius:
+                mBubbleLayout.setArrowDownLeftRadius(dpTopx(i));
+                break;
+            case R.id.sbArrowDownRightRadius:
+                mBubbleLayout.setArrowDownRightRadius(dpTopx(i));
                 break;
         }
         mBubbleLayout.invalidate();

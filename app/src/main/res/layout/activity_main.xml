@@ -13,8 +13,12 @@
         android:layout_margin="16dp"
         app:lookAt="left"
         app:lookLength="16dp"
-        app:lookPosition="20dp"
-        app:lookWidth="16dp" />
+        app:lookPosition="36dp"
+        app:lookWidth="16dp"
+        app:bubbleArrowTopLeftRadius="6dp"
+        app:bubbleArrowTopRightRadius="6dp"
+        app:bubbleArrowDownLeftRadius="8dp"
+        app:bubbleArrowDownRightRadius="8dp"/>
 
 
     <ScrollView
@@ -240,7 +244,7 @@
                     android:id="@+id/sbLookPosition"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="100"/>
+                    android:max="500"/>
             </LinearLayout>
 
             <LinearLayout
@@ -276,6 +280,75 @@
                     android:layout_height="wrap_content"
                     android:max="100"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="箭尖上左弧：" />
+
+                <SeekBar
+                    android:id="@+id/sbArrowTopLeftRadius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="箭尖上右弧：" />
+
+                <SeekBar
+                    android:id="@+id/sbArrowTopRightRadius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="箭尖下左弧：" />
+
+                <SeekBar
+                    android:id="@+id/sbArrowDownLeftRadius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="箭尖下右弧：" />
+
+                <SeekBar
+                    android:id="@+id/sbArrowDownRightRadius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"/>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

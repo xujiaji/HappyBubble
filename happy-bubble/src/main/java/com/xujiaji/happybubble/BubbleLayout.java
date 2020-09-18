@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -20,8 +19,7 @@ import android.widget.FrameLayout;
  * Created by JiajiXu on 17-12-1.
  */
 
-public class BubbleLayout extends FrameLayout
-{
+public class BubbleLayout extends FrameLayout {
     private Paint mPaint;
     private Path mPath;
     private Look mLook;
@@ -31,30 +29,33 @@ public class BubbleLayout extends FrameLayout
     private int mLookPosition, mLookWidth, mLookLength;
     private int mShadowColor, mShadowRadius, mShadowX, mShadowY;
     private int mBubbleRadius, mBubbleColor;
+    // 坐上弧度，右上弧度，右下弧度，左下弧度
+    private int mLTR, mRTR, mRDR, mLDR;
+    // 箭头
+    //     箭头尖分左右两个弧度分别是由 mArrowTopLeftRadius, mArrowTopRightRadius 控制
+    //     箭头底部左右两个弧度分别是由 mArrowDownLeftRadius, mArrowDownRightRadius 控制
+    private int mArrowTopLeftRadius, mArrowTopRightRadius, mArrowDownLeftRadius, mArrowDownRightRadius;
+
     private OnClickEdgeListener mListener;
     private Region mRegion = new Region();
 
     /**
      * 箭头指向
      */
-    public enum Look
-    {
+    public enum Look {
         /**
          * 坐上右下
          */
         LEFT(1), TOP(2), RIGHT(3), BOTTOM(4);
         int value;
 
-        Look(int v)
-        {
+        Look(int v) {
             value = v;
         }
 
-        public static Look getType(int value)
-        {
+        public static Look getType(int value) {
             Look type = Look.BOTTOM;
-            switch (value)
-            {
+            switch (value) {
                 case 1:
                     type = Look.LEFT;
                     break;
@@ -74,18 +75,15 @@ public class BubbleLayout extends FrameLayout
     }
 
 
-    public BubbleLayout(Context context)
-    {
+    public BubbleLayout(Context context) {
         this(context, null);
     }
 
-    public BubbleLayout(Context context, AttributeSet attrs)
-    {
+    public BubbleLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BubbleLayout(Context context, AttributeSet attrs, int defStyleAttr)
-    {
+    public BubbleLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setLayerType(LAYER_TYPE_SOFTWARE, null);
         setWillNotDraw(false);
@@ -96,11 +94,9 @@ public class BubbleLayout extends FrameLayout
         initPadding();
     }
 
-    public void initPadding()
-    {
+    public void initPadding() {
         int p = mBubblePadding * 2;
-        switch (mLook)
-        {
+        switch (mLook) {
             case BOTTOM:
                 setPadding(p, p, p, mLookLength + p);
                 break;
@@ -119,8 +115,7 @@ public class BubbleLayout extends FrameLayout
     /**
      * 初始化参数
      */
-    private void initAttr(TypedArray a)
-    {
+    private void initAttr(TypedArray a) {
         mLook = Look.getType(a.getInt(R.styleable.BubbleLayout_lookAt, Look.BOTTOM.value));
         mLookPosition = a.getDimensionPixelOffset(R.styleable.BubbleLayout_lookPosition, 0);
         mLookWidth = a.getDimensionPixelOffset(R.styleable.BubbleLayout_lookWidth, Util.dpToPx(getContext(), 17F));
@@ -128,7 +123,18 @@ public class BubbleLayout extends FrameLayout
         mShadowRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowRadius, Util.dpToPx(getContext(), 3.3F));
         mShadowX = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowX, Util.dpToPx(getContext(), 1F));
         mShadowY = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowY, Util.dpToPx(getContext(), 1F));
-        mBubbleRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleRadius, Util.dpToPx(getContext(), 7F));
+
+        mBubbleRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleRadius, Util.dpToPx(getContext(), 8F));
+        mLTR = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleLeftTopRadius, -1);
+        mRTR = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleRightTopRadius, -1);
+        mRDR = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleRightDownRadius, -1);
+        mLDR = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleLeftDownRadius, -1);
+        
+        mArrowTopLeftRadius   = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowTopLeftRadius,  Util.dpToPx(getContext(), 3F));
+        mArrowTopRightRadius  = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowTopRightRadius, Util.dpToPx(getContext(), 3));
+        mArrowDownLeftRadius  = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowDownLeftRadius, Util.dpToPx(getContext(), 4));
+        mArrowDownRightRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowDownRightRadius, Util.dpToPx(getContext(), 4));
+
         mBubblePadding = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubblePadding, Util.dpToPx(getContext(), 8));
         mShadowColor = a.getColor(R.styleable.BubbleLayout_shadowColor, Color.GRAY);
         mBubbleColor = a.getColor(R.styleable.BubbleLayout_bubbleColor, Color.WHITE);
@@ -137,8 +143,7 @@ public class BubbleLayout extends FrameLayout
 
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh)
-    {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
@@ -146,15 +151,13 @@ public class BubbleLayout extends FrameLayout
     }
 
     @Override
-    public void invalidate()
-    {
+    public void invalidate() {
         initData();
         super.invalidate();
     }
 
     @Override
-    public void postInvalidate()
-    {
+    public void postInvalidate() {
         initData();
         super.postInvalidate();
     }
@@ -162,9 +165,8 @@ public class BubbleLayout extends FrameLayout
     /**
      * 初始化数据
      */
-    private void initData()
-    {
-        mPaint.setPathEffect(new CornerPathEffect(mBubbleRadius));
+    private void initData() {
+//        mPaint.setPathEffect(new CornerPathEffect(mBubbleRadius));
         mPaint.setShadowLayer(mShadowRadius, mShadowX, mShadowY, mShadowColor);
 
         mLeft = mBubblePadding + (mLook == Look.LEFT ? mLookLength : 0);
@@ -176,47 +178,127 @@ public class BubbleLayout extends FrameLayout
         mPath.reset();
 
         int topOffset = (topOffset = mLookPosition) + mLookLength > mBottom ? mBottom - mLookWidth : topOffset;
-        topOffset = topOffset > mBubblePadding ? topOffset : mBubblePadding;
+        topOffset = Math.max(topOffset, mBubblePadding);
         int leftOffset = (leftOffset = mLookPosition) + mLookLength > mRight ? mRight - mLookWidth : leftOffset;
-        leftOffset = leftOffset > mBubblePadding ? leftOffset : mBubblePadding;
+        leftOffset = Math.max(leftOffset, mBubblePadding);
 
-        switch (mLook)
-        {
+        switch (mLook) {
             case LEFT:
-                mPath.moveTo(mLeft, topOffset);
-                mPath.rLineTo(-mLookLength, mLookWidth / 2);
-                mPath.rLineTo(mLookLength, mLookWidth / 2);
-                mPath.lineTo(mLeft, mBottom);
-                mPath.lineTo(mRight, mBottom);
-                mPath.lineTo(mRight, mTop);
-                mPath.lineTo(mLeft, mTop);
+                // 判断是否足够画箭头，偏移的量 > 气泡圆角 + 气泡箭头下右圆弧
+                if (topOffset > getLTR() * 2 + mArrowDownRightRadius) {
+                    mPath.moveTo(mLeft, topOffset - mArrowDownRightRadius);
+                    mPath.rCubicTo(0F, mArrowDownRightRadius,
+                            -mLookLength, mLookWidth / 2F - mArrowTopRightRadius + mArrowDownRightRadius,
+                            -mLookLength, mLookWidth / 2F + mArrowDownRightRadius);
+                } else {
+                    // 起点移动到箭头尖
+                    mPath.moveTo(mLeft - mLookLength, topOffset + mLookWidth / 2F);
+                }
+
+                // 判断是否足够画箭头，偏移的量 + 箭头宽 <= 气泡高 - 气泡圆角 - 气泡箭头下右圆弧
+                if (topOffset + mLookWidth < mBottom - getLDR() - mArrowDownLeftRadius) {
+                    mPath.rCubicTo(0F, mArrowTopLeftRadius,
+                            mLookLength, mLookWidth / 2F,
+                            mLookLength, mLookWidth / 2F + mArrowDownLeftRadius);
+                    mPath.lineTo(mLeft, mBottom - getLDR());
+                }
+                mPath.quadTo(mLeft, mBottom,
+                        mLeft + getLDR(), mBottom);
+                mPath.lineTo(mRight - getRDR(), mBottom);
+                mPath.quadTo(mRight, mBottom, mRight, mBottom - getRDR());
+                mPath.lineTo(mRight, mTop + getRTR());
+                mPath.quadTo(mRight, mTop, mRight - getRTR(), mTop);
+                mPath.lineTo(mLeft + getLTR(), mTop);
+                if (topOffset > getLTR() * 2 + mArrowDownRightRadius) {
+                    mPath.quadTo(mLeft, mTop, mLeft, mTop + getLTR());
+                } else {
+                    mPath.quadTo(mLeft, mTop, mLeft - mLookLength, topOffset + mLookWidth / 2F);
+                }
                 break;
             case TOP:
-                mPath.moveTo(leftOffset, mTop);
-                mPath.rLineTo(mLookWidth / 2, -mLookLength);
-                mPath.rLineTo(mLookWidth / 2, mLookLength);
-                mPath.lineTo(mRight, mTop);
-                mPath.lineTo(mRight, mBottom);
-                mPath.lineTo(mLeft, mBottom);
-                mPath.lineTo(mLeft, mTop);
+                if (leftOffset > getLTR() * 2 + mArrowDownLeftRadius) {
+                    mPath.moveTo(leftOffset - mArrowDownLeftRadius, mTop);
+                    mPath.rCubicTo(mArrowDownLeftRadius, 0,
+                            mLookWidth / 2F - mArrowTopLeftRadius + mArrowDownLeftRadius, -mLookLength,
+                            mLookWidth / 2F + mArrowDownLeftRadius, -mLookLength);
+                } else {
+                    mPath.moveTo(leftOffset + mLookWidth / 2F, mTop - mLookLength);
+                }
+
+                if (leftOffset + mLookWidth < mRight - getRTR() - mArrowDownRightRadius) {
+                    mPath.rCubicTo(mArrowTopRightRadius, 0F,
+                            mLookWidth / 2F, mLookLength,
+                            mLookWidth / 2F + mArrowDownRightRadius, mLookLength);
+                    mPath.lineTo(mRight - getRTR(), mTop);
+                }
+                mPath.quadTo(mRight, mTop, mRight, mTop + getRTR());
+                mPath.lineTo(mRight, mBottom - getRDR());
+                mPath.quadTo(mRight, mBottom, mRight - getRDR(), mBottom);
+                mPath.lineTo(mLeft + getLDR(), mBottom);
+                mPath.quadTo(mLeft, mBottom, mLeft, mBottom - getLDR());
+                mPath.lineTo(mLeft, mTop + getLTR());
+                if (leftOffset > getLTR() * 2 + mArrowDownLeftRadius) {
+                    mPath.quadTo(mLeft, mTop, mLeft + getLTR(), mTop);
+                } else {
+                    mPath.quadTo(mLeft, mTop, leftOffset + mLookWidth / 2F, mTop - mLookLength);
+                }
                 break;
             case RIGHT:
-                mPath.moveTo(mRight, topOffset);
-                mPath.rLineTo(mLookLength, mLookWidth / 2);
-                mPath.rLineTo(-mLookLength, mLookWidth / 2);
-                mPath.lineTo(mRight, mBottom);
-                mPath.lineTo(mLeft, mBottom);
-                mPath.lineTo(mLeft, mTop);
-                mPath.lineTo(mRight, mTop);
+                if (topOffset > getRTR() * 2 + mArrowDownLeftRadius) {
+                    mPath.moveTo(mRight, topOffset - mArrowDownLeftRadius);
+                    mPath.rCubicTo(0, mArrowDownLeftRadius,
+                            mLookLength, mLookWidth / 2F - mArrowTopLeftRadius + mArrowDownLeftRadius,
+                            mLookLength, mLookWidth / 2F + mArrowDownLeftRadius);
+                } else {
+                    mPath.moveTo(mRight + mLookLength, topOffset + mLookWidth / 2F);
+                }
+
+                if (topOffset + mLookWidth < mBottom - getRDR() - mArrowDownRightRadius) {
+                    mPath.rCubicTo(0F, mArrowTopRightRadius,
+                            -mLookLength, mLookWidth / 2F,
+                            -mLookLength, mLookWidth / 2F + mArrowDownRightRadius);
+                    mPath.lineTo(mRight, mBottom - getRDR());
+                }
+                mPath.quadTo(mRight, mBottom,
+                        mRight - getRDR(), mBottom);
+                mPath.lineTo(mLeft + getLDR(), mBottom);
+                mPath.quadTo(mLeft, mBottom, mLeft, mBottom - getLDR());
+                mPath.lineTo(mLeft, mTop + getLTR());
+                mPath.quadTo(mLeft, mTop, mLeft + getLTR(), mTop);
+                mPath.lineTo(mRight - getRTR(), mTop);
+                if (topOffset > getRTR() * 2 + mArrowDownLeftRadius) {
+                    mPath.quadTo(mRight, mTop, mRight, mTop + getRTR());
+                } else {
+                    mPath.quadTo(mRight, mTop, mRight + mLookLength, topOffset + mLookWidth / 2F);
+                }
                 break;
             case BOTTOM:
-                mPath.moveTo(leftOffset, mBottom);
-                mPath.rLineTo(mLookWidth / 2, mLookLength);
-                mPath.rLineTo(mLookWidth / 2, -mLookLength);
-                mPath.lineTo(mRight, mBottom);
-                mPath.lineTo(mRight, mTop);
-                mPath.lineTo(mLeft, mTop);
-                mPath.lineTo(mLeft, mBottom);
+                if (leftOffset > getLDR() * 2 + mArrowDownRightRadius) {
+                    mPath.moveTo(leftOffset - mArrowDownRightRadius, mBottom);
+                    mPath.rCubicTo(mArrowDownRightRadius, 0,
+                            mLookWidth / 2F - mArrowTopRightRadius + mArrowDownRightRadius, mLookLength,
+                            mLookWidth / 2F + mArrowDownRightRadius, mLookLength);
+                } else {
+                    mPath.moveTo(leftOffset + mLookWidth / 2F, mBottom + mLookLength);
+                }
+
+                if (leftOffset + mLookWidth < mRight - getRDR() - mArrowDownLeftRadius) {
+                    mPath.rCubicTo(mArrowTopLeftRadius, 0F,
+                            mLookWidth / 2F, -mLookLength,
+                            mLookWidth / 2F + mArrowDownLeftRadius, -mLookLength);
+                    mPath.lineTo(mRight - getRDR(), mBottom);
+                }
+                mPath.quadTo(mRight, mBottom, mRight, mBottom - getRDR());
+                mPath.lineTo(mRight, mTop + getRTR());
+                mPath.quadTo(mRight, mTop, mRight - getRTR(), mTop);
+                mPath.lineTo(mLeft + getLTR(), mTop);
+                mPath.quadTo(mLeft, mTop, mLeft, mTop + getLTR());
+                mPath.lineTo(mLeft, mBottom - getLDR());
+                if (leftOffset > getLDR() * 2 + mArrowDownRightRadius) {
+                    mPath.quadTo(mLeft, mBottom, mLeft + getLDR(), mBottom);
+                } else {
+                    mPath.quadTo(mLeft, mBottom, leftOffset + mLookWidth / 2F, mBottom + mLookLength);
+                }
                 break;
         }
 
@@ -224,143 +306,179 @@ public class BubbleLayout extends FrameLayout
     }
 
     @Override
-    protected void onDraw(Canvas canvas)
-    {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawPath(mPath, mPaint);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        if (event.getAction() == MotionEvent.ACTION_DOWN)
-        {
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             RectF r = new RectF();
             mPath.computeBounds(r, true);
             mRegion.setPath(mPath, new Region((int) r.left, (int) r.top, (int) r.right, (int) r.bottom));
-            if (!mRegion.contains((int) event.getX(), (int) event.getY()) && mListener != null)
-            {
+            if (!mRegion.contains((int) event.getX(), (int) event.getY()) && mListener != null) {
                 mListener.edge();
             }
         }
         return super.onTouchEvent(event);
     }
 
-    public Paint getPaint()
-    {
+    public Paint getPaint() {
         return mPaint;
     }
 
-    public Path getPath()
-    {
+    public Path getPath() {
         return mPath;
     }
 
-    public Look getLook()
-    {
+    public Look getLook() {
         return mLook;
     }
 
-    public int getLookPosition()
-    {
+    public int getLookPosition() {
         return mLookPosition;
     }
 
-    public int getLookWidth()
-    {
+    public int getLookWidth() {
         return mLookWidth;
     }
 
-    public int getLookLength()
-    {
+    public int getLookLength() {
         return mLookLength;
     }
 
-    public int getShadowColor()
-    {
+    public int getShadowColor() {
         return mShadowColor;
     }
 
-    public int getShadowRadius()
-    {
+    public int getShadowRadius() {
         return mShadowRadius;
     }
 
-    public int getShadowX()
-    {
+    public int getShadowX() {
         return mShadowX;
     }
 
-    public int getShadowY()
-    {
+    public int getShadowY() {
         return mShadowY;
     }
 
-    public int getBubbleRadius()
-    {
+    public int getBubbleRadius() {
         return mBubbleRadius;
     }
 
-    public int getBubbleColor()
-    {
+    public int getBubbleColor() {
         return mBubbleColor;
     }
 
-    public void setBubbleColor(int mBubbleColor)
-    {
+    public void setBubbleColor(int mBubbleColor) {
         this.mBubbleColor = mBubbleColor;
     }
 
-    public void setLook(Look mLook)
-    {
+    public void setLook(Look mLook) {
         this.mLook = mLook;
         initPadding();
     }
 
-    public void setLookPosition(int mLookPosition)
-    {
+    public void setLookPosition(int mLookPosition) {
         this.mLookPosition = mLookPosition;
     }
 
-    public void setLookWidth(int mLookWidth)
-    {
+    public void setLookWidth(int mLookWidth) {
         this.mLookWidth = mLookWidth;
     }
 
-    public void setLookLength(int mLookLength)
-    {
+    public void setLookLength(int mLookLength) {
         this.mLookLength = mLookLength;
         initPadding();
     }
 
-    public void setShadowColor(int mShadowColor)
-    {
+    public void setShadowColor(int mShadowColor) {
         this.mShadowColor = mShadowColor;
     }
 
-    public void setShadowRadius(int mShadowRadius)
-    {
+    public void setShadowRadius(int mShadowRadius) {
         this.mShadowRadius = mShadowRadius;
     }
 
-    public void setShadowX(int mShadowX)
-    {
+    public void setShadowX(int mShadowX) {
         this.mShadowX = mShadowX;
     }
 
-    public void setShadowY(int mShadowY)
-    {
+    public void setShadowY(int mShadowY) {
         this.mShadowY = mShadowY;
     }
 
-    public void setBubbleRadius(int mBubbleRadius)
-    {
+    public void setBubbleRadius(int mBubbleRadius) {
         this.mBubbleRadius = mBubbleRadius;
     }
 
+    public int getLTR() {
+        return mLTR == -1 ? mBubbleRadius : mLTR;
+    }
 
-    public Parcelable onSaveInstanceState()
-    {
+    public void setLTR(int mLTR) {
+        this.mLTR = mLTR;
+    }
+
+    public int getRTR() {
+        return mRTR == -1 ? mBubbleRadius : mRTR;
+    }
+
+    public void setRTR(int mRTR) {
+        this.mRTR = mRTR;
+    }
+
+    public int getRDR() {
+        return mRDR == -1 ? mBubbleRadius : mRDR;
+    }
+
+    public void setRDR(int mRDR) {
+        this.mRDR = mRDR;
+    }
+
+    public int getLDR() {
+        return mLDR == -1 ? mBubbleRadius : mLDR;
+    }
+
+    public void setLDR(int mLDR) {
+        this.mLDR = mLDR;
+    }
+
+    public int getArrowTopLeftRadius() {
+        return mArrowTopLeftRadius;
+    }
+
+    public void setArrowTopLeftRadius(int mArrowTopLeftRadius) {
+        this.mArrowTopLeftRadius = mArrowTopLeftRadius;
+    }
+
+    public int getArrowTopRightRadius() {
+        return mArrowTopRightRadius;
+    }
+
+    public void setArrowTopRightRadius(int mArrowTopRightRadius) {
+        this.mArrowTopRightRadius = mArrowTopRightRadius;
+    }
+
+    public int getArrowDownLeftRadius() {
+        return mArrowDownLeftRadius;
+    }
+
+    public void setArrowDownLeftRadius(int mArrowDownLeftRadius) {
+        this.mArrowDownLeftRadius = mArrowDownLeftRadius;
+    }
+
+    public int getArrowDownRightRadius() {
+        return mArrowDownRightRadius;
+    }
+
+    public void setArrowDownRightRadius(int mArrowDownRightRadius) {
+        this.mArrowDownRightRadius = mArrowDownRightRadius;
+    }
+
+    public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("instanceState", super.onSaveInstanceState());
         bundle.putInt("mLookPosition", this.mLookPosition);
@@ -371,6 +489,17 @@ public class BubbleLayout extends FrameLayout
         bundle.putInt("mShadowX", this.mShadowX);
         bundle.putInt("mShadowY", this.mShadowY);
         bundle.putInt("mBubbleRadius", this.mBubbleRadius);
+
+        bundle.putInt("mLTR", this.mLTR);
+        bundle.putInt("mRTR", this.mRTR);
+        bundle.putInt("mRDR", this.mRDR);
+        bundle.putInt("mLDR", this.mLDR);
+
+        bundle.putInt("mArrowTopLeftRadius", this.mArrowTopLeftRadius);
+        bundle.putInt("mArrowTopRightRadius", this.mArrowTopRightRadius);
+        bundle.putInt("mArrowDownLeftRadius", this.mArrowDownLeftRadius);
+        bundle.putInt("mArrowDownRightRadius", this.mArrowDownRightRadius);
+
         bundle.putInt("mWidth", this.mWidth);
         bundle.putInt("mHeight", this.mHeight);
         bundle.putInt("mLeft", this.mLeft);
@@ -382,10 +511,8 @@ public class BubbleLayout extends FrameLayout
 
     //    private int mWidth, mHeight;
 //    private int mLeft, mTop, mRight, mBottom;
-    public void onRestoreInstanceState(Parcelable state)
-    {
-        if (state instanceof Bundle)
-        {
+    public void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             this.mLookPosition = bundle.getInt("mLookPosition");
             this.mLookWidth = bundle.getInt("mLookWidth");
@@ -395,6 +522,17 @@ public class BubbleLayout extends FrameLayout
             this.mShadowX = bundle.getInt("mShadowX");
             this.mShadowY = bundle.getInt("mShadowY");
             this.mBubbleRadius = bundle.getInt("mBubbleRadius");
+
+            this.mLTR = bundle.getInt("mLTR");
+            this.mRTR = bundle.getInt("mRTR");
+            this.mRDR = bundle.getInt("mRDR");
+            this.mLDR = bundle.getInt("mLDR");
+
+            this.mArrowTopLeftRadius = bundle.getInt("mArrowTopLeftRadius");
+            this.mArrowTopRightRadius = bundle.getInt("mArrowTopRightRadius");
+            this.mArrowDownLeftRadius = bundle.getInt("mArrowDownLeftRadius");
+            this.mArrowDownRightRadius = bundle.getInt("mArrowDownRightRadius");
+
             this.mWidth = bundle.getInt("mWidth");
             this.mHeight = bundle.getInt("mHeight");
             this.mLeft = bundle.getInt("mLeft");
@@ -407,16 +545,14 @@ public class BubbleLayout extends FrameLayout
         super.onRestoreInstanceState(state);
     }
 
-    public void setOnClickEdgeListener(OnClickEdgeListener l)
-    {
+    public void setOnClickEdgeListener(OnClickEdgeListener l) {
         this.mListener = l;
     }
 
     /**
      * 触摸到气泡的边缘
      */
-    public interface OnClickEdgeListener
-    {
+    public interface OnClickEdgeListener {
         void edge();
     }
 

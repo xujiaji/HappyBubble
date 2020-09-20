@@ -3,6 +3,9 @@
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
+> 如果要体验单独设置箭头弧度，请[下载Demo](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk)体验。
+> 目前还在测试中，如果要使用请下载项目导入依赖！具体使用请参考项目内事例代码。
+
 气泡布局的形状可以改变，如四角弧度、气泡颜色、箭头大小和阴影。
 
 气泡Dialog可以根据被点击的view的位置来确定自己展示的位置。
@@ -27,7 +30,7 @@
 
 - 1.1.1：修复大小变化后，没有对应变化位置的问题；修复接触顶部偏位问题；
 
-- 1.1.0：<br>①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。<br>③新增“autoPosition”和“setThroughEvent”方法，请参考“BubbleDialog方法参考表”<br>![1.1.0.gif](github/HappyBubble/1.1.0.gif)
+- 1.1.0：<br>①Dialog交互事件传递到Activity达到不在不关闭Dialog的情况下做其他Activity的操作。<br>②添加自动根据被点击View距离屏幕边缘的距离确定Dialog的位置。<br>③新增“autoPosition”和“setThroughEvent”方法，请参考“BubbleDialog方法参考表”<br>![1.1.0.gif](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/1.1.0.gif)
 
 - 1.0.3:继续优化了点击在气泡之外才会被dismiss；修复了Dialog周围会有部分点击无法dismiss；
 

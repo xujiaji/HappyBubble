@@ -37,7 +37,7 @@
 
 |玩清单|
 |-|
-|[![Todo](https://pp.myapp.com/ma_icon/0/icon_52755402_1597028430/96)](https://www.coolapk.com/apk/211388)|
+|[![Todo](https://pp.myapp.com/ma_icon/0/icon_52755402_1597028430/96)](https://www.wanqingdan.com/)|
 
 ## 如何开始？
 
@@ -308,7 +308,7 @@ mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
 
 ### demo 下载
 
-[![Download Demo](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases)
+[![Download Demo](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk)
 
 ---
 

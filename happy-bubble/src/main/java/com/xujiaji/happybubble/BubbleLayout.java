@@ -118,8 +118,8 @@ public class BubbleLayout extends FrameLayout {
     private void initAttr(TypedArray a) {
         mLook = Look.getType(a.getInt(R.styleable.BubbleLayout_lookAt, Look.BOTTOM.value));
         mLookPosition = a.getDimensionPixelOffset(R.styleable.BubbleLayout_lookPosition, 0);
-        mLookWidth = a.getDimensionPixelOffset(R.styleable.BubbleLayout_lookWidth, Util.dpToPx(getContext(), 17F));
-        mLookLength = a.getDimensionPixelOffset(R.styleable.BubbleLayout_lookLength, Util.dpToPx(getContext(), 17F));
+        mLookWidth = a.getDimensionPixelOffset(R.styleable.BubbleLayout_lookWidth, Util.dpToPx(getContext(), 13F));
+        mLookLength = a.getDimensionPixelOffset(R.styleable.BubbleLayout_lookLength, Util.dpToPx(getContext(), 12F));
         mShadowRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowRadius, Util.dpToPx(getContext(), 3.3F));
         mShadowX = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowX, Util.dpToPx(getContext(), 1F));
         mShadowY = a.getDimensionPixelOffset(R.styleable.BubbleLayout_shadowY, Util.dpToPx(getContext(), 1F));
@@ -131,9 +131,9 @@ public class BubbleLayout extends FrameLayout {
         mLDR = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleLeftDownRadius, -1);
         
         mArrowTopLeftRadius   = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowTopLeftRadius,  Util.dpToPx(getContext(), 3F));
-        mArrowTopRightRadius  = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowTopRightRadius, Util.dpToPx(getContext(), 3));
-        mArrowDownLeftRadius  = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowDownLeftRadius, Util.dpToPx(getContext(), 4));
-        mArrowDownRightRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowDownRightRadius, Util.dpToPx(getContext(), 4));
+        mArrowTopRightRadius  = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowTopRightRadius, Util.dpToPx(getContext(), 3F));
+        mArrowDownLeftRadius  = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowDownLeftRadius, Util.dpToPx(getContext(), 6F));
+        mArrowDownRightRadius = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleArrowDownRightRadius, Util.dpToPx(getContext(), 6F));
 
         mBubblePadding = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubblePadding, Util.dpToPx(getContext(), 8));
         mShadowColor = a.getColor(R.styleable.BubbleLayout_shadowColor, Color.GRAY);

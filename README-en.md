@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk) [![maven](https://img.shields.io/badge/bintray-1.1.9-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.1.9)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk) [![maven](https://img.shields.io/badge/bintray-1.2.0-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.2.0)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
@@ -11,6 +11,7 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
+- 1.2.0: feat: arrow radius custom
 - 1.1.9: fix init position offset; feat: show dialog by clicked position
 - 1.1.8: fix status light mode when call 'setTransParentBackground'
 - 1.1.7: fix position error, fix `autoPosition` invalid ... [#13](https://github.com/xujiaji/HappyBubble/issues/13) [#11](https://github.com/xujiaji/HappyBubble/issues/11) [#10](https://github.com/xujiaji/HappyBubble/issues/10)
@@ -46,7 +47,7 @@ Dialog according to click View position display;
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
 ```
-implementation 'com.github.xujiaji:happy-bubble:1.1.9'
+implementation 'com.github.xujiaji:happy-bubble:1.2.0'
 ```
 
 ## How to use HappyBubble-BubbleDialog?

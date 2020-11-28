@@ -11,37 +11,23 @@ Dialog according to click View position display;
 
  [Old README（旧文档）](README-old.md)
 ## update
-- 1.2.1: New Features "Set Bubble Background"
 
-![1.2.1特性](readme/1_2_1.jpeg)
-
-- 1.2.0: feat: arrow radius custom
-- 1.1.9: fix init position offset; feat: show dialog by clicked position
-- 1.1.8: fix status light mode when call 'setTransParentBackground'
-- 1.1.7: fix position error, fix `autoPosition` invalid ... [#13](https://github.com/xujiaji/HappyBubble/issues/13) [#11](https://github.com/xujiaji/HappyBubble/issues/11) [#10](https://github.com/xujiaji/HappyBubble/issues/10)
-- 1.1.6:
-<br>[feat position priority: #9](https://github.com/xujiaji/HappyBubble/issues/9)
-- 1.1.5: 
-<br>[fix: #8](https://github.com/xujiaji/HappyBubble/issues/8)
-- 1.1.4:
-<br>①New method `setLayout(int width, int height, int margin)`，width（set the width of the bubble）、height（set the height of the bubble）、margin（set the distance from the screen edge, only valid if you set width or height to MATCH_PARENT）.
-<br>②`autoPosition(true)`method is ready to be deprecated （and can be used now）， using the new method `autoPosition(Auto)`.If both are used, `autoPosition(Auto)` is used directly. Please refer to the "Method Reference Table" below.
-
-- 1.1.3:<br>①By calling setClickedView can be directly updated the current location of the dialog.<br>②Add a new setRelativeOffset (int) method that sets the offset of the dialog relative to the view being clicked (Negative value: Offset to the center of the view being clicked; Positive value: Offset to the outside of the view being clicked).
-<br>③[Test page:SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)
-
-![1.1.3.gif](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/1.1.3.gif)
-
-- 1.1.2: Fix default values does not adaptation screen.
-
-- 1.1.1:Repair the size of the change, there is no response to change the location; repair contact offset the top of the problem;
-
-- 1.1.0:<br>① Dialog interactive events passed to the Activity to achieve not without closing the dialog box,can opreate Activity.<br>② Add automatically according to click the distance from the edge of the screen to determine the location of the dialog box.<br>③Added "autoPosition" and "setThroughEvent" methods, please refer to "BubbleDialog method reference table"
-![1.1.0.gif](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/1.1.0.gif)
-
-- 1.0.3:Continue to optimize the click outside the bubble will be dismiss; fix some Dialog around Dialog can not dismiss;
-
-- 1.0.2:Fix click on the dialog edge can not be canceled.
+|version|update description|screenshot|
+|:-:|:-|:-:|
+|1.2.1|New Features "Set Bubble Background"|![1.2.1特性](readme/1_2_1.jpeg)|
+|1.2.0|feat: arrow radius custom||
+|1.1.9|fix init position offset; feat: show dialog by clicked position||
+|1.1.8|fix status light mode when call 'setTransParentBackground'||
+|1.1.7|fix position error, fix `autoPosition` invalid ... [#13](https://github.com/xujiaji/HappyBubble/issues/13) [#11](https://github.com/xujiaji/HappyBubble/issues/11) [#10](https://github.com/xujiaji/HappyBubble/issues/10)||
+|1.1.6|[feat position priority: #9](https://github.com/xujiaji/HappyBubble/issues/9)||
+|1.1.5|[fix: #8](https://github.com/xujiaji/HappyBubble/issues/8)||
+|1.1.4|①New method `setLayout(int width, int height, int margin)`，width（set the width of the bubble）、height（set the height of the bubble）、margin（set the distance from the screen edge, only valid if you set width or height to MATCH_PARENT）.<br>②`autoPosition(true)`method is ready to be deprecated （and can be used now）， using the new method `autoPosition(Auto)`.If both are used, `autoPosition(Auto)` is used directly. Please refer to the "Method Reference Table" below.||
+|1.1.3|①By calling setClickedView can be directly updated the current location of the dialog.<br>②Add a new setRelativeOffset (int) method that sets the offset of the dialog relative to the view being clicked (Negative value: Offset to the center of the view being clicked; Positive value: Offset to the outside of the view being clicked).<br>③[Test page:SetClickedViewTestActivity.java](app/src/main/java/com/xujiaji/happybubbletest/SetClickedViewTestActivity.java)|![1.1.3.gif](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/1.1.3.gif)|
+|1.1.2|Fix default values does not adaptation screen.||
+|1.1.1|Repair the size of the change, there is no response to change the location; repair contact offset the top of the problem;||
+|1.1.0|① Dialog interactive events passed to the Activity to achieve not without closing the dialog box,can opreate Activity.<br>② Add automatically according to click the distance from the edge of the screen to determine the location of the dialog box.<br>③Added "autoPosition" and "setThroughEvent" methods, please refer to "BubbleDialog method reference table"|![1.1.0.gif](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/1.1.0.gif)|
+|1.0.3|Continue to optimize the click outside the bubble will be dismiss; fix some Dialog around Dialog can not dismiss;||
+|1.0.2|Fix click on the dialog edge can not be canceled.||
 
 ## Which apps use it ?
 |Todo|

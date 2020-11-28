@@ -501,6 +501,10 @@ public class BubbleLayout extends FrameLayout {
         this.mArrowDownRightRadius = mArrowDownRightRadius;
     }
 
+    public void setBubblePadding(int bubblePadding) {
+        this.mBubblePadding = bubblePadding;
+    }
+
     /**
      * 设置背景图片
      * @param bitmap 图片
@@ -533,6 +537,8 @@ public class BubbleLayout extends FrameLayout {
         bundle.putInt("mRTR", this.mRTR);
         bundle.putInt("mRDR", this.mRDR);
         bundle.putInt("mLDR", this.mLDR);
+
+        bundle.putInt("mBubblePadding", this.mBubblePadding);
 
         bundle.putInt("mArrowTopLeftRadius", this.mArrowTopLeftRadius);
         bundle.putInt("mArrowTopRightRadius", this.mArrowTopRightRadius);
@@ -568,6 +574,8 @@ public class BubbleLayout extends FrameLayout {
             this.mRTR = bundle.getInt("mRTR");
             this.mRDR = bundle.getInt("mRDR");
             this.mLDR = bundle.getInt("mLDR");
+
+            this.mBubblePadding = bundle.getInt("mBubblePadding");
 
             this.mArrowTopLeftRadius = bundle.getInt("mArrowTopLeftRadius");
             this.mArrowTopRightRadius = bundle.getInt("mArrowTopRightRadius");

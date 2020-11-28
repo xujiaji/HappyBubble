@@ -51,6 +51,13 @@ public class BubbleLayout extends FrameLayout {
     private RectF mBubbleImageBgRectF = new RectF();
     private Paint mBubbleImageBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
 
+    // 气泡边框颜色
+    private int mBubbleBorderColor = Color.BLACK;
+    // 气泡边框大小
+    private int mBubbleBorderSize = 0;
+    // 气泡边框画笔
+    private Paint mBubbleBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+
     /**
      * 箭头指向
      */
@@ -156,6 +163,9 @@ public class BubbleLayout extends FrameLayout {
         if (mBubbleBgRes != -1) {
             mBubbleImageBg = BitmapFactory.decodeResource(getResources(), mBubbleBgRes);
         }
+
+        mBubbleBorderColor = a.getColor(R.styleable.BubbleLayout_bubbleBorderColor, Color.BLACK);
+        mBubbleBorderSize = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubbleBorderSize, 0);
         a.recycle();
     }
 
@@ -186,6 +196,9 @@ public class BubbleLayout extends FrameLayout {
     private void initData() {
 //        mPaint.setPathEffect(new CornerPathEffect(mBubbleRadius));
         mPaint.setShadowLayer(mShadowRadius, mShadowX, mShadowY, mShadowColor);
+        mBubbleBorderPaint.setColor(mBubbleBorderColor);
+        mBubbleBorderPaint.setStrokeWidth(mBubbleBorderSize);
+        mBubbleBorderPaint.setStyle(Paint.Style.STROKE);
 
         mLeft = mBubblePadding + (mLook == Look.LEFT ? mLookLength : 0);
         mTop = mBubblePadding + (mLook == Look.TOP ? mLookLength : 0);
@@ -331,6 +344,10 @@ public class BubbleLayout extends FrameLayout {
             mPath.computeBounds(mBubbleImageBgRectF, true);
 
             canvas.drawBitmap(mBubbleImageBg, null, mBubbleImageBgRectF, mBubbleImageBgPaint);
+        }
+
+        if (mBubbleBorderSize != 0) {
+            canvas.drawPath(mPath, mBubbleBorderPaint);
         }
     }
 
@@ -521,6 +538,14 @@ public class BubbleLayout extends FrameLayout {
         mBubbleImageBg = BitmapFactory.decodeResource(getResources(), res);
     }
 
+    public void setBubbleBorderSize(int bubbleBorderSize) {
+        this.mBubbleBorderSize = bubbleBorderSize;
+    }
+
+    public void setBubbleBorderColor(int bubbleBorderColor) {
+        this.mBubbleBorderColor = bubbleBorderColor;
+    }
+
     public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("instanceState", super.onSaveInstanceState());
@@ -553,6 +578,9 @@ public class BubbleLayout extends FrameLayout {
         bundle.putInt("mBottom", this.mBottom);
 
         bundle.putInt("mBubbleBgRes", this.mBubbleBgRes);
+
+        bundle.putInt("mBubbleBorderColor", this.mBubbleBorderColor);
+        bundle.putInt("mBubbleBorderSize", this.mBubbleBorderSize);
         return bundle;
     }
 
@@ -593,6 +621,9 @@ public class BubbleLayout extends FrameLayout {
             if (this.mBubbleBgRes != -1) {
                 mBubbleImageBg = BitmapFactory.decodeResource(getResources(), mBubbleBgRes);
             }
+
+            this.mBubbleBorderSize = bundle.getInt("mBubbleBorderSize");
+            this.mBubbleBorderColor = bundle.getInt("mBubbleBorderColor");
             super.onRestoreInstanceState(bundle.getParcelable("instanceState"));
             return;
         }

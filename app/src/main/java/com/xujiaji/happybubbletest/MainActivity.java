@@ -32,6 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
         findViewById(R.id.rbTop).setOnClickListener(this);
         findViewById(R.id.rbRight).setOnClickListener(this);
         findViewById(R.id.rbBottom).setOnClickListener(this);
+
         findViewById(R.id.cbWhite).setOnClickListener(this);
         findViewById(R.id.cbGrey).setOnClickListener(this);
         findViewById(R.id.cbBlack).setOnClickListener(this);
@@ -40,6 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
         findViewById(R.id.cbBlue).setOnClickListener(this);
         findViewById(R.id.cbGreen).setOnClickListener(this);
         findViewById(R.id.cbPurple).setOnClickListener(this);
+
         findViewById(R.id.csWhite).setOnClickListener(this);
         findViewById(R.id.csGrey).setOnClickListener(this);
         findViewById(R.id.csBlack).setOnClickListener(this);
@@ -47,6 +49,15 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
         findViewById(R.id.csOrange).setOnClickListener(this);
         findViewById(R.id.csBlue).setOnClickListener(this);
         findViewById(R.id.csGreen).setOnClickListener(this);
+
+        findViewById(R.id.bdWhite).setOnClickListener(this);
+        findViewById(R.id.bdGrey).setOnClickListener(this);
+        findViewById(R.id.bdBlack).setOnClickListener(this);
+        findViewById(R.id.bdRed).setOnClickListener(this);
+        findViewById(R.id.bdOrange).setOnClickListener(this);
+        findViewById(R.id.bdBlue).setOnClickListener(this);
+        findViewById(R.id.bdGreen).setOnClickListener(this);
+
         findViewById(R.id.tvNextPage).setOnClickListener(this);
         findViewById(R.id.btnImageBg).setOnClickListener(this);
         csPurple = findViewById(R.id.csPurple);
@@ -66,6 +77,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
         ((SeekBar) findViewById(R.id.sbArrowTopRightRadius)).setOnSeekBarChangeListener(this);
         ((SeekBar) findViewById(R.id.sbArrowDownLeftRadius)).setOnSeekBarChangeListener(this);
         ((SeekBar) findViewById(R.id.sbArrowDownRightRadius)).setOnSeekBarChangeListener(this);
+        ((SeekBar) findViewById(R.id.sbBubbleBorder)).setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -106,6 +118,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
                 break;
             case R.id.sbArrowDownRightRadius:
                 mBubbleLayout.setArrowDownRightRadius(dpTopx(i));
+                break;
+            case R.id.sbBubbleBorder:
+                mBubbleLayout.setBubbleBorderSize(dpTopx(i));
                 break;
         }
         mBubbleLayout.invalidate();
@@ -196,6 +211,29 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
                         .calBar(true)
                         .setTransParentBackground()
                         .show();
+                break;
+            case R.id.bdWhite:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.white));
+            case R.id.bdGrey:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.darker_gray));
+                break;
+            case R.id.bdBlack:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.black));
+                break;
+            case R.id.bdRed:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.holo_red_light));
+                break;
+            case R.id.bdOrange:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.holo_orange_light));
+                break;
+            case R.id.bdBlue:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.holo_blue_light));
+                break;
+            case R.id.bdGreen:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.holo_green_light));
+                break;
+            case R.id.bdPurple:
+                mBubbleLayout.setBubbleBorderColor(getResources().getColor(android.R.color.holo_purple));
                 break;
             case R.id.btnDialogTop:
                 new BubbleDialog(this)

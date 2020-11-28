@@ -29,5 +29,8 @@
         <attr name="bubbleArrowDownRightRadius"      format="dimension"/>
 
         <attr name="bubbleBgRes" format="reference" />
+
+        <attr name="bubbleBorderColor" format="color" />
+        <attr name="bubbleBorderSize" format="dimension" />
     </declare-styleable>
 </resources>

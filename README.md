@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk) [![maven](https://img.shields.io/badge/bintray-1.2.1-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.2.1)
+[![GitHub release](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk) [![maven](https://img.shields.io/badge/bintray-1.2.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.2.2)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
@@ -18,7 +18,8 @@
 
 |版本|更新描述|图片|
 |:-:|:-|:-:|
-|1.2.1|新特性“设置气泡背景”[#13](https://github.com/xujiaji/HappyBubble/issues/25)|![1.2.1特性](readme/1_2_1.jpeg)|
+|1.2.2|新特性“设置气泡边框和边框颜色”[#23](https://github.com/xujiaji/HappyBubble/issues/23)|![1.2.2特性](readme/1_2_2.gif)|
+|1.2.1|新特性“设置气泡背景”[#25](https://github.com/xujiaji/HappyBubble/issues/25)|![1.2.1特性](readme/1_2_1.jpeg)|
 |1.2.0|箭头的上下圆弧都可以自由定制||
 |1.1.9|修复初始位置偏移；新增通过x，y坐标显示HappyDialog||
 |1.1.8|修复当设置透明背景时，状态栏文字颜色可能变白色问题||
@@ -44,7 +45,7 @@
 在你模块中的build.gradle添加上HappyBubble依赖
 
 ``` groovy
-implementation 'com.github.xujiaji:happy-bubble:1.2.1'
+implementation 'com.github.xujiaji:happy-bubble:1.2.2'
 ```
 
 ## 如何使用 HappyBubble-BubbleDialog？

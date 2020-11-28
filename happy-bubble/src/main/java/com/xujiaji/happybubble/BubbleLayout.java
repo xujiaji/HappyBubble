@@ -42,6 +42,9 @@ public class BubbleLayout extends FrameLayout {
 
     private OnClickEdgeListener mListener;
     private Region mRegion = new Region();
+
+    // 气泡背景图资源
+    private int mBubbleBgRes = -1;
     // 气泡背景图
     private Bitmap mBubbleImageBg = null;
     // 气泡背景显示区域
@@ -149,9 +152,9 @@ public class BubbleLayout extends FrameLayout {
         mShadowColor = a.getColor(R.styleable.BubbleLayout_shadowColor, Color.GRAY);
         mBubbleColor = a.getColor(R.styleable.BubbleLayout_bubbleColor, Color.WHITE);
 
-        final int bubbleBgRes = a.getResourceId(R.styleable.BubbleLayout_bubbleBgRes, -1);
-        if (bubbleBgRes != -1) {
-            mBubbleImageBg = BitmapFactory.decodeResource(getResources(), bubbleBgRes);
+        mBubbleBgRes = a.getResourceId(R.styleable.BubbleLayout_bubbleBgRes, -1);
+        if (mBubbleBgRes != -1) {
+            mBubbleImageBg = BitmapFactory.decodeResource(getResources(), mBubbleBgRes);
         }
         a.recycle();
     }
@@ -542,6 +545,8 @@ public class BubbleLayout extends FrameLayout {
         bundle.putInt("mTop", this.mTop);
         bundle.putInt("mRight", this.mRight);
         bundle.putInt("mBottom", this.mBottom);
+
+        bundle.putInt("mBubbleBgRes", this.mBubbleBgRes);
         return bundle;
     }
 
@@ -575,6 +580,11 @@ public class BubbleLayout extends FrameLayout {
             this.mTop = bundle.getInt("mTop");
             this.mRight = bundle.getInt("mRight");
             this.mBottom = bundle.getInt("mBottom");
+            this.mBubbleBgRes = bundle.getInt("mBubbleBgRes");
+
+            if (this.mBubbleBgRes != -1) {
+                mBubbleImageBg = BitmapFactory.decodeResource(getResources(), mBubbleBgRes);
+            }
             super.onRestoreInstanceState(bundle.getParcelable("instanceState"));
             return;
         }

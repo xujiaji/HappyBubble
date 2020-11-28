@@ -48,6 +48,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
         findViewById(R.id.csBlue).setOnClickListener(this);
         findViewById(R.id.csGreen).setOnClickListener(this);
         findViewById(R.id.tvNextPage).setOnClickListener(this);
+        findViewById(R.id.btnImageBg).setOnClickListener(this);
         csPurple = findViewById(R.id.csPurple);
         csPurple.setOnClickListener(this);
         mBtnDialogTop = findViewById(R.id.btnDialogTop);
@@ -204,6 +205,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Seek
                         .setTransParentBackground()
                         .calBar(true)
                         .show();
+                break;
+            case R.id.btnImageBg:
+                mBubbleLayout.setBubbleImageBgRes(R.mipmap.img1);
                 break;
         }
         mBubbleLayout.invalidate();

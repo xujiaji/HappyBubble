@@ -2,10 +2,14 @@ package com.xujiaji.happybubble;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.os.Bundle;
@@ -38,6 +42,11 @@ public class BubbleLayout extends FrameLayout {
 
     private OnClickEdgeListener mListener;
     private Region mRegion = new Region();
+    // 气泡背景图
+    private Bitmap mBubbleImageBg = null;
+    // 气泡背景显示区域
+    private RectF mBubbleImageBgRectF = new RectF();
+    private Paint mBubbleImageBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
 
     /**
      * 箭头指向
@@ -91,6 +100,7 @@ public class BubbleLayout extends FrameLayout {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPath = new Path();
+        mBubbleImageBgPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         initPadding();
     }
 
@@ -138,6 +148,11 @@ public class BubbleLayout extends FrameLayout {
         mBubblePadding = a.getDimensionPixelOffset(R.styleable.BubbleLayout_bubblePadding, Util.dpToPx(getContext(), 8));
         mShadowColor = a.getColor(R.styleable.BubbleLayout_shadowColor, Color.GRAY);
         mBubbleColor = a.getColor(R.styleable.BubbleLayout_bubbleColor, Color.WHITE);
+
+        final int bubbleBgRes = a.getResourceId(R.styleable.BubbleLayout_bubbleBgRes, -1);
+        if (bubbleBgRes != -1) {
+            mBubbleImageBg = BitmapFactory.decodeResource(getResources(), bubbleBgRes);
+        }
         a.recycle();
     }
 
@@ -309,6 +324,11 @@ public class BubbleLayout extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawPath(mPath, mPaint);
+        if (mBubbleImageBg != null) {
+            mPath.computeBounds(mBubbleImageBgRectF, true);
+
+            canvas.drawBitmap(mBubbleImageBg, null, mBubbleImageBgRectF, mBubbleImageBgPaint);
+        }
     }
 
     @Override
@@ -476,6 +496,22 @@ public class BubbleLayout extends FrameLayout {
 
     public void setArrowDownRightRadius(int mArrowDownRightRadius) {
         this.mArrowDownRightRadius = mArrowDownRightRadius;
+    }
+
+    /**
+     * 设置背景图片
+     * @param bitmap 图片
+     */
+    public void setBubbleImageBg(Bitmap bitmap) {
+        mBubbleImageBg = bitmap;
+    }
+
+    /**
+     * 设置背景图片资源
+     * @param res 图片资源
+     */
+    public void setBubbleImageBgRes(int res) {
+        mBubbleImageBg = BitmapFactory.decodeResource(getResources(), res);
     }
 
     public Parcelable onSaveInstanceState() {

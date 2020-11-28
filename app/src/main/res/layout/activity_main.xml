@@ -402,6 +402,12 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnImageBg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加气泡图片背景"/>
+
+            <Button
                 android:id="@+id/btnDialogTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

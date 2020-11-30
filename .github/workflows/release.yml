@@ -26,7 +26,12 @@ jobs:
       run: ./gradlew build
     - name: Build Debug APK
       run: ./gradlew assembleDebug
-    - name: to assets
+    - name: Add Bintray Secret
+      run: |
+        echo "bintray.apikey=${{ secrets.BINTRAY_APIKEY }}" >> local.properties
+        echo "bintray.user=${{ secrets.BINTRAY_USER }}" >> local.properties
+        echo "bintray.gpg.password=${{ secrets.BINTRAY_GPG_PASSWORD }}" >> local.properties
+    - name: Publish to Release
       env: 
         GITHUB_TOKEN: ${{ secrets.GIT_RElEASE_TOKEN }}
       run: |

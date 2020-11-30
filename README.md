@@ -1,10 +1,7 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-apk&aar-green.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/v1.2.2) [![maven](https://img.shields.io/badge/bintray-1.2.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.2.2)
+[![GitHub release](https://img.shields.io/badge/Download-DemoApk&AAR-green.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/v1.2.2) [![maven](https://img.shields.io/badge/bintray-1.2.2-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.2.2)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
-
-> 如果要体验单独设置箭头弧度，请[下载Demo](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk)体验。
-> 目前还在测试中，如果要使用请下载项目导入依赖！具体使用请参考项目内事例代码。
 
 气泡布局的形状可以改变，如四角弧度、气泡颜色、箭头大小和阴影。
 
@@ -50,7 +47,7 @@ implementation 'com.github.xujiaji:happy-bubble:1.2.2'
 
 ## 如何使用 HappyBubble-BubbleDialog？
 
-> 方法参考表
+> 方法参考表（不全面）
 > 具体详细参数请参照案例代码和[attrs.xml](https://github.com/xujiaji/HappyBubble/blob/master/happy-bubble/src/main/res/values/attrs.xml)
 
 |方法名|参数|描述|
@@ -310,7 +307,7 @@ mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
 
 ### demo 下载
 
-[![Download Demo](https://img.shields.io/badge/Download-demo--apk-brightgreen.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/demoApk)
+[![GitHub release](https://img.shields.io/badge/Download-DemoApk&AAR-green.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/v1.2.2)
 
 ---
 

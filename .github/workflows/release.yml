@@ -32,6 +32,10 @@ jobs:
       run: ./gradlew build
     - name: Build Debug APK
       run: ./gradlew assembleDebug
+    - name: Upload to Bintray
+      run: |
+        ./gradlew install
+        ./gradlew bintrayUpload
     - name: Publish to Release
       env: 
         GITHUB_TOKEN: ${{ secrets.GIT_RElEASE_TOKEN }}

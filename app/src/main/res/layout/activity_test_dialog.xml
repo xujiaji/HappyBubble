@@ -83,6 +83,7 @@
         android:text="@string/event_through_dialog"
         android:textStyle="bold"
         android:textColor="@android:color/holo_green_light"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radioGroup" />
 
     <Button

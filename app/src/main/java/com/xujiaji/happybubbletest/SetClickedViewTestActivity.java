@@ -79,13 +79,14 @@ public class SetClickedViewTestActivity extends Activity
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, final int position) {
+        public void onBindViewHolder(ViewHolder holder, int position) {
             String str = lists.get(position);
             holder.mTvTitle.setText(str);
+            final int finalPosition = position;
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialogText.setText(getString(R.string.now_click_position) + position);
+                    dialogText.setText(getString(R.string.now_click_position) + finalPosition);
                     bubbleDialog.setClickedView(v);
                     bubbleDialog.show();
                 }

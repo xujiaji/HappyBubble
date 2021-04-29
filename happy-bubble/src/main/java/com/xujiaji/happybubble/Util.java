@@ -2,6 +2,7 @@ package com.xujiaji.happybubble;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,19 +28,9 @@ public class Util
      */
     public static int getStatusHeight(Context context)
     {
-        int statusHeight = -1;
-        try
-        {
-            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
-            Object object = clazz.newInstance();
-            int height = Integer.parseInt(clazz.getField("status_bar_height")
-                    .get(object).toString());
-            statusHeight = context.getApplicationContext().getResources().getDimensionPixelSize(height);
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return statusHeight;
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        return resources.getDimensionPixelSize(resourceId);
     }
 
     /**

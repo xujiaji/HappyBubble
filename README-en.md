@@ -1,5 +1,5 @@
 # HappyBubble
-[![GitHub release](https://img.shields.io/badge/Download-DemoApk&AAR-green.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/v1.2.3) [![maven](https://img.shields.io/badge/bintray-1.2.3-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.2.3)
+[![GitHub release](https://img.shields.io/badge/Download-DemoApk&AAR-green.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/v1.2.4) [![maven](https://img.shields.io/badge/bintray-1.2.4-brightgreen.svg)](https://bintray.com/xujiaji/maven/happy-bubble/1.2.4)
 
 ![bubble](https://raw.githubusercontent.com/xujiaji/xujiaji.github.io/pictures/github/HappyBubble/en/img5.png)
 
@@ -14,6 +14,7 @@ Dialog according to click View position display;
 
 |version|update description|screenshot|
 |:-:|:-|:-:|
+|1.2.4|fix status bar height fetch[#31](https://github.com/xujiaji/HappyBubble/issues/31)||
 |1.2.3|fix bubbles within the margin problem||
 |1.2.2|New Features "Set Bubble Border and Border Color"[#23](https://github.com/xujiaji/HappyBubble/issues/23)|![1.2.2特性](readme/1_2_2.gif)|
 |1.2.1|New Features "Set Bubble Background"|![1.2.1特性](readme/1_2_1.jpeg)|
@@ -38,8 +39,14 @@ Dialog according to click View position display;
 
 ## How to get started?
 Add HappyBubble dependency into your build.gradle
-```
-implementation 'com.github.xujiaji:happy-bubble:1.2.3'
+``` groovy
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'com.github.xujiaji:happy-bubble:1.2.4'
+}
 ```
 
 ## How to use HappyBubble-BubbleDialog?
@@ -286,7 +293,7 @@ mBubbleLayout.setLook(BubbleLayout.Look.LEFT);
 
 ### demo download.
 
-[![GitHub release](https://img.shields.io/badge/Download-DemoApk&AAR-green.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/v1.2.3)
+[![GitHub release](https://img.shields.io/badge/Download-DemoApk&AAR-green.svg)](https://github.com/xujiaji/HappyBubble/releases/tag/v1.2.4)
 
 ---
 

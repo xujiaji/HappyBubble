@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 android {
     compileSdkVersion 26
@@ -6,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 6
-        versionName "1.2.3"
+        versionCode 7
+        versionName "1.2.4"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -26,15 +28,103 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-apply from: 'install.gradle'
-apply from: 'bintray.gradle'
-javadoc {
-    options{
-        encoding "UTF-8"
-        charSet 'UTF-8'
-        author true
-        version true
-        links "https://github.com/xujiaji/HappyBubble"
-        title "HappyBubble Doc"
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from android.sourceSets.main.java.source
+    exclude "**/R.class"
+    exclude "**/BuildConfig.class"
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+publishing {
+    // 定义发布什么
+    publications {
+        mavenJava(MavenPublication) {
+            // group id，发布后引用的依赖的 group id
+            groupId 'com.github.xujiaji'
+            // 发布后引用的依赖的 artifact id
+            artifactId 'happy-bubble'
+            // 发布的版本
+            version '1.2.4'
+            // 发布的 arr 的文件和源码文件
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+            artifact androidSourcesJar
+            pom {
+                // 构件名称，可以自定义
+                name = 'HappyBubble'
+                // 构件描述
+                description = '💭BubbleLayout随意变化的气泡布局、消息对话框，可定制颜色，背景、弧度、尖角弧度、边框等等。BubbleDialog气泡弹窗根据点击View的位置定位它的弹窗位置，BubbleDialog可定制方向等！(BubbleLayout changes freely,BubbleDialog click on the location of View positioning its location,BubbleDialog can be customized directions.)'
+                // 构件主页
+                url = 'https://github.com/xujiaji/HappyBubble'
+                // 许可证名称和地址
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                // 开发者信息
+                developers {
+                    developer {
+                        name = 'xujiaji'
+                        email = 'jiajixu@qq.com'
+                    }
+                }
+                // 版本控制仓库地址
+                scm {
+                    url = 'https://github.com/xujiaji/HappyBubble'
+                    connection = 'https://github.com/xujiaji/HappyBubble.git'
+                    developerConnection = 'git@github.com:xujiaji/HappyBubble.git'
+                }
+                // 解决依赖关系
+                withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    project.configurations.all { configuration ->
+                        def name = configuration.name
+                        if (name != "implementation" && name != "compile" && name != "api") {
+                            return
+                        }
+                        println(configuration)
+                        configuration.dependencies.each {
+                            println(it)
+                            if (it.name == "unspecified") {
+                                // 忽略无法识别的
+                                return
+                            }
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            if (name == "api" || name == "compile") {
+                                dependencyNode.appendNode("scope", "compile")
+                            } else { // implementation
+                                dependencyNode.appendNode("scope", "runtime")
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+    // 定义发布到哪里
+    repositories {
+        maven {
+            // 发布的位置，这里根据发布的版本区分了 SNAPSHOT 和最终版本两种情况
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                // 这里就是之前在 issues.sonatype.org 注册的账号
+                username properties.getProperty("maven.username")
+                password properties.getProperty("maven.password")
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications
 }

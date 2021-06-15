@@ -29,11 +29,11 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
+#    - name: Build Debug APK
+#      run: ./gradlew assembleDebug
     - name: Upload to Maven Central
       run: |
-        ./gradlew install
+        gpg -k
         ./gradlew happy-bubble:publishMavenJavaPublicationToMavenRepository
 #    - name: Publish to Release
 #      env:

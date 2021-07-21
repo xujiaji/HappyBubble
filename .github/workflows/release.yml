@@ -5,8 +5,8 @@ name: Java CI with Gradle
 
 on:
   push:
-#    tags: ["v*"]
-    branches: [ master ]
+    tags: ["v*"]
+#    branches: [ master ]
 #  pull_request:
 #    branches: [ master ]
 
@@ -29,15 +29,15 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-#    - name: Build Debug APK
-#      run: ./gradlew assembleDebug
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
     - name: Upload to Maven Central
       run: |
         gpg -k
         ./gradlew happy-bubble:publishMavenJavaPublicationToMavenRepository
-#    - name: Publish to Release
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GIT_RElEASE_TOKEN }}
-#      run: |
-#        tag_name="${GITHUB_REF##*/}"
-#        hub release create -a "app/build/outputs/apk/debug/app-debug.apk" -a "happy-bubble/build/outputs/aar/happy-bubble-release.aar" -m "$tag_name" "$tag_name"
+    - name: Publish to Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_RElEASE_TOKEN }}
+      run: |
+        tag_name="${GITHUB_REF##*/}"
+        hub release create -a "app/build/outputs/apk/debug/app-debug.apk" -a "happy-bubble/build/outputs/aar/happy-bubble-release.aar" -m "$tag_name" "$tag_name"

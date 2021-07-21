@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 7
-        versionName "1.2.4"
+        versionName "1.2.4-alpha4"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -48,7 +48,7 @@ publishing {
             // 发布后引用的依赖的 artifact id
             artifactId 'happy-bubble'
             // 发布的版本
-            version '1.2.4-alpha2'
+            version android.defaultConfig.versionName
             // 发布的 arr 的文件和源码文件
             artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
             artifact androidSourcesJar

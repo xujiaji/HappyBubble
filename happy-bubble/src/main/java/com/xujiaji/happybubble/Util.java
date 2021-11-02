@@ -32,7 +32,19 @@ public class Util
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         return resources.getDimensionPixelSize(resourceId);
     }
+  /**
+     * 通过Activity的内容距离顶部高度来获取状态栏高度，该方法获取需要在onWindowFocusChanged回调之后
+     *
+     * @param activity
+     * @return
+     */
 
+    public static int getStatusBarByTop(Activity activity) {
+        Rect rect = new Rect();
+        Window window = activity.getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(rect);
+        return rect.top;
+    }
     /**
      * 获取屏幕宽高
      */

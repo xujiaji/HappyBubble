@@ -1,10 +1,13 @@
 package com.xujiaji.happybubble;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;

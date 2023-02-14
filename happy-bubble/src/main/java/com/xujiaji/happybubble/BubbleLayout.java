@@ -109,7 +109,6 @@ public class BubbleLayout extends FrameLayout {
 
     public BubbleLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setLayerType(LAYER_TYPE_SOFTWARE, null);
         setWillNotDraw(false);
         initAttr(context.obtainStyledAttributes(attrs, R.styleable.BubbleLayout, defStyleAttr, 0));
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
@@ -117,6 +116,7 @@ public class BubbleLayout extends FrameLayout {
         mPath = new Path();
         mBubbleImageBgPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         initPadding();
+        setLayerType(LAYER_TYPE_SOFTWARE, null);
     }
 
     public void initPadding() {

@@ -78,6 +78,12 @@ public class BubbleDialog extends Dialog
         final int screenW = Util.getScreenWH(getContext())[0];
       //        mStatusBarHeight = Util.getStatusHeight(getContext());
         mStatusBarHeight = Util.getStatusBarByTop(mActivity);
+        mActivity.getWindow().getDecorView().post(new Runnable() {
+            @Override
+            public void run() {
+                mStatusBarHeight = Util.getStatusBarByTop(mActivity);
+            }
+        });
         getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener()
         {
             @Override

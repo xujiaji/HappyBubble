@@ -88,6 +88,7 @@ public class SetClickedViewTestActivity extends Activity
                 public void onClick(View v) {
                     dialogText.setText(getString(R.string.now_click_position) + finalPosition);
                     bubbleDialog.setClickedView(v);
+
                     bubbleDialog.show();
                 }
             });

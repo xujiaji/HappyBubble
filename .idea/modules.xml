@@ -4,7 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HappyBubble.iml" filepath="$PROJECT_DIR$/HappyBubble.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HappyBubble.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.iml" filepath="$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.main.iml" filepath="$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/happy-bubble/HappyBubble.happy-bubble.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -3,6 +3,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 android {
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 14
